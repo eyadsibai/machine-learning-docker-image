@@ -1,0 +1,46 @@
+name: root
+dependencies:
+  - bokeh=0.12.*
+  - cloudpickle=0.2.*
+  - dask=0.13.*
+  - h5py=2.6.*
+  - hdf5=1.8.*
+  - ipywidgets=5.2*
+  - luigi=2.*
+  - matplotlib=1.5.*
+  - mccabe=0.3.*
+  - networkx=1.11.*
+  - nltk=3.2.*
+  - numba=0.29.*
+  - numexpr=2.6.*
+  - numpy=1.11.*
+  - requests=2.10.*
+  - seaborn=0.7.*
+  - pandas=0.19.*
+  - scikit-learn=0.18.*
+  - scikit-image=0.12.*
+  - scipy=0.18.*
+  - nltk
+  - statsmodels=0.6.*
+  - patsy=0.4.*
+  - cython
+  - bcolz
+ # - Quantopian::zipline
+  - pip:
+      - keras
+      - tensorflow-gpu
+      - categorical-distance==1.9
+      - db.py
+      - dedupe
+      - dedupe-hcluster
+      - google-api-python-client==1.5.1
+      - haversine==0.4.5
+      - joblib==0.10.3
+      - parserator==0.6.2
+      - prettytable==0.7.2
+      - probableparsing==0.0.1
+      - probablepeople==0.5.2
+      - pudb==2016.1
+      - mlxtend
+      #- git+https://github.com/blaze/dask.git#egg=dask[complete]
+
