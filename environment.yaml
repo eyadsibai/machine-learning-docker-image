@@ -25,6 +25,7 @@ dependencies:
   - patsy=0.4.*
   - cython
   - bcolz
+  - psutil # needed for pydatalab
  # - Quantopian::zipline
   - pip:
       - keras
