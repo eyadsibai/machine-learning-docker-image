@@ -29,6 +29,7 @@ dependencies:
  # - Quantopian::zipline
   - pip:
       - google-cloud
+      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
       - tensorflow-gpu
       - categorical-distance==1.9
