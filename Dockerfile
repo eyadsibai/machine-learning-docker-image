@@ -30,11 +30,19 @@ USER $NB_USER
 ADD environment.yaml /tmp/environment.yaml
 ADD install_pydatalab.sh /tmp/install_pydatalab.sh
 
+# Install Python 3 packages
+RUN conda env update --file=/tmp/environment.yaml
+
+
 #installing pydatalab
 RUN bash /tmp/install_pydatalab.sh
 
-# Install Python 3 packages
-RUN conda env update --file=/tmp/environment.yaml
+
+# Install XGBoost library
+RUN git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    make -j4 && \
+    cd python-package; python setup.py install
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
