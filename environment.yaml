@@ -28,6 +28,7 @@ dependencies:
   - psutil # needed for pydatalab
  # - Quantopian::zipline
   - pip:
+      - google-cloud
       - keras
       - tensorflow-gpu
       - categorical-distance==1.9
