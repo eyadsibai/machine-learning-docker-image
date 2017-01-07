@@ -35,7 +35,7 @@ dependencies:
   - conda-forge::pymc3
   - conda-forge::pudb
   - glemaitre::imbalanced-learn
-  - conda-forge::altair
+  # - conda-forge::altair
   - tpot
   - prettytable
   - joblib=0.10.3
