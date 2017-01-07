@@ -1,7 +1,4 @@
 name: root
-channels:
-  - defaults
-  - conda-forge
 dependencies:
   - python=3.5
   - bokeh=0.12.*
@@ -44,6 +41,27 @@ dependencies:
   - ggplot
   - Pillow
   - Proj4
+  - cytoolz
+  - toolz
+  - plotly
+  - haversine
+  - mpld3
+  - mplleaflet
+  - arrow
+  - deap
+  - gpxpy
+  - line_profiler
+  - pandas-profiling
+  - matplotlib-venn
+  - pystan
+  - ImageHash
+  - tifffile
+  - descartes
+  - cartopy
+  - shapely
+  - cvxopt
+  - opencv
+  - lasagne
  # - Quantopian::zipline
   - pip:
   #    - google-cloud
@@ -60,7 +78,6 @@ dependencies:
       - probablepeople==0.5.2
       - git+git://github.com/rasbt/mlxtend.git#egg=mlxtend
       - pyalgotrade
-      - haversine
       - git+https://github.com/hammerlab/fancyimpute.git
       - husl
       - geopy
@@ -73,17 +90,9 @@ dependencies:
       - git+git://github.com/amueller/word_cloud.git
       - python-igraph
       - chainer
-      - mpld3
-      - mplleaflet
-      - gpxpy
-      - arrow
       - sexmachine
       - Geohash
-      - deap
-      - toolz
-      - cytoolz
       - sacred
-      - plotly
       - git+https://github.com/nicta/dora.git
       - git+https://github.com/hyperopt/hyperopt.git
       - git+https://github.com/tflearn/tflearn.git
@@ -94,24 +103,15 @@ dependencies:
       - heamy
       - vida
       - missingno
-      - pandas-profiling
       - s2sphere
       - git+https://github.com/fmfn/BayesianOptimization.git
       - git+https://github.com/ztane/python-Levenshtein.git
-      - matplotlib-venn
       - pyldavis
-      - pystan
-      - ImageHash
-      - tifffile
-      - descartes
-      - line_profiler
       - orderedmultidict
       - smhasher
-      - git+https://github.com/SciTools/cartopy.git
       - nolearn
       - git+https://github.com/danielhomola/boruta_py.git
       - git+https://github.com/NervanaSystems/neon.git
-    #  - shapely[vectorized]==1.6b2
       - pybrain
       - git+https://github.com/arogozhnikov/hep_ml.git
       - git+https://github.com/matthiasplappert/keras-rl.git

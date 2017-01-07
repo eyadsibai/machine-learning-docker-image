@@ -32,6 +32,9 @@ ADD environment.yaml /tmp/environment.yaml
 ADD install_pydatalab.sh /tmp/install_pydatalab.sh
 
 # Install Python 3 packages
+RUN conda config --set channel_priority false
+RUN conda config --add channels conda-forge
+RUN conda config --add channels glemaitre
 RUN conda env update --file=/tmp/environment.yaml
 
 
