@@ -20,7 +20,7 @@ RUN apt-get update && \
      libav-tools \
      git \
      nodejs \
-     libboost-program-options-dev zlib1g-dev libboost-python-dev cmake \
+     libboost-program-options-dev zlib1g-dev libboost-python-dev cmake build-essential \
      && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

@@ -35,7 +35,7 @@ dependencies:
   - conda-forge::pymc3
   - conda-forge::pudb
   - glemaitre::imbalanced-learn
-  # - conda-forge::altair
+  - conda-forge::altair
   - tpot
   - prettytable
   - joblib=0.10.3
@@ -43,6 +43,7 @@ dependencies:
   - seaborn
   - ggplot
   - Pillow
+  - Proj4
  # - Quantopian::zipline
   - pip:
   #    - google-cloud
@@ -54,7 +55,6 @@ dependencies:
       - dedupe
       - dedupe-hcluster
       - google-api-python-client==1.5.1
-      - haversine==0.4.5
       - parserator==0.6.2
       - probableparsing==0.0.1
       - probablepeople==0.5.2
@@ -111,12 +111,13 @@ dependencies:
       - nolearn
       - git+https://github.com/danielhomola/boruta_py.git
       - git+https://github.com/NervanaSystems/neon.git
-      - shapely[vectorized]==1.6b2
+    #  - shapely[vectorized]==1.6b2
       - pybrain
       - git+https://github.com/arogozhnikov/hep_ml.git
       - git+https://github.com/matthiasplappert/keras-rl.git
       - git+https://github.com/danielfrg/tsne
       - git+https://github.com/vitruvianscience/opendeep.git
+      - git+https://github.com/lyst/lightfm.git
 
 
       #- git+https://github.com/blaze/dask.git#egg=dask[complete]
