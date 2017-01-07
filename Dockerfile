@@ -37,16 +37,23 @@ RUN conda config --add channels conda-forge
 RUN conda config --add channels glemaitre
 RUN conda env update --file=/tmp/environment.yaml
 
+RUN python -m nltk.downloader abc alpino \
+    averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \
+    book_grammars brown brown_tei cess_cat cess_esp chat80 city_database cmudict \
+    comparative_sentences comtrans conll2000 conll2002 conll2007 crubadan dependency_treebank \
+    europarl_raw floresta gazetteers genesis gutenberg hmm_treebank_pos_tagger \
+    ieer inaugural indian jeita kimmo knbc large_grammars lin_thesaurus mac_morpho machado \
+    masc_tagged maxent_ne_chunker maxent_treebank_pos_tagger moses_sample movie_reviews \
+    mte_teip5 names nps_chat omw opinion_lexicon paradigms \
+    pil pl196x ppattach problem_reports product_reviews_1 product_reviews_2 propbank \
+    pros_cons ptb punkt qc reuters rslp rte sample_grammars semcor sentence_polarity \
+    sentiwordnet shakespeare sinica_treebank smultron snowball_data spanish_grammars \
+    state_union stopwords subjectivity swadesh switchboard tagsets timit toolbox treebank \
+    twitter_samples udhr2 udhr unicode_samples universal_tagset universal_treebanks_v20 \
+    vader_lexicon verbnet webtext word2vec_sample wordnet wordnet_ic words ycoe
 
 #installing pydatalab
 RUN bash /tmp/install_pydatalab.sh
-
-
-# Install XGBoost library
-RUN git clone --recursive https://github.com/dmlc/xgboost && \
-    cd xgboost && \
-    make -j4 && \
-    cd python-package; python setup.py install
 
 # Keras setup
 # Keras likes to add a config file in a custom directory when it's
