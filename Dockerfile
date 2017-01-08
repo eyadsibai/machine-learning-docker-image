@@ -1,5 +1,5 @@
 
-FROM jupyter/base-notebook
+FROM jupyter/base-notebook:latest
 
 MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
