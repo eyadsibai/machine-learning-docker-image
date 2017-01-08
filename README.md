@@ -4,29 +4,22 @@ Data Science Platform
 How to use
 ----------
 
-docker-machine create docker -d google --google-project=kaggle-1337 --google-machine-type n1-highmem-8	--google-disk-size "10" --google-disk-type "pd-standard" --preemptible
-eval $(docker-machine env docker)
-docker run -d -p 8888:8888 xyz start-notebook.sh
-# docker ssh then may be git clone or store files over google cloud storage
-#
+```docker-machine create docker-dsp -d google --google-project={project_name} --google-machine-type n1-highmem-8	--google-disk-size "10" --google-disk-type "pd-standard" --google-preemptible --google-machine-image ubuntu-os-cloud/global/images/family/ubuntu-1404-lts --google-scopes "cloud-platform"
 
-# to copy files to the docker machine
-# 1. docker-machine ssh docker
-# 2. sudo mkdir -p /myfiles
-# docker-machine scp somefile docker:/myfiles
+eval $(docker-machine env docker-dsp)
 
-# add 8888 port to the firewall
-gcloud compute firewall-rules create allow-8888 --allow tcp:8888
+docker run -d -p 8888:8888 eyadsibai/docker-dsp start-notebook.sh --NotebookApp.token=''
+```
 
-# stop docker machine
-docker-machine stop docker
-docker-machine start docker
+- add 8888 port to the firewall
+```gcloud compute firewall-rules create allow-8888 --allow tcp:8888
+```
 
-# stop instance
-gcloud compute instances stop docker
-# reminder ... you still paying for the persistant disk (10 Gb -> 0.4 per month)
-# if u want u can delete the docker macihne first then delete the instance then the persistant disk
+- stop docker machine
+```docker-machine stop docker-dsp
+docker-machine start docker-dsp
+```
 
-# gcloud compute firewall-rules delete allow-8888 --quiet
-
-
+- delete instance
+```docker-machine delete docker-dsp
+``` 
