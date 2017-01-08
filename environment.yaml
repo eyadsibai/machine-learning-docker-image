@@ -69,7 +69,8 @@ dependencies:
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
       - git+https://github.com/Lasagne/Lasagne.git
-      - tensorflow-gpu
+#      - tensorflow-gpu
+      - tensorflow
       - categorical-distance>=1.9
       - db.py
       - dedupe
