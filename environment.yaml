@@ -94,6 +94,7 @@ dependencies:
       - git+git://github.com/amueller/word_cloud.git
       - python-igraph
       - chainer
+      - xgboost
       - sexmachine
       - Geohash
       - sacred
