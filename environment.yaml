@@ -99,7 +99,7 @@ dependencies:
       - sacred
       - git+https://github.com/nicta/dora.git
       - git+https://github.com/hyperopt/hyperopt.git
-      - git+https://github.com/tflearn/tflearn.git
+      - tflearn
       - fitter
       - langid
       - delorean
@@ -109,7 +109,7 @@ dependencies:
       - vida
       - missingno
       - s2sphere
-      - git+https://github.com/fmfn/BayesianOptimization.git
+      - bayesian-optimization
       - git+https://github.com/ztane/python-Levenshtein.git
       - pyldavis
       - orderedmultidict
@@ -119,7 +119,7 @@ dependencies:
       - git+https://github.com/NervanaSystems/neon.git
       - pybrain
       - stop-words
-      - git+https://github.com/arogozhnikov/hep_ml.git
+      - hep_ml
       - git+https://github.com/matthiasplappert/keras-rl.git
       - git+https://github.com/vitruvianscience/opendeep.git
       - git+https://github.com/lyst/lightfm.git
