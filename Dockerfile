@@ -21,6 +21,7 @@ RUN apt-get update && \
      git \
      nodejs \
      libboost-program-options-dev zlib1g-dev libboost-python-dev cmake build-essential \
+     && apt-get autoremove -y \
      && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -36,6 +37,8 @@ RUN conda config --set channel_priority false
 RUN conda config --add channels conda-forge
 RUN conda config --add channels glemaitre
 RUN conda env update --file=/tmp/environment.yaml
+RUN conda clean -i -l -t -y
+RUN rm -rf $HOME/.cache/pip/*
 
 RUN python -m nltk.downloader abc alpino \
     averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \

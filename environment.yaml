@@ -104,6 +104,7 @@ dependencies:
       - delorean
       - trueskill
       - heamy
+      - git+https://github.com/nicolashennetier/pyeconometrics.git
       - vida
       - missingno
       - s2sphere
