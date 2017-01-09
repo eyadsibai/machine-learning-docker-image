@@ -44,4 +44,3 @@ TODO
 - install vw and xgboots command line
 - install other command lines packages
 - configs for matplotlib and others
-- add .dockerignore file
