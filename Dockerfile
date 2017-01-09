@@ -8,12 +8,8 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-RUN apt-get update && apt-get install -y  --no-install-recommends curl git libav-tools build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev && apt-get autoremove -y \
+RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev && apt-get autoremove -y \
      && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && apt-get install -y --no-install-recommends nodejs \
-    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -27,14 +23,7 @@ RUN conda env update --file=/tmp/environment.yaml -q && conda remove qt pyqt --q
 
 COPY install_pydatalab.sh /tmp/install_pydatalab.sh
 #installing pydatalab
-RUN npm install -g typescript && bash /tmp/install_pydatalab.sh && rm -rf "$HOME/.cache/pip/*" && rm -rf "$HOME/.npm" && \
-    npm cache clear && npm uninstall -g typescript
-
-USER root
-RUN apt-get remove -y git nodejs curl \
-&& apt-get autoremove -y \
-     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN bash /tmp/install_pydatalab.sh && rm -rf "$HOME/.cache/pip/*"
 
 
 USER $NB_USER
