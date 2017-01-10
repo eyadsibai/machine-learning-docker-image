@@ -49,7 +49,7 @@ TODO
 ----
 - write a better readme (Why? and How?)
 - access local files (whether running locally or on google machine)
-- install caffe and fasttext
+- install caffe
 - install vw and xgboots command line
 - install other command lines packages
 - configs for matplotlib and others

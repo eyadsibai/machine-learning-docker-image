@@ -40,7 +40,12 @@ RUN python -m nltk.downloader abc alpino \
     sentiwordnet shakespeare sinica_treebank smultron snowball_data spanish_grammars \
     state_union stopwords subjectivity swadesh switchboard tagsets timit toolbox treebank \
     twitter_samples udhr2 udhr unicode_samples universal_tagset universal_treebanks_v20 \
-    vader_lexicon verbnet webtext word2vec_sample wordnet wordnet_ic words ycoe && find $HOME/nltk_data -type f -name "*.zip" -delete
+    vader_lexicon verbnet webtext word2vec_sample wordnet wordnet_ic words ycoe \
+    && find $HOME/nltk_data -type f -name "*.zip" -delete
+
+RUN mkdir $HOME/bin
+RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
+rm -rf fastText
 
 
 # Activate ipywidgets extension in the environment that runs the notebook server
@@ -50,3 +55,4 @@ RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/mat
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
+ENV PATH $HOME/bin:$PATH
