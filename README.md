@@ -15,7 +15,7 @@ docker-machine create docker-dsp -d google --google-project={project_id} --googl
 eval $(docker-machine env docker-dsp)
 ```
 ```bash
-docker run -d -p 8888:8080 -e "PROJECT_ID={project_id}" eyadsibai/docker-dsp start-notebook.sh --NotebookApp.token=''
+docker run -d -p 8888:8080 -e "PROJECT_ID={project_id}" eyadsibai/docker-dsp start.sh jupyter lab --NotebookApp.token=''
 ```
 
 - get the ip address of the machine
@@ -42,7 +42,7 @@ when you stop the machine, it would cost you nothing except for the disk that yo
 How to use (Locally)
 --------------------
 ```bash
-docker run -d -p 8888:8888 -v <local path>:/home/jovyan/work eyadsibai/docker-dsp start-notebook.sh --NotebookApp.token=''
+docker run -d -p 8888:8888 -v <local path>:/home/jovyan/work eyadsibai/docker-dsp start.sh jupyter lab --NotebookApp.token=''
 ```
 
 TODO
