@@ -18,7 +18,7 @@ USER $NB_USER
 COPY environment.yaml /tmp/environment.yaml
 
 # Install Python 3 packages
-RUN conda config --set channel_priority false && conda config --add channels conda-forge --add channels glemaitre
+RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
 RUN conda env update --file=/tmp/environment.yaml -q && conda remove qt pyqt --quiet --yes --force && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
 COPY install_pydatalab.sh /tmp/install_pydatalab.sh

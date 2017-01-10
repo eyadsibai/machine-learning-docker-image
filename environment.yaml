@@ -1,6 +1,7 @@
 name: root
 dependencies:
   - python=3.5
+  - jupyterlab
   - bokeh=0.12.*
   - cloudpickle=0.2.*
   - dask=0.13.*
@@ -66,7 +67,8 @@ dependencies:
   - pip=9.0.1
  # - Quantopian::zipline
   - pip:
-  #    - google-cloud
+      - google-cloud
+      - gcloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
       - lifetimes
