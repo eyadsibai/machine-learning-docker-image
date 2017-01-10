@@ -63,14 +63,24 @@ dependencies:
   - pyshp
   - pyproj
   - basemap
+  - pip=9.0.1
  # - Quantopian::zipline
   - pip:
   #    - google-cloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
+      - lifetimes
+      - lifelines
+      - tdigest
+      - git+https://github.com/hyperopt/hyperopt-sklearn.git
+      - sklearn-pandas
+      - datacleaner
+   #   - auto-sklearn
       - git+https://github.com/Lasagne/Lasagne.git
 #      - tensorflow-gpu
       - tensorflow
+      - datatest
+   #   - rep --no-dependencies
       - categorical-distance>=1.9
       - db.py
       - dedupe
