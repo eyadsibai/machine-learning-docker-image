@@ -61,6 +61,8 @@ dependencies:
   - shapely
   - cvxopt
   - opencv
+  - snowballstemmer
+  - babel
   - pyshp
   - pyproj
   - basemap
