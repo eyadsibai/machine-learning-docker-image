@@ -64,6 +64,7 @@ dependencies:
   - snowballstemmer
   - babel
   - hdbscan
+  - spacy
   - sklearn-contrib-lightning
   - forestci
   - pyshp
@@ -120,6 +121,7 @@ dependencies:
       - git+https://github.com/hyperopt/hyperopt.git
       - tflearn
       - fitter
+      - vowpalwabbit
       - langid
       - delorean
       - trueskill
