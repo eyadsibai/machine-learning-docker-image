@@ -46,7 +46,6 @@ RUN python -m nltk.downloader abc alpino \
 RUN python -m spacy.en.download
 
 
-
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
 rm -rf fastText

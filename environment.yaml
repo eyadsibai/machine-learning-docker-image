@@ -91,6 +91,7 @@ dependencies:
       - datatest
    #   - rep --no-dependencies
       - categorical-distance>=1.9
+      - quiver_engine
       - db.py
       - dedupe
       - dedupe-hcluster
