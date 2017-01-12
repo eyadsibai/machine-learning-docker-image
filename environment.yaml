@@ -137,6 +137,7 @@ dependencies:
       - orderedmultidict
       - smhasher
       - nolearn
+      - keras-vis
       - git+https://github.com/danielhomola/boruta_py.git
       - git+https://github.com/NervanaSystems/neon.git
       - pybrain
