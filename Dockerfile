@@ -8,7 +8,7 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev && apt-get autoremove -y \
+RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
      && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -54,6 +54,10 @@ RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText &&
 # Regularized Greedy Forests
 RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
     unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf
+
+RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
+    cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
+        cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
 
 
 # Activate ipywidgets extension in the environment that runs the notebook server
