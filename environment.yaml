@@ -82,6 +82,10 @@ dependencies:
   - keras
   - gensim
   - geopy
+  - imagesize=0.7.1
+  - pytools
+  - pyparsing
+  # - theano
  # - Quantopian::zipline
   - pip:
       - google-cloud
@@ -95,7 +99,10 @@ dependencies:
    #   - auto-sklearn
       - git+https://github.com/Lasagne/Lasagne.git
 #      - tensorflow-gpu
+      # - scikit-cuda==0.5.1
       - datatest
+      - jieba
+      # - pycuda
    #   - rep --no-dependencies
       - categorical-distance>=1.9
       - quiver_engine
