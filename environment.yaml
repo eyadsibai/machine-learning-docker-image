@@ -2,6 +2,7 @@ name: test2
 dependencies:
   - python=3.5
   - nomkl
+  - libxml=3.6.0
   - jupyterlab
   - bokeh=0.12.*
   - cloudpickle=0.2.*
