@@ -77,10 +77,10 @@ dependencies:
   - pip=9.0.1
   - category_encoders
   - lifelines
+  - google-api-python-client
  # - Quantopian::zipline
   - pip:
       - google-cloud
-      - gcloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
       - lifetimes
@@ -100,7 +100,6 @@ dependencies:
       - db.py
       - dedupe
       - dedupe-hcluster
-      - google-api-python-client>=1.5.1
       - parserator>=0.6.2
       - probableparsing>=0.0.1
       - probablepeople>=0.5.2
