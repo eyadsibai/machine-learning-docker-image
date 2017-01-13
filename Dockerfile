@@ -8,7 +8,7 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
+RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
      && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -19,7 +19,7 @@ COPY environment.yaml /tmp/environment.yaml
 
 # Install Python 3 packages
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
-RUN conda env update --file=/tmp/environment.yaml && conda remove qt pyqt mkl --yes --force && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
+RUN conda env update --file=/tmp/environment.yaml --quiet && conda remove qt pyqt mkl --quiet --yes --force && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
 COPY install_pydatalab.sh /tmp/install_pydatalab.sh
 #installing pydatalab
@@ -61,7 +61,7 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
 
 # MXNet
 RUN git clone --recursive https://github.com/dmlc/mxnet && \
-    cd mxnet && cp make/config.mk . && sed -i 's/ADD_LDFLAGS =/ADD_LDFLAGS = -lstdc++/' config.mk && \
+    cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
     make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
 
 
