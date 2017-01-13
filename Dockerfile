@@ -8,7 +8,7 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
+RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
      && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
