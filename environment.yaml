@@ -21,6 +21,7 @@ dependencies:
   - requests=2.10.*
   - seaborn
   - pandas=0.19.*
+  - bottleneck
   - scikit-learn=0.18.1
   - scikit-image=0.12.*
   - scipy=0.18.*
@@ -84,6 +85,7 @@ dependencies:
       - keras
       - lifetimes
       - tdigest
+      - git+https://github.com/fukatani/rgf_python.git
       - git+https://github.com/hyperopt/hyperopt-sklearn.git
       - sklearn-pandas
       - datacleaner

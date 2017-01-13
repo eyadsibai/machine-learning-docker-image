@@ -48,7 +48,12 @@ RUN python -m spacy.en.download
 
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
-rm -rf fastText
+&& rm -rf fastText
+
+
+# Regularized Greedy Forests
+RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
+    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf
 
 
 # Activate ipywidgets extension in the environment that runs the notebook server
