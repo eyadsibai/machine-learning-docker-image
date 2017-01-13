@@ -52,6 +52,7 @@ dependencies:
   - arrow
   - deap
   - gpxpy
+  - python-igraph
   - line_profiler
   - pandas-profiling
   - matplotlib-venn
@@ -74,6 +75,7 @@ dependencies:
   - basemap
   - pip=9.0.1
   - category_encoders
+  - lifelines
  # - Quantopian::zipline
   - pip:
       - google-cloud
@@ -81,7 +83,6 @@ dependencies:
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - keras
       - lifetimes
-      - lifelines
       - tdigest
       - git+https://github.com/hyperopt/hyperopt-sklearn.git
       - sklearn-pandas
@@ -114,7 +115,6 @@ dependencies:
       - pytagcloud
       - textblob
       - git+git://github.com/amueller/word_cloud.git
-      - python-igraph
       - chainer
       - xgboost
       - sexmachine
