@@ -59,6 +59,11 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
     cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
         cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
 
+# MXNet
+RUN git clone --recursive https://github.com/dmlc/mxnet && \
+    cd mxnet && cp make/config.mk . && sed -i 's/ADD_LDFLAGS =/ADD_LDFLAGS = -lstdc++/' config.mk && \
+    make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
+
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
