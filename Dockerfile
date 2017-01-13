@@ -73,3 +73,5 @@ RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/mat
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
 ENV PATH $HOME/bin:$PATH
+# tensorflow board
+EXPOSE 6006
