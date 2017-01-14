@@ -73,6 +73,7 @@ dependencies:
   - pyshp
   - pyproj
   - basemap
+  - geopandas
   - pip=9.0.1
   - category_encoders
   - lifelines
@@ -81,6 +82,7 @@ dependencies:
   - keras
   - gensim
   - geopy
+  - jellyfish
   - imagesize=0.7.1
   - pytools
   - pyparsing
@@ -90,17 +92,26 @@ dependencies:
       - google-cloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - lifetimes
+      - tsfresh
+      - seasonal
+      - visualize_ML
+      - edward
+      - git+https://github.com/AmazaspShumik/sklearn_bayes/archive/master.zip
+      - sigopt_sklearn[ensemble]
       - tdigest
       - git+https://github.com/fukatani/rgf_python.git
       - git+https://github.com/hyperopt/hyperopt-sklearn.git
       - sklearn-pandas
       - datacleaner
+      - bambi
+      - git+https://github.com/ferrine/gelato.git
    #   - auto-sklearn
       - git+https://github.com/Lasagne/Lasagne.git
 #      - tensorflow-gpu
       # - scikit-cuda==0.5.1
       - datatest
       - jieba
+      - cvxpy
       # - pycuda
    #   - rep --no-dependencies
       - categorical-distance>=1.9
@@ -123,6 +134,7 @@ dependencies:
       - textblob
       - git+https://github.com/amueller/word_cloud.git
       - chainer
+      - records
       - xgboost
       - sexmachine
       - Geohash

@@ -42,8 +42,8 @@ RUN python -m nltk.downloader abc alpino \
     twitter_samples udhr2 udhr unicode_samples universal_tagset universal_treebanks_v20 \
     vader_lexicon verbnet webtext word2vec_sample wordnet wordnet_ic words ycoe \
     && find $HOME/nltk_data -type f -name "*.zip" -delete
-
 RUN python -m spacy.en.download
+RUN python -m textblob.download_corpora
 
 
 RUN mkdir $HOME/bin
@@ -70,8 +70,9 @@ RUN git clone --recursive https://github.com/dmlc/mxnet && \
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 
+# tensorflow board
+EXPOSE 6006
+
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
 ENV PATH $HOME/bin:$PATH
-# tensorflow board
-EXPOSE 6006
