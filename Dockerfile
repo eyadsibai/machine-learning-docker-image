@@ -8,25 +8,26 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip && apt-get autoremove -y \
-     && apt-get clean \
+RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential \
+libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip \
+&& apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 
 USER $NB_USER
 
+RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
+
 COPY environment.yaml /tmp/environment.yaml
 
-# Install Python 3 packages
-RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
-RUN conda env update --file=/tmp/environment.yaml --quiet && conda remove qt pyqt --quiet --yes --force && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
+RUN conda env update --file=/tmp/environment.yaml --quiet \
+&t & conda remove qt pyqt --quiet --yes --force \
+&& conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
 COPY install_pydatalab.sh /tmp/install_pydatalab.sh
-#installing pydatalab
+# installing pydatalab
 RUN bash /tmp/install_pydatalab.sh && rm -rf "$HOME/.cache/pip/*"
 
-
-USER $NB_USER
 RUN python -m nltk.downloader abc alpino \
     averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \
     book_grammars brown brown_tei cess_cat cess_esp chat80 city_database cmudict \

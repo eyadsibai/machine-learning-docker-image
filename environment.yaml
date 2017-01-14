@@ -73,7 +73,6 @@ dependencies:
   - pyshp
   - pyproj
   - basemap
-  - geopandas
   - pip=9.0.1
   - category_encoders
   - lifelines
@@ -92,6 +91,7 @@ dependencies:
       - google-cloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
       - lifetimes
+      - geopandas
       - tsfresh
       - seasonal
       - visualize_ML
