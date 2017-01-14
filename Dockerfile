@@ -13,7 +13,6 @@ libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-p
 && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-
 USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
