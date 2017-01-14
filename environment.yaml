@@ -1,7 +1,6 @@
 name: root
 dependencies:
   - python=3.5
-  - nomkl
   - lxml=3.6.0
   - jupyterlab
   - bokeh=0.12.*
