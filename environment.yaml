@@ -90,13 +90,14 @@ dependencies:
   - pip:
       - google-cloud
 #      - https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
+      - git+https://github.com/marcotcr/lime.git
       - lifetimes
       - geopandas
       - tsfresh
       - seasonal
       - visualize_ML
       - edward
-      - git+https://github.com/AmazaspShumik/sklearn_bayes/archive/master.zip
+      - git+https://github.com/AmazaspShumik/sklearn_bayes.git
       - sigopt_sklearn[ensemble]
       - tdigest
       - git+https://github.com/fukatani/rgf_python.git

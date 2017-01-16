@@ -20,7 +20,7 @@ RUN conda config --add channels conda-forge --add channels glemaitre && conda co
 COPY environment.yaml /tmp/environment.yaml
 
 RUN conda env update --file=/tmp/environment.yaml --quiet \
-&t & conda remove qt pyqt --quiet --yes --force \
+&& conda remove qt pyqt --quiet --yes --force \
 && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
 COPY install_pydatalab.sh /tmp/install_pydatalab.sh
