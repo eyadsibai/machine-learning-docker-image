@@ -96,7 +96,7 @@ dependencies:
       - tsfresh
       - seasonal
       - visualize_ML
-      - edward
+      # - edward
       - git+https://github.com/AmazaspShumik/sklearn_bayes.git
       - sigopt_sklearn[ensemble]
       - tdigest
