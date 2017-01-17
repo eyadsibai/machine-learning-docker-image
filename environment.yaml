@@ -10,7 +10,7 @@ dependencies:
   - hdf5=1.8.*
   - ipywidgets=5.2*
   - luigi=2.*
-  - matplotlib=1.5.*
+  - matplotlib
   - mccabe
   - networkx=1.11.*
   - nltk=3.2.*
