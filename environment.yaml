@@ -86,6 +86,7 @@ dependencies:
   - pytools
   - pyparsing
   - setuptools=32.3.1
+  - python-dotenv
   # - theano
  # - Quantopian::zipline
   - pip:
