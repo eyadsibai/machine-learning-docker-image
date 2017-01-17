@@ -4,10 +4,7 @@ FROM jupyter/base-notebook:latest
 MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
-
 ENV DEBIAN_FRONTEND=noninteractive
-
-
 RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip \
 && apt-get autoremove -y && apt-get clean \
@@ -16,16 +13,52 @@ libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-p
 USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
-
 COPY environment.yaml /tmp/environment.yaml
 
 RUN conda env update --file=/tmp/environment.yaml --quiet \
-&& conda remove qt pyqt --quiet --yes --force \
-&& conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
+    && conda remove qt pyqt --quiet --yes --force \
+    && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
-COPY install_pydatalab.sh /tmp/install_pydatalab.sh
 # installing pydatalab
-RUN bash /tmp/install_pydatalab.sh && rm -rf "$HOME/.cache/pip/*"
+RUN git clone https://github.com/googledatalab/pydatalab.git && cd pydatalab && pip install . --no-deps \
+    && cd .. && rm -rf pydatalab && rm -rf "$HOME/.cache/pip/*"
+
+RUN mkdir $HOME/bin
+RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
+&& rm -rf fastText
+
+# Regularized Greedy Forests
+RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
+    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf
+
+# LightGBM
+RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
+    cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
+        cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
+
+# Vowpal wabbit
+#git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
+#cd vowpal_wabbit && \
+#make && \
+#make install
+
+# MXNet
+#RUN git clone --recursive https://github.com/dmlc/mxnet && \
+#    cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
+#    make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
+
+
+# Activate ipywidgets extension in the environment that runs the notebook server
+# Required to display Altair charts in Jupyter notebook
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
+
+# tensorflow board
+EXPOSE 6006
+
+# Import matplotlib the first time to build the font cache.
+ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
+ENV PATH $HOME/bin:$PATH
 
 RUN python -m nltk.downloader abc alpino \
     averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \
@@ -44,35 +77,3 @@ RUN python -m nltk.downloader abc alpino \
     && find $HOME/nltk_data -type f -name "*.zip" -delete
 RUN python -m spacy.en.download
 RUN python -m textblob.download_corpora
-
-
-RUN mkdir $HOME/bin
-RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
-&& rm -rf fastText
-
-
-# Regularized Greedy Forests
-RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
-    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf
-
-RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
-    cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
-        cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
-
-# MXNet
-RUN git clone --recursive https://github.com/dmlc/mxnet && \
-    cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
-    make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
-
-
-# Activate ipywidgets extension in the environment that runs the notebook server
-# Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
-RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
-
-# tensorflow board
-EXPOSE 6006
-
-# Import matplotlib the first time to build the font cache.
-ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
-ENV PATH $HOME/bin:$PATH

@@ -77,7 +77,7 @@ dependencies:
   - category_encoders
   - lifelines
   - google-api-python-client
-  - tensorflow
+  - tensorflow=0.12.1
   - keras
   - gensim
   - geopy
@@ -85,6 +85,7 @@ dependencies:
   - imagesize=0.7.1
   - pytools
   - pyparsing
+  - setuptools=32.3.1
   # - theano
  # - Quantopian::zipline
   - pip:
@@ -94,6 +95,7 @@ dependencies:
       - lifetimes
       - geopandas
       - tsfresh
+      - futures>=3.0.5
       - seasonal
       - visualize_ML
       # - edward
