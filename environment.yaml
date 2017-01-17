@@ -99,6 +99,7 @@ dependencies:
       - futures>=3.0.5
       - seasonal
       - visualize_ML
+      - workalendar
       # - edward
       - git+https://github.com/AmazaspShumik/sklearn_bayes.git
       - sigopt_sklearn[ensemble]
