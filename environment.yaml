@@ -16,7 +16,7 @@ dependencies:
   - nltk=3.2.*
   - numba
   - numexpr=2.6.*
-  - numpy=1.11.*
+  - numpy=1.12.*
   - requests=2.10.*
   - seaborn
   - pandas=0.19.*
