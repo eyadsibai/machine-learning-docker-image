@@ -19,10 +19,6 @@ RUN conda env update --file=/tmp/environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
 
-# installing pydatalab
-RUN git clone https://github.com/googledatalab/pydatalab.git && cd pydatalab && pip install . --no-deps \
-    && cd .. && rm -rf pydatalab && rm -rf "$HOME/.cache/pip/*"
-
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
 && rm -rf fastText

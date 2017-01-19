@@ -16,7 +16,7 @@ dependencies:
   - nltk=3.2.*
   - numba
   - numexpr=2.6.*
-  - numpy=1.12.*
+  - numpy
   - requests=2.10.*
   - seaborn
   - pandas=0.19.*
@@ -118,7 +118,8 @@ dependencies:
       - jieba
       - cvxpy
       # - pycuda
-   #   - rep --no-dependencies
+      - rep --install-option='--no-deps'
+      - git+https://github.com/googledatalab/pydatalab.git --install-option='--no-deps'
       - categorical-distance>=1.9
       - quiver_engine
       - db.py
