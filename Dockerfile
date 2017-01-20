@@ -14,12 +14,16 @@ USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
 COPY environment.yaml environment.yaml
-COPY requirements.txt requirements.txt
-
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
-RUN pip install -r requirements.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements.txt
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements.txt
+
+COPY requirements_no_wheels.txt requirements_no_wheels.txt
+RUN pip install --no-cache-dir -r requirements_no_wheels.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements_no_wheels.txt
+
 
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \

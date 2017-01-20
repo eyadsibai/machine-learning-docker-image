@@ -1,5 +1,4 @@
 google-cloud
-git+https://github.com/marcotcr/lime.git
 lifetimes
 geopandas
 tsfresh
@@ -7,22 +6,15 @@ futures>=3.0.5
 seasonal
 visualize_ML
 workalendar
-git+https://github.com/AmazaspShumik/sklearn_bayes.git
 sigopt_sklearn[ensemble]
 tdigest
-git+https://github.com/fukatani/rgf_python.git
-git+https://github.com/hyperopt/hyperopt-sklearn.git
 sklearn-pandas
 datacleaner
 bambi
-git+https://github.com/ferrine/gelato.git
-git+https://github.com/Lasagne/Lasagne.git
 datatest
 jieba
 cvxpy
 # pycuda
-rep --install-option='--no-deps'
-git+https://github.com/googledatalab/pydatalab.git --install-option='--no-deps'
 categorical-distance>=1.9
 quiver_engine
 db.py
@@ -31,9 +23,7 @@ dedupe-hcluster
 parserator>=0.6.2
 probableparsing>=0.0.1
 probablepeople>=0.5.2
-git+git://github.com/rasbt/mlxtend.git#egg=mlxtend
 pyalgotrade
-git+https://github.com/hammerlab/fancyimpute.git
 husl
 ml_metrics
 pyflux
@@ -41,15 +31,12 @@ mne
 pyshp
 pytagcloud
 textblob
-git+https://github.com/amueller/word_cloud.git
 chainer
 records
 xgboost
 sexmachine
 Geohash
 sacred
-git+https://github.com/nicta/dora.git
-git+https://github.com/hyperopt/hyperopt.git
 tflearn
 fitter
 vowpalwabbit
@@ -57,28 +44,18 @@ langid
 delorean
 trueskill
 heamy
-git+https://github.com/nicolashennetier/pyeconometrics.git
 vida
 missingno
 s2sphere
 bayesian-optimization
-git+https://github.com/ztane/python-Levenshtein.git
 pyldavis
 orderedmultidict
 smhasher
 nolearn
 keras-vis
-git+https://github.com/danielhomola/boruta_py.git
-git+https://github.com/NervanaSystems/neon.git
 pybrain
 stop-words
 hep_ml
-git+https://github.com/matthiasplappert/keras-rl.git
-git+https://github.com/vitruvianscience/opendeep.git
-git+https://github.com/lyst/lightfm.git
-git+https://github.com/scikit-learn-contrib/py-earth.git
-git+https://github.com/scikit-learn-contrib/polylearn.git
-git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
 kaggle-cli
 tfdebugger
 # edward
