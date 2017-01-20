@@ -92,7 +92,7 @@ dependencies:
   - soumith::torchvision
   - fiona
   # - theano
- # - Quantopian::zipline
+  # - Quantopian::zipline
   - pip:
     - google-cloud
     - lifetimes
@@ -110,7 +110,7 @@ dependencies:
     - datatest
     - jieba
     - cvxpy
-    - # pycuda
+    - qgrid
     - categorical-distance>=1.9
     - quiver_engine
     - db.py
@@ -175,7 +175,8 @@ dependencies:
     - git+https://github.com/scikit-learn-contrib/py-earth.git
     - git+https://github.com/scikit-learn-contrib/polylearn.git
     - git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
-    - # edward
-    - # tensorflow-gpu
-    - # scikit-cuda==0.5.1
-    - # auto-sklearn
+    # edward
+    # tensorflow-gpu
+    # scikit-cuda==0.5.1
+    # auto-sklearn
+    # pycuda

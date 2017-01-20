@@ -13,7 +13,8 @@ libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-p
 USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
-COPY environment.yaml environment.yaml
+COPY files/environment.yaml environment.yaml
+COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
