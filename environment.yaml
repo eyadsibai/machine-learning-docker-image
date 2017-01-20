@@ -90,5 +90,6 @@ dependencies:
   - python-dotenv
   - soumith::pytorch
   - soumith::torchvision
+  - fiona
   # - theano
  # - Quantopian::zipline
