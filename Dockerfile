@@ -18,12 +18,9 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements.txt
-
-COPY requirements_no_wheels.txt requirements_no_wheels.txt
-RUN pip install --no-cache-dir -r requirements_no_wheels.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements_no_wheels.txt
-
+# install packages without their dependencies
+RUN pip install --no-cache-dir rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
+&& rm -rf "$HOME/.cache/pip/*"
 
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
