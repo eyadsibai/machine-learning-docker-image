@@ -13,11 +13,13 @@ libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-p
 USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
-COPY environment.yaml /tmp/environment.yaml
+COPY environment.yaml environment.yaml
+COPY requirements.txt requirements.txt
 
-RUN conda env update --file=/tmp/environment.yaml --quiet \
+RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
-    && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*"
+    && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
+RUN pip install -r requirements.txt && rm -rf "$HOME/.cache/pip/*" && rm requirements.txt
 
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
