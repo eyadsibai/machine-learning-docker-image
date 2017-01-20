@@ -5,7 +5,8 @@ dependencies:
   - jupyterlab
   - bokeh=0.12.*
   - cloudpickle=0.2.*
-  - dask=0.13.*
+  - dask[complete]=0.13.*
+  - distributed
   - h5py=2.6.*
   - hdf5=1.8.*
   - ipywidgets=5.2*
@@ -87,5 +88,7 @@ dependencies:
   - pyparsing
   - setuptools=32.3.1
   - python-dotenv
+  - soumith::pytorch
+  - soumith::torchvision
   # - theano
  # - Quantopian::zipline

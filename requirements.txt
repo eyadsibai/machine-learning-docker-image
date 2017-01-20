@@ -1,5 +1,4 @@
 google-cloud
-https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
 git+https://github.com/marcotcr/lime.git
 lifetimes
 geopandas
@@ -81,6 +80,7 @@ git+https://github.com/scikit-learn-contrib/py-earth.git
 git+https://github.com/scikit-learn-contrib/polylearn.git
 git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
 kaggle-cli
+tfdebugger
 # edward
 # tensorflow-gpu
 # scikit-cuda==0.5.1
