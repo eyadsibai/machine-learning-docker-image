@@ -22,6 +22,8 @@ RUN conda env update --file=environment.yaml --quiet \
 # install packages without their dependencies
 RUN pip install --no-cache-dir rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
 && rm -rf "$HOME/.cache/pip/*"
+RUN python -m jupyterdrive --mixed
+
 
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \

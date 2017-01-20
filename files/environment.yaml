@@ -175,6 +175,7 @@ dependencies:
     - git+https://github.com/scikit-learn-contrib/py-earth.git
     - git+https://github.com/scikit-learn-contrib/polylearn.git
     - git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
+    - git+https://github.com/jupyter/jupyter-drive.git
     # edward
     # tensorflow-gpu
     # scikit-cuda==0.5.1
