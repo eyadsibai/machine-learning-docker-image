@@ -5,7 +5,7 @@ dependencies:
   - jupyterlab
   - bokeh=0.12.*
   - cloudpickle=0.2.*
-  - dask[complete]=0.13.*
+  - dask=0.13.*
   - distributed
   - h5py=2.6.*
   - hdf5=1.8.*
