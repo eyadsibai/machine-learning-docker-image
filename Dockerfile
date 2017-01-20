@@ -22,7 +22,6 @@ RUN conda env update --file=environment.yaml --quiet \
 # install packages without their dependencies
 RUN pip install --no-cache-dir rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
 && rm -rf "$HOME/.cache/pip/*"
-RUN python -m jupyterdrive --mixed
 
 
 RUN mkdir $HOME/bin
@@ -31,7 +30,7 @@ RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText &&
 
 # Regularized Greedy Forests
 RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
-    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf
+    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf*
 
 # LightGBM
 RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
@@ -52,7 +51,9 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+python -m jupyterdrive --mixed --user
+
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 
 # tensorflow board
