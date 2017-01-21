@@ -40,7 +40,9 @@ dependencies:
   - tpot
   - prettytable
   - joblib>=0.10.3
-  - geojson=1.3.3
+  - geojson
+  - gdal
+  - SimpleITK::SimpleITK
   - ggplot
   - Pillow
   - Proj4
@@ -155,6 +157,9 @@ dependencies:
     - kaggle-cli
     - tfdebugger
     - fasttext
+    - hmmlearn
+    - wavio
+    - terminalplot
     - git+https://github.com/marcotcr/lime.git
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
