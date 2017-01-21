@@ -20,7 +20,7 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
 # install packages without their dependencies
-RUN pip install --no-cache-dir rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
+RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
 && rm -rf "$HOME/.cache/pip/*"
 
 
