@@ -51,7 +51,7 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
 
 # Run Torch7 installation scripts
 # RUN git clone https://github.com/torch/distro.git $HOME/torch --recursive && cd $HOME/torch && bash install-deps && \
-  ./install.sh
+ # ./install.sh
 
 # Export environment variables manually
 #ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
