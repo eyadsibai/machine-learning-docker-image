@@ -63,8 +63,8 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-python -m jupyterdrive --mixed --user
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+# && python -m jupyterdrive --mixed --user
 
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 
