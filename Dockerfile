@@ -14,7 +14,6 @@ USER $NB_USER
 
 RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
 COPY files/environment.yaml environment.yaml
-COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
@@ -67,6 +66,9 @@ RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 # && python -m jupyterdrive --mixed --user
 
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
+RUN echo 'c.InteractiveShellApp.exec_lines = [\'%load_ext autoreload\', \'%autoreload 2\']\nc.InteractiveShellApp.matplotlib = \'inline\'' \
+ > $HOME/.ipython/profile_default/ipython_config.py
+
 
 # tensorflow board
 EXPOSE 6006
