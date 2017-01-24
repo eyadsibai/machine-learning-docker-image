@@ -66,8 +66,7 @@ RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 # && python -m jupyterdrive --mixed --user
 
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
-RUN echo 'c.InteractiveShellApp.exec_lines = [\'%load_ext autoreload\', \'%autoreload 2\']\nc.InteractiveShellApp.matplotlib = \'inline\'' \
- > $HOME/.ipython/profile_default/ipython_config.py
+COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
 
 # tensorflow board
