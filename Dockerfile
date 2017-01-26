@@ -6,13 +6,12 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential \
-libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip \
+libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev unzip \
 && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
-
-RUN conda config --add channels conda-forge --add channels glemaitre && conda config --set channel_priority false
+RUN conda config --add channels conda-forge --add channels glemaitre --add channels distributions --add channels datamicroscopes && conda config --set channel_priority false
 COPY files/environment.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
@@ -29,12 +28,25 @@ RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText &&
 
 # Regularized Greedy Forests
 RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
-    unzip rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf*
+    unzip -q rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf*
 
 # LightGBM
 RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
     cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
         cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
+
+# Install Torch7
+RUN git clone https://github.com/torch/distro.git ~/torch --recursive && cd ~/torch \
+&& bash install-deps && ./install.sh -b && \
+apt-get autoremove -y && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+# install torch-nn
+RUN luarocks install nn
+
+# Install iTorch
+RUN git clone https://github.com/facebook/iTorch.git && \
+    cd iTorch && \
+    luarocks make
 
 # Vowpal wabbit
 #git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
@@ -46,19 +58,6 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
 #RUN git clone --recursive https://github.com/dmlc/mxnet && \
 #    cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
 #    make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
-
-
-# Run Torch7 installation scripts
-# RUN git clone https://github.com/torch/distro.git $HOME/torch --recursive && cd $HOME/torch && bash install-deps && \
- # ./install.sh
-
-# Export environment variables manually
-#ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
-#ENV LUA_CPATH='/root/.luarocks/lib/lua/5.1/?.so;/root/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so'
-#ENV PATH=/root/torch/install/bin:$PATH
-#ENV LD_LIBRARY_PATH=/root/torch/install/lib:$LD_LIBRARY_PATH
-#ENV DYLD_LIBRARY_PATH=/root/torch/install/lib:$DYLD_LIBRARY_PATH
-#ENV LUA_CPATH='/root/torch/install/lib/?.so;'$LUA_CPATH
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
