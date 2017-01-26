@@ -1,6 +1,8 @@
 name: root
 dependencies:
   - python=3.5
+  - boto
+  - boto3
   - lxml=3.6.0
   - jupyterlab
   - bokeh=0.12.*
@@ -93,9 +95,12 @@ dependencies:
   - soumith::pytorch
   - soumith::torchvision
   - fiona
+  # -  microscopes-common
+  # - microscopes-{mixturemodel, irm, lda}
   # - theano
   # - Quantopian::zipline
   - pip:
+    - pomegranate
     - google-cloud
     - lifetimes
     - geopandas
