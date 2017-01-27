@@ -6,7 +6,7 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential \
-libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev unzip \
+libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip \
 && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -67,12 +67,17 @@ RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
+# Configure ipython kernel to use matplotlib inline backend by default
+RUN mkdir -p $HOME/.ipython/profile_default/startup
+COPY mplimporthook.py $HOME/.ipython/profile_default/startup/
 
 # tensorflow board
 EXPOSE 6006
 
 # Import matplotlib the first time to build the font cache.
-ENV XDG_CACHE_HOME /home/$NB_USER/.cache/g
+ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
+RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
+
 ENV PATH $HOME/bin:$PATH
 
 RUN python -m nltk.downloader abc alpino \
