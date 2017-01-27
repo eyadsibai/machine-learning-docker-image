@@ -5,9 +5,9 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y  --no-install-recommends git libav-tools cmake build-essential \
+RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip \
-&& apt-get autoremove -y && apt-get clean \
+&& apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
@@ -36,17 +36,21 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
         cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
 
 # Install Torch7
-RUN git clone https://github.com/torch/distro.git ~/torch --recursive && cd ~/torch \
-&& bash install-deps && ./install.sh -b && \
-apt-get autoremove -y && apt-get clean \
+RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+USER root
+RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+USER $NB_USER
+RUN cd /home/$NB_USER/torch && install.sh -b
+
 # install torch-nn
 RUN luarocks install nn
 
 # Install iTorch
 RUN git clone https://github.com/facebook/iTorch.git && \
     cd iTorch && \
-    luarocks make
+    luarocks make \
+    && rm -rf ../iTorch
 
 # Vowpal wabbit
 #git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
@@ -69,7 +73,7 @@ COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
 # Configure ipython kernel to use matplotlib inline backend by default
 RUN mkdir -p $HOME/.ipython/profile_default/startup
-COPY mplimporthook.py $HOME/.ipython/profile_default/startup/
+COPY files/mplimporthook.py $HOME/.ipython/profile_default/startup/
 
 # tensorflow board
 EXPOSE 6006
@@ -77,7 +81,7 @@ EXPOSE 6006
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
-
+RUN jt -t onedork -T -N -vim -lineh 140 -tfs 11
 ENV PATH $HOME/bin:$PATH
 
 RUN python -m nltk.downloader abc alpino \
