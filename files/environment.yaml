@@ -165,6 +165,7 @@ dependencies:
     - hmmlearn
     - wavio
     - terminalplot
+    - jupyterthemes
     - git+https://github.com/marcotcr/lime.git
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
