@@ -14,7 +14,7 @@ RUN conda config --add channels conda-forge --add channels glemaitre --add chann
 COPY files/environment.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
-    && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
+    && conda clean -tiply && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
 # install packages without their dependencies
 RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
@@ -25,13 +25,12 @@ RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 # && python -m jupyterdrive --mixed --user
 
-
-RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
-COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
-
 # Configure ipython kernel to use matplotlib inline backend by default
 RUN mkdir -p $HOME/.ipython/profile_default/startup
 COPY files/mplimporthook.py $HOME/.ipython/profile_default/startup/
+
+RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
+COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
 RUN python -m nltk.downloader abc alpino \
     averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \
