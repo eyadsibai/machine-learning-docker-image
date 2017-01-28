@@ -41,7 +41,7 @@ USER root
 RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 USER $NB_USER
-RUN cd /home/$NB_USER/torch && install.sh -b
+RUN cd /home/$NB_USER/torch && ./install.sh -b
 
 # install torch-nn
 RUN luarocks install nn
