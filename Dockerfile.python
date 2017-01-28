@@ -27,7 +27,7 @@ RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
 # Configure ipython kernel to use matplotlib inline backend by default
 RUN mkdir -p $HOME/.ipython/profile_default/startup
-COPY files/mplimporthook.py $HOME/.ipython/profile_default/startup/
+COPY files/mplimportnotebook.py $HOME/.ipython/profile_default/startup/
 
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
