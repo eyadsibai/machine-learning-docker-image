@@ -14,7 +14,7 @@ RUN conda config --add channels conda-forge --add channels glemaitre --add chann
 COPY files/environment.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
-    && conda clean -tiply && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
+    && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
 # install packages without their dependencies
 RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
