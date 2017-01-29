@@ -142,18 +142,18 @@ RUN git clone --recursive https://github.com/dmlc/mxnet && \
 
 
     # Install Caffe
-RUN git clone -b ${CAFFE_VERSION} --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
-    cd ~/caffe && \
-    cat python/requirements.txt | xargs -n1 pip install && \
-    mkdir build && cd build && \
-    cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
-    make -j"$(nproc)" all && \
-    make install
-
-# Set up Caffe environment variables
-ENV CAFFE_ROOT=~/caffe
-ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
-ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH \
-    PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
-
-RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+# RUN git clone -b ${CAFFE_VERSION} --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
+#     cd ~/caffe && \
+#     cat python/requirements.txt | xargs -n1 pip install && \
+#     mkdir build && cd build && \
+#     cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
+#     make -j"$(nproc)" all && \
+#     make install
+#
+# # Set up Caffe environment variables
+# ENV CAFFE_ROOT=~/caffe
+# ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
+# ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH \
+#     PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
+#
+# RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
