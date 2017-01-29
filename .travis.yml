@@ -1,5 +1,11 @@
+langauge: python
+python:
+  - 3.5
+
 services:
   - docker
 
 install:
-  - docker build -t 
+  - docker build --tag eyadsibai/docker-dsp:latest-python . -f Dockerfile.python
+  - docker build --tag eyadsibai/docker-dsp:latest-torch . -f Dockerfile.torch
+  - docker build --tag eyadsibai/docker-dsp:latest . -f Dockerfile
