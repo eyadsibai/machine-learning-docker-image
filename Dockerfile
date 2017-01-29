@@ -61,17 +61,30 @@ EXPOSE 6006
 
 
 RUN mkdir $HOME/bin
-RUN git clone https://github.com/facebookresearch/fastText.git && cd fastText && make && mv fasttext $HOME/bin && cd .. \
-&& rm -rf fastText
+RUN git clone https://github.com/facebookresearch/fastText.git && \
+    cd fastText && make && mv fasttext $HOME/bin && cd .. \
+    && rm -rf fastText
 
 # Regularized Greedy Forests
 RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
-    unzip -q rgf1.2.zip && cd rgf1.2 && make && mv bin/rgf $HOME/bin && cd .. && rm -rf rgf*
+    unzip -q rgf1.2.zip && \
+    cd rgf1.2 && \
+    make && \
+    mv bin/rgf $HOME/bin && \
+    cd .. && \
+    rm -rf rgf*
 
 # LightGBM
 RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
-    cd LightGBM && mkdir build && cd build && cmake .. && make -j $(nproc) && \
-        cd ../python-package && python setup.py install && cd ../.. && rm -rf LightGBM
+    cd LightGBM && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j $(nproc) && \
+    cd ../python-package && \
+    python setup.py install && \
+    cd ../.. && \
+    rm -rf LightGBM
 
 # Install Torch7
 RUN git clone https://github.com/torch/distro.git ~/torch --recursive
@@ -97,6 +110,25 @@ RUN git clone https://github.com/facebook/iTorch.git && \
     luarocks make
 
 
+# # Install Keras
+# RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
+#
+#
+# # Install Lasagne
+# RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGNE_VERSION}
+
+
+
+# # Install Theano and set up Theano config (.theanorc) OpenBLAS
+# RUN pip --no-cache-dir install git+git://github.com/Theano/Theano.git@${THEANO_VERSION} && \
+# 	\
+# 	echo "[global]\ndevice=cpu\nfloatX=float32\nmode=FAST_RUN \
+# 		\n[lib]\ncnmem=0.95 \
+# 		\n[nvcc]\nfastmath=True \
+# 		\n[blas]\nldflag = -L/usr/lib/openblas-base -lopenblas \
+# 		\n[DebugMode]\ncheck_finite=1" \
+# 	> /root/.theanorc
+
 # Vowpal wabbit
 #RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
 #cd vowpal_wabbit && \
@@ -107,3 +139,21 @@ RUN git clone https://github.com/facebook/iTorch.git && \
 RUN git clone --recursive https://github.com/dmlc/mxnet && \
     cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
     make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
+
+
+    # Install Caffe
+RUN git clone -b ${CAFFE_VERSION} --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
+    cd ~/caffe && \
+    cat python/requirements.txt | xargs -n1 pip install && \
+    mkdir build && cd build && \
+    cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
+    make -j"$(nproc)" all && \
+    make install
+
+# Set up Caffe environment variables
+ENV CAFFE_ROOT=~/caffe
+ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
+ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH \
+    PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
+
+RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
