@@ -95,6 +95,8 @@ dependencies:
   - soumith::pytorch
   - soumith::torchvision
   - fiona
+  - r::r-essentials
+
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
   # - theano
