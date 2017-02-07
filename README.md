@@ -1,4 +1,4 @@
-Data Science Platform
+Machine Learning/Data Science Platform (Docker Image)
 =====================
 
 Requirements
