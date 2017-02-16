@@ -82,7 +82,6 @@ dependencies:
   - category_encoders
   - lifelines
   - google-api-python-client
-  - tensorflow=0.12.1
   - keras
   - gensim
   - geopy
@@ -109,6 +108,7 @@ dependencies:
     - tsfresh
     - futures>=3.0.5
     - seasonal
+    - tensorflow
     - visualize_ML
     - workalendar
     - sigopt_sklearn[ensemble]
@@ -168,6 +168,9 @@ dependencies:
     - wavio
     - terminalplot
     - jupyterthemes
+    - mlxtend
+    - keras-rl
+    - h5py
     - git+https://github.com/marcotcr/lime.git
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
@@ -175,7 +178,6 @@ dependencies:
     - git+https://github.com/fukatani/rgf_python.git
     - git+https://github.com/hyperopt/hyperopt-sklearn.git
     - git+https://github.com/hammerlab/fancyimpute.git
-    - git+git://github.com/rasbt/mlxtend.git#egg=mlxtend
     - git+https://github.com/amueller/word_cloud.git
     - git+https://github.com/nicta/dora.git
     - git+https://github.com/hyperopt/hyperopt.git
