@@ -73,6 +73,7 @@ dependencies:
   - babel
   - hdbscan
   - spacy
+  - scikit-plot
   - sklearn-contrib-lightning
   - forestci
   - pyshp
