@@ -66,8 +66,8 @@ dependencies:
   - ImageHash
   - tifffile
   - descartes
-  - cartopy>=0.15.*
-  - shapely
+  - cartopy>=0.14.2
+  - shapely>=1.5.*
   - cvxopt
   - opencv
   - snowballstemmer
