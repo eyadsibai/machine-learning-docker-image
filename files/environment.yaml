@@ -22,6 +22,7 @@ dependencies:
   - numpy
   - requests=2.10.*
   - seaborn
+  - holoviews
   - pandas=0.19.*
   - bottleneck
   - scikit-learn=0.18.1
@@ -83,7 +84,6 @@ dependencies:
   - category_encoders
   - lifelines
   - google-api-python-client
-  - keras
   - gensim
   - geopy
   - jellyfish
@@ -104,7 +104,11 @@ dependencies:
   - pip:
     - pomegranate
     - google-cloud
+    - squarify
     - lifetimes
+    - fuzzywuzzy
+    - python-louvain
+    - pyexcel-ods
     - geopandas
     - tsfresh
     - futures>=3.0.5
@@ -135,6 +139,7 @@ dependencies:
     - pyflux
     - mne
     - pyshp
+    - fbprophet
     - pytagcloud
     - textblob
     - chainer
@@ -173,28 +178,31 @@ dependencies:
     - keras-rl
     - h5py
     - scikit-optimize
-    - git+https://github.com/marcotcr/lime.git
+    - bayespy
+    - gplearn
+    - keras
+    - lime
+    - fancyimpute
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
     - git+https://github.com/Lasagne/Lasagne.git
     - git+https://github.com/fukatani/rgf_python.git
     - git+https://github.com/hyperopt/hyperopt-sklearn.git
-    - git+https://github.com/hammerlab/fancyimpute.git
     - git+https://github.com/amueller/word_cloud.git
     - git+https://github.com/nicta/dora.git
     - git+https://github.com/hyperopt/hyperopt.git
     - git+https://github.com/nicolashennetier/pyeconometrics.git
     - git+https://github.com/ztane/python-Levenshtein.git
     - git+https://github.com/danielhomola/boruta_py.git
-    - git+https://github.com/NervanaSystems/neon.git
+    - git+https://github.com/NervanaSystems/neon.git@1.8.2
     - git+https://github.com/vitruvianscience/opendeep.git
     - git+https://github.com/lyst/lightfm.git
     - git+https://github.com/scikit-learn-contrib/py-earth.git
     - git+https://github.com/scikit-learn-contrib/polylearn.git
     - git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
-  #  - git+https://github.com/jupyter/jupyter-drive.git
+    - git+https://github.com/ioam/geoviews.git
+    #  - git+https://github.com/jupyter/jupyter-drive.git
     # edward
-    # tensorflow-gpu
     # scikit-cuda==0.5.1
     # auto-sklearn
     # pycuda

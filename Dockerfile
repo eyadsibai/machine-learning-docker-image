@@ -10,7 +10,7 @@ libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-p
     && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
-RUN conda config --add channels conda-forge --add channels glemaitre --add channels distributions --add channels datamicroscopes && conda config --set channel_priority false
+RUN conda config --add channels conda-forge --add channels glemaitre --add channels distributions --add channels datamicroscopes --add channels ioam && conda config --set channel_priority false
 COPY files/environment.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
@@ -59,7 +59,7 @@ ENV PATH $HOME/bin:$PATH
 # tensorflow board
 EXPOSE 6006
 
-
+# install fasttext
 RUN mkdir $HOME/bin
 RUN git clone https://github.com/facebookresearch/fastText.git && \
     cd fastText && make && mv fasttext $HOME/bin && cd .. \
@@ -109,11 +109,6 @@ RUN git clone https://github.com/facebook/iTorch.git && \
     cd iTorch && \
     luarocks make
 
-
-# # Install Keras
-# RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
-#
-#
 # # Install Lasagne
 # RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGNE_VERSION}
 
@@ -133,15 +128,21 @@ RUN git clone https://github.com/facebook/iTorch.git && \
 #RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
 #cd vowpal_wabbit && \
 #make && \
-#hmake install
+#make install
 
 # MXNet
 RUN git clone --recursive https://github.com/dmlc/mxnet && \
     cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
     make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
 
+RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
+RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
+RUN python -c "from keras.applications.vgg19 import VGG19; VGG19(weights='imagenet')"
+RUN python -c "from keras.applications.inception_v3 import InceptionV3; InceptionV3(weights='imagenet')"
+RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
 
-    # Install Caffe
+
+# Install Caffe
 # RUN git clone -b ${CAFFE_VERSION} --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
 #     cd ~/caffe && \
 #     cat python/requirements.txt | xargs -n1 pip install && \
