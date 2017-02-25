@@ -10,6 +10,7 @@ https://github.com/jupyter/docker-stacks/issues/235.
 import sys
 from IPython import get_ipython
 
+
 class MatplotlibFinder(object):
     """Import hook that notices when matplotlib.pyplot or pylab is imported
     and tries to configure the matplotlib backend appropriately for the
@@ -50,6 +51,7 @@ class MatplotlibFinder(object):
         else:
             print('enabling matplotlib')
             ip.enable_matplotlib()
+
 
 # install the finder immediately
 sys.meta_path.insert(0, MatplotlibFinder())
