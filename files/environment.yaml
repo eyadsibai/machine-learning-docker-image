@@ -95,6 +95,7 @@ dependencies:
   - soumith::torchvision
   - fiona
   - r::r-essentials
+  - r::r-devtools
 
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
@@ -110,6 +111,7 @@ dependencies:
     - pyexcel-ods
     - geopandas
     - tsfresh
+    - hypertools
     - futures>=3.0.5
     - seasonal
     - tensorflow
