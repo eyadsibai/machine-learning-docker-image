@@ -1,5 +1,4 @@
 FROM jupyter/base-notebook:latest
-
 MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
@@ -32,20 +31,7 @@ COPY files/mplimportnotebook.py $HOME/.ipython/profile_default/startup/
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
-RUN python -m nltk.downloader abc alpino \
-    averaged_perceptron_tagger basque_grammars biocreative_ppi bllip_wsj_no_aux \
-    book_grammars brown brown_tei cess_cat cess_esp chat80 city_database cmudict \
-    comparative_sentences comtrans conll2000 conll2002 conll2007 crubadan dependency_treebank \
-    europarl_raw floresta gazetteers genesis gutenberg hmm_treebank_pos_tagger \
-    ieer inaugural indian jeita kimmo knbc large_grammars lin_thesaurus mac_morpho machado \
-    masc_tagged maxent_ne_chunker maxent_treebank_pos_tagger moses_sample movie_reviews \
-    mte_teip5 names nps_chat omw opinion_lexicon paradigms \
-    pil pl196x ppattach problem_reports product_reviews_1 product_reviews_2 propbank \
-    pros_cons ptb punkt qc reuters rslp rte sample_grammars semcor sentence_polarity \
-    sentiwordnet shakespeare sinica_treebank smultron snowball_data spanish_grammars \
-    state_union stopwords subjectivity swadesh switchboard tagsets timit toolbox treebank \
-    twitter_samples udhr2 udhr unicode_samples universal_tagset universal_treebanks_v20 \
-    vader_lexicon verbnet webtext word2vec_sample wordnet wordnet_ic words ycoe \
+RUN python -m nltk.downloader all \
     && find $HOME/nltk_data -type f -name "*.zip" -delete
 RUN python -m spacy.en.download
 RUN python -m textblob.download_corpora
@@ -135,11 +121,11 @@ RUN git clone --recursive https://github.com/dmlc/mxnet && \
     cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
     make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
 
-RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
-RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
-RUN python -c "from keras.applications.vgg19 import VGG19; VGG19(weights='imagenet')"
-RUN python -c "from keras.applications.inception_v3 import InceptionV3; InceptionV3(weights='imagenet')"
-RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
+#RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
+#RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
+#RUN python -c "from keras.applications.vgg19 import VGG19; VGG19(weights='imagenet')"
+#RUN python -c "from keras.applications.inception_v3 import InceptionV3; InceptionV3(weights='imagenet')"
+#RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
 
 
 # Install Caffe

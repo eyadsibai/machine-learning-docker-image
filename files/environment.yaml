@@ -12,22 +12,21 @@ dependencies:
   - h5py>=2.6.*
   - hdf5>=1.8.*
   - ipywidgets>=5.2*
-  - luigi=2.*
+  - luigi>=2.*
   - matplotlib>=2.*
   - mccabe
-  - networkx=1.11.*
+  - networkx>=1.11.*
   - nltk=3.2.*
   - numba
-  - numexpr=2.6.*
+  - numexpr>=2.6.*
   - numpy
-  - requests=2.10.*
+  - requests>=2.10.*
   - seaborn
   - holoviews
-  - pandas>=0.19.*
   - bottleneck
   - scikit-learn>=0.18.1
   - scikit-image>=0.12.*
-  - scipy>=0.18.*
+  - scipy>=0.19.*
   - nltk
   - statsmodels>=0.6.*
   - patsy>=0.4.*
@@ -37,13 +36,10 @@ dependencies:
   - pysal
   - datashader
   - conda-forge::pymc3
-  - conda-forge::pudb
-  - glemaitre::imbalanced-learn
+    #- glemaitre::imbalanced-learn
   - conda-forge::altair
   - tpot
   - prettytable
-  - joblib>=0.10.3
-  - geojson
   - gdal
   - SimpleITK::SimpleITK
   - ggplot
@@ -79,12 +75,10 @@ dependencies:
   - pyshp
   - pyproj
   - basemap
-  - pip=9.0.1
-  - category_encoders
-  - lifelines
+  - pip>=9.0.1
   - google-api-python-client
-  - gensim
   - geopy
+  - gensim
   - jellyfish
   - imagesize>=0.7.1
   - pytools
@@ -96,12 +90,17 @@ dependencies:
   - fiona
   - r::r-essentials
   - r::r-devtools
-
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
   # - theano
   # - Quantopian::zipline
   - pip:
+    - joblib
+    - geojson
+    - imbalanced-learn
+    - pandas>=0.19
+    - category_encoders
+    - lifelines
     - pomegranate
     - google-cloud
     - squarify
@@ -114,7 +113,7 @@ dependencies:
     - hypertools
     - futures>=3.0.5
     - seasonal
-    - tensorflow
+    - tensorflow>=1.0.1
     - scikit-plot
     - visualize_ML
     - workalendar
