@@ -31,10 +31,10 @@ COPY files/mplimportnotebook.py $HOME/.ipython/profile_default/startup/
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
-RUN python -m nltk.downloader all \
-    && find $HOME/nltk_data -type f -name "*.zip" -delete
-RUN python -m spacy.en.download
-RUN python -m textblob.download_corpora
+# RUN python -m nltk.downloader all \
+#     && find $HOME/nltk_data -type f -name "*.zip" -delete
+# RUN python -m spacy.en.download
+# RUN python -m textblob.download_corpora
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/

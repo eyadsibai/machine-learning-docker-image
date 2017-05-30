@@ -1,6 +1,7 @@
 name: root
 dependencies:
   - python=3.5
+  - pandas>=0.2.1
   - boto
   - boto3
   - lxml>=3.6.0
@@ -20,7 +21,7 @@ dependencies:
   - numba
   - numexpr>=2.6.*
   - numpy
-  - requests>=2.10.*
+  - requests>=2.*
   - seaborn
   - holoviews
   - bottleneck
@@ -36,9 +37,10 @@ dependencies:
   - pysal
   - datashader
   - conda-forge::pymc3
-    #- glemaitre::imbalanced-learn
+  - glemaitre::imbalanced-learn
   - conda-forge::altair
   - tpot
+  - blaze
   - prettytable
   - gdal
   - SimpleITK::SimpleITK
@@ -83,6 +85,7 @@ dependencies:
   - imagesize>=0.7.1
   - pytools
   - pyparsing
+  - plotnine
   - setuptools>=32.3.1
   - python-dotenv
   - soumith::pytorch
@@ -92,27 +95,36 @@ dependencies:
   - r::r-devtools
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
-  # - theano
+  - theano
   # - Quantopian::zipline
   - pip:
     - joblib
+    - nxviz
+    - tdda
+    - airflow
     - geojson
-    - imbalanced-learn
-    - pandas>=0.19
     - category_encoders
+    - spectral
     - lifelines
+    - speedml
+    - mlens
     - pomegranate
     - google-cloud
     - squarify
+    - py_stringsimjoin
     - lifetimes
     - fuzzywuzzy
     - python-louvain
     - pyexcel-ods
     - geopandas
     - tsfresh
+    - xcessiv
     - hypertools
     - futures>=3.0.5
     - seasonal
+    - few
+    - Skater
+    - scikit-garden
     - tensorflow>=1.0.1
     - scikit-plot
     - visualize_ML
@@ -161,9 +173,11 @@ dependencies:
     - s2sphere
     - bayesian-optimization
     - pyldavis
+    - lmfit
     - orderedmultidict
     - smhasher
     - nolearn
+    - pynlpl
     - keras-vis
     - pybrain
     - stop-words
@@ -187,6 +201,11 @@ dependencies:
     - lightfm
     - hyperopt
     - boruta
+    - yellowbrick
+    - Dora
+    - pdpipe
+    - keras-vis
+    - linearmodels
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
     - git+https://github.com/Lasagne/Lasagne.git
@@ -196,12 +215,12 @@ dependencies:
     - git+https://github.com/nicta/dora.git
     - git+https://github.com/nicolashennetier/pyeconometrics.git
     - git+https://github.com/ztane/python-Levenshtein.git
-    - git+https://github.com/NervanaSystems/neon.git@v1.8.2
+    - git+https://github.com/NervanaSystems/neon.git@v1.9.0
     - git+https://github.com/vitruvianscience/opendeep.git
     - git+https://github.com/scikit-learn-contrib/py-earth.git
     - git+https://github.com/scikit-learn-contrib/polylearn.git
-    - git+https://github.com/DistrictDataLabs/yellowbrick.git@develop
     - git+https://github.com/ioam/geoviews.git
+    - git+https://github.com/erp12/pyshgp.git
     #  - git+https://github.com/jupyter/jupyter-drive.git
     # edward
     # scikit-cuda==0.5.1
