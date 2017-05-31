@@ -122,7 +122,8 @@ dependencies:
     - hypertools
     - futures>=3.0.5
     - seasonal
-    - few
+  #  - few
+    - eigency
     - Skater
     - scikit-garden
     - tensorflow>=1.0.1
@@ -206,6 +207,7 @@ dependencies:
     - pdpipe
     - keras-vis
     - linearmodels
+    - edward
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
     - git+https://github.com/Lasagne/Lasagne.git
@@ -222,7 +224,6 @@ dependencies:
     - git+https://github.com/ioam/geoviews.git
     - git+https://github.com/erp12/pyshgp.git
     #  - git+https://github.com/jupyter/jupyter-drive.git
-    # edward
     # scikit-cuda==0.5.1
     # auto-sklearn
     # pycuda

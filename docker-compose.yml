@@ -3,7 +3,7 @@ services:
   python-dist:
     build: .
     ports:
-     - "5000:5000"
+     - "1994:1994"
     # volumes:
     #  - .:/code
   redis:
