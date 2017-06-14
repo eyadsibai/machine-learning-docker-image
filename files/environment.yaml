@@ -91,8 +91,8 @@ dependencies:
   - soumith::pytorch
   - soumith::torchvision
   - fiona
-  - r::r-essentials
-  - r::r-devtools
+  # - r::r-essentials
+  # - r::r-devtools
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
   - theano
@@ -122,8 +122,7 @@ dependencies:
     - hypertools
     - futures>=3.0.5
     - seasonal
-  #  - few
-    - eigency
+    - few
     - Skater
     - scikit-garden
     - tensorflow>=1.0.1

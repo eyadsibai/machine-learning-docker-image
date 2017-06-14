@@ -144,3 +144,6 @@ RUN git clone --recursive https://github.com/dmlc/mxnet && \
 #     PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 #
 # RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
+EXPOSE 1994
+CMD ["xcessiv"]

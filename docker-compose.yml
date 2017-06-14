@@ -1,10 +1,18 @@
 version: '2'
 services:
-  python-dist:
-    build: .
+  redis:
+    restart: always
+    image: "redis:alpine"
+    ports:
+    - "6379:6379"
+  docker-dsp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eyadsibai/docker-dsp:latest
     ports:
      - "1994:1994"
+    links:
+      - redis:redis
     # volumes:
     #  - .:/code
-  redis:
-    image: "redis:alpine"

@@ -1,4 +1,4 @@
-REDIS_HOST = 'localhost'  # Host address of Redis server
+REDIS_HOST = 'redis'  # Host address of Redis server
 REDIS_PORT = 6379  # Port of Redis Server
 REDIS_DB = 8  # Redis database number to use
 
