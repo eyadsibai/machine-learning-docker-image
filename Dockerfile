@@ -16,8 +16,8 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda clean -i -l -t -y && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
 # install packages without their dependencies
-RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
-&& rm -rf "$HOME/.cache/pip/*"
+#RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
+#&& rm -rf "$HOME/.cache/pip/*"
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
@@ -47,7 +47,7 @@ EXPOSE 6006
 
 # install fasttext
 RUN mkdir $HOME/bin
-RUN git clone https://github.com/facebookresearch/fastText.git && \
+RUN git clone --depth 1 https://github.com/facebookresearch/fastText.git && \
     cd fastText && make && mv fasttext $HOME/bin && cd .. \
     && rm -rf fastText
 
@@ -61,7 +61,7 @@ RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.z
     rm -rf rgf*
 
 # LightGBM
-RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
+RUN git clone --depth 1 --recursive https://github.com/Microsoft/LightGBM && \
     cd LightGBM && \
     mkdir build && \
     cd build && \
@@ -73,7 +73,7 @@ RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
     rm -rf LightGBM
 
 # Install Torch7
-RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+RUN git clone --depth 1 --recursive https://github.com/torch/distro.git ~/torch
 USER root
 RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -91,7 +91,7 @@ ENV LUA_PATH='$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/
 RUN luarocks install nn
 
 # Install iTorch
-RUN git clone https://github.com/facebook/iTorch.git && \
+RUN git clone --depth 1 https://github.com/facebook/iTorch.git && \
     cd iTorch && \
     luarocks make
 
@@ -117,7 +117,7 @@ RUN git clone https://github.com/facebook/iTorch.git && \
 #make install
 
 # MXNet
-RUN git clone --recursive https://github.com/dmlc/mxnet && \
+RUN git clone --depth 1 --recursive https://github.com/dmlc/mxnet && \
     cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
     make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
 

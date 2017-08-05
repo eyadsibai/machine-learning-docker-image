@@ -1,6 +1,6 @@
 name: root
 dependencies:
-  - python=3.5
+  - python=3.6
   - pandas>=0.2.1
   - boto
   - boto3
@@ -39,7 +39,7 @@ dependencies:
   - conda-forge::pymc3
   - glemaitre::imbalanced-learn
   - conda-forge::altair
-  - tpot
+#  - tpot
   - blaze
   - prettytable
   - gdal
@@ -54,7 +54,7 @@ dependencies:
   - mpld3
   - mplleaflet
   - arrow
-  - deap
+#  - deap
   - gpxpy
   - python-igraph
   - line_profiler
@@ -73,7 +73,7 @@ dependencies:
   - hdbscan
   - spacy
   - sklearn-contrib-lightning
-  - forestci
+#  - forestci
   - pyshp
   - pyproj
   - basemap
@@ -81,7 +81,7 @@ dependencies:
   - google-api-python-client
   - geopy
   - gensim
-  - jellyfish
+#  - jellyfish
   - imagesize>=0.7.1
   - pytools
   - pyparsing
@@ -98,6 +98,9 @@ dependencies:
   - theano
   # - Quantopian::zipline
   - pip:
+    - git+git://github.com/scikit-learn-contrib/forest-confidence-interval.git #forestci
+    - deap
+    - tpot
     - joblib
     - nxviz
     - tdda
@@ -199,6 +202,7 @@ dependencies:
     - lime
     - fancyimpute
     - lightfm
+    - lightgbm
     - hyperopt
     - boruta
     - yellowbrick
@@ -209,6 +213,9 @@ dependencies:
     - edward
     - leven
     - rgf_python
+    - catboost
+    - mlbox
+    - gmaps
     - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
