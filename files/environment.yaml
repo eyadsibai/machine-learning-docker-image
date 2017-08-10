@@ -54,6 +54,7 @@ dependencies:
   - mpld3
   - mplleaflet
   - arrow
+  - graphviz
 #  - deap
   - gpxpy
   - python-igraph
@@ -128,6 +129,8 @@ dependencies:
     - few
     - Skater
     - scikit-garden
+    - lightgbm
+    - mxnet
     - tensorflow>=1.0.1
     - scikit-plot
     - visualize_ML
@@ -216,6 +219,8 @@ dependencies:
     - catboost
     - mlbox
     - gmaps
+    - paramnb
+    - folium
     - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git

@@ -33,7 +33,7 @@ COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
 # RUN python -m nltk.downloader all \
 #     && find $HOME/nltk_data -type f -name "*.zip" -delete
-# RUN python -m spacy.en.download
+RUN python -m spacy download en
 # RUN python -m textblob.download_corpora
 
 # Import matplotlib the first time to build the font cache.
@@ -60,55 +60,27 @@ RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.z
     cd .. && \
     rm -rf rgf*
 
-# LightGBM
-RUN git clone --depth 1 --recursive https://github.com/Microsoft/LightGBM && \
-    cd LightGBM && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make -j $(nproc) && \
-    cd ../python-package && \
-    python setup.py install && \
-    cd ../.. && \
-    rm -rf LightGBM
-
 # Install Torch7
 RUN git clone --depth 1 --recursive https://github.com/torch/distro.git ~/torch
 USER root
 RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 USER $NB_USER
-RUN cd /home/$NB_USER/torch && ./install.sh -b
-
-# Export environment variables manually
-ENV LUA_PATH='$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$HOME/torch/install/share/lua/5.1/?.lua;$HOME/torch/install/share/lua/5.1/?/init.lua;./?.lua;$HOME/torch/install/share/luajit-2.1.0-alpha/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
-    LUA_CPATH='$HOME/.luarocks/lib/lua/5.1/?.so;$HOME/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
-    PATH=$HOME/torch/install/bin:$PATH \
-    LD_LIBRARY_PATH=$HOME/torch/install/lib:$LD_LIBRARY_PATH \
-    DYLD_LIBRARY_PATH=$HOME/torch/install/lib:$DYLD_LIBRARY_PATH
-
-# install torch-nn
-RUN luarocks install nn
-
-# Install iTorch
-RUN git clone --depth 1 https://github.com/facebook/iTorch.git && \
+RUN cd /home/$NB_USER/torch && ./install.sh -b \
+    && export LUA_PATH='$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$HOME/torch/install/share/lua/5.1/?.lua;$HOME/torch/install/share/lua/5.1/?/init.lua;./?.lua;$HOME/torch/install/share/luajit-2.1.0-alpha/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
+    && export LUA_CPATH='$HOME/.luarocks/lib/lua/5.1/?.so;$HOME/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
+    && export PATH=$HOME/torch/install/bin:$PATH \
+    && export LD_LIBRARY_PATH=$HOME/torch/install/lib:$LD_LIBRARY_PATH \
+    && export DYLD_LIBRARY_PATH=$HOME/torch/install/lib:$DYLD_LIBRARY_PATH \
+    # install torch-nn
+    && luarocks install nn \
+    # install iTorch
+    && git clone --depth 1 https://github.com/facebook/iTorch.git && \
     cd iTorch && \
-    luarocks make
+    luarocks make \
+    # clean up
+    && cd /home/$NB_USER/torch && ./clean.sh
 
-# # Install Lasagne
-# RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGNE_VERSION}
-
-
-
-# # Install Theano and set up Theano config (.theanorc) OpenBLAS
-# RUN pip --no-cache-dir install git+git://github.com/Theano/Theano.git@${THEANO_VERSION} && \
-# 	\
-# 	echo "[global]\ndevice=cpu\nfloatX=float32\nmode=FAST_RUN \
-# 		\n[lib]\ncnmem=0.95 \
-# 		\n[nvcc]\nfastmath=True \
-# 		\n[blas]\nldflag = -L/usr/lib/openblas-base -lopenblas \
-# 		\n[DebugMode]\ncheck_finite=1" \
-# 	> /root/.theanorc
 
 # Vowpal wabbit
 #RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
@@ -116,10 +88,6 @@ RUN git clone --depth 1 https://github.com/facebook/iTorch.git && \
 #make && \
 #make install
 
-# MXNet
-RUN git clone --depth 1 --recursive https://github.com/dmlc/mxnet && \
-    cd mxnet && cp make/config.mk . && echo "USE_BLAS=openblas" >> config.mk && \
-    make && cd python && python setup.py install && cd ../../ && rm -rf mxnet
 
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
