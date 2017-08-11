@@ -4,7 +4,7 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
-libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip libssl-dev libzmq3-dev \
+libopenblas-dev libopencv-dev libboost-program-options-dev zlib1g-dev libboost-python-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 && apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 

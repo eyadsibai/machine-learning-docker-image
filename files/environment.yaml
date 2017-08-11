@@ -39,7 +39,6 @@ dependencies:
   - conda-forge::pymc3
   - glemaitre::imbalanced-learn
   - conda-forge::altair
-#  - tpot
   - blaze
   - prettytable
   - gdal
@@ -55,7 +54,6 @@ dependencies:
   - mplleaflet
   - arrow
   - graphviz
-#  - deap
   - gpxpy
   - python-igraph
   - line_profiler
@@ -76,7 +74,9 @@ dependencies:
   - sklearn-contrib-lightning
 #  - forestci
   - pyshp
+  - geoplot
   - pyproj
+  - bqplot
   - basemap
   - pip>=9.0.1
   - google-api-python-client
@@ -104,16 +104,31 @@ dependencies:
     - tpot
     - joblib
     - nxviz
+    - scikit-dsp-comm[helpers]
+    - perfplot
+    # - copper
     - tdda
+    - pystruct
     - airflow
+    - nbdime
     - geojson
     - category_encoders
     - spectral
     - lifelines
+    - lsanomaly
+    - skll
     - speedml
     - mlens
     - pomegranate
     - google-cloud
+   # - dm_sonnet
+    - bhtsne
+    - tslearn
+    - tqdm
+    - tensorboard-pytorch
+    - mpl-scatter-density
+    - sympy
+    - kapre
     - squarify
     - py_stringsimjoin
     - lifetimes
@@ -159,6 +174,7 @@ dependencies:
     - mne
     - pyshp
     - fbprophet
+    - metric-learn
     - pytagcloud
     - textblob
     - chainer
@@ -209,7 +225,15 @@ dependencies:
     - hyperopt
     - boruta
     - yellowbrick
+    - nilearn
+    - featureforge
     - Dora
+    - dflearn
+    # - bilearn
+    - vecstack
+    - astroML
+    - fastFM
+    - tensorlayer
     - pdpipe
     - keras-vis
     - linearmodels
@@ -221,7 +245,9 @@ dependencies:
     - gmaps
     - paramnb
     - folium
+    - auto_ml
     - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
+    - git+https://github.com/reinforceio/tensorforce.git
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
     - git+https://github.com/Lasagne/Lasagne.git
