@@ -23,6 +23,8 @@ dependencies:
   - numpy
   - requests>=2.*
   - seaborn
+  - orange3
+  - orange3-text
   - holoviews
   - bottleneck
   - scikit-learn>=0.18.1
@@ -50,6 +52,7 @@ dependencies:
   - toolz
   - plotly
   - haversine
+  - textacy
   - mpld3
   - mplleaflet
   - arrow
@@ -57,12 +60,14 @@ dependencies:
   - gpxpy
   - python-igraph
   - line_profiler
+  - george
   - pandas-profiling
   - matplotlib-venn
   - pystan
   - ImageHash
   - tifffile
   - descartes
+  - biopython
   - cartopy>=0.14.2
   - shapely>=1.5.*
   - cvxopt
@@ -71,6 +76,7 @@ dependencies:
   - babel
   - hdbscan
   - spacy
+  - rpy2
   - sklearn-contrib-lightning
 #  - forestci
   - pyshp
@@ -92,8 +98,8 @@ dependencies:
   - soumith::pytorch
   - soumith::torchvision
   - fiona
-  # - r::r-essentials
-  # - r::r-devtools
+  - poliastro
+ # - pymc::hddm
   # -  microscopes-common
   # - microscopes-{mixturemodel, irm, lda}
   - theano
@@ -103,6 +109,7 @@ dependencies:
     - deap
     - tpot
     - joblib
+    - orange3-network
     - nxviz
     - scikit-dsp-comm[helpers]
     - perfplot
@@ -113,22 +120,29 @@ dependencies:
     - nbdime
     - geojson
     - category_encoders
+    - emcee
     - spectral
     - lifelines
     - lsanomaly
     - skll
     - speedml
     - mlens
+    - pandas_ml
+    - scikit-neuralnetwork
+    - causalinference
+    - https://github.com/JamesRitchie/scikit-rvm/archive/master.zip
+ #   - lshash
     - pomegranate
     - google-cloud
-   # - dm_sonnet
+    - pyhsmm
+    - dm-sonnet
     - bhtsne
     - tslearn
     - tqdm
     - tensorboard-pytorch
     - mpl-scatter-density
     - sympy
-    - kapre
+    - git+https://github.com/keunwoochoi/kapre.git
     - squarify
     - py_stringsimjoin
     - lifetimes
@@ -168,6 +182,7 @@ dependencies:
     - probableparsing>=0.0.1
     - probablepeople>=0.5.2
     - pyalgotrade
+    - annoy
     - husl
     - ml_metrics
     - pyflux
@@ -177,9 +192,11 @@ dependencies:
     - metric-learn
     - pytagcloud
     - textblob
+    - data_hacks
     - chainer
     - records
     - xgboost
+    - usaddress
     - sexmachine
     - Geohash
     - sacred
@@ -188,6 +205,8 @@ dependencies:
     - vowpalwabbit
     - langid
     - delorean
+    - csvdedupe
+    - affinegap
     - trueskill
     - heamy
     - vida
@@ -215,6 +234,7 @@ dependencies:
     - keras-rl
     - h5py
     - scikit-optimize
+  #  - Orange3-Timeseries
     - bayespy
     - gplearn
     - keras
@@ -222,6 +242,8 @@ dependencies:
     - fancyimpute
     - lightfm
     - lightgbm
+    - searchgrid
+    - git+git://github.com/mila-udem/fuel.git
     - hyperopt
     - boruta
     - yellowbrick
@@ -231,11 +253,22 @@ dependencies:
     - dflearn
     # - bilearn
     - vecstack
+    - MarkovNetwork
+    - bootstrapped
     - astroML
+    - urlextract
+  #  - git+https://github.com/joachimwolff/minHashNearestNeighbors.git
+    - git+https://github.com/kootenpv/xtoy.git
     - fastFM
+    - foolbox
+    - sacred
+    - pymongo
+    - chainercv
     - tensorlayer
     - pdpipe
+    - Orange-Bioinformatics
     - keras-vis
+    - nnabla
     - linearmodels
     - edward
     - leven
@@ -243,11 +276,22 @@ dependencies:
     - catboost
     - mlbox
     - gmaps
+    - ftfy
     - paramnb
+    - cma
+    - xgbfir
+    - csvkit
     - folium
+    - prince
+    - sk-video
+    - sklearn-compiledtrees
     - auto_ml
+    - hyperas
+    - disp
+    - rtree
+    - git+https://github.com/marinkaz/scikit-fusion.git
     - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
-    - git+https://github.com/reinforceio/tensorforce.git
+    # - git+https://github.com/reinforceio/tensorforce.git
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
     - git+https://github.com/ferrine/gelato.git
     - git+https://github.com/Lasagne/Lasagne.git
@@ -262,6 +306,28 @@ dependencies:
     - git+https://github.com/scikit-learn-contrib/polylearn.git
     - git+https://github.com/ioam/geoviews.git
     - git+https://github.com/erp12/pyshgp.git
+    - git+https://github.com/pierreablin/faster-ica.git
+    - git+https://github.com/biolab/orange3-imageanalytics.git
+    - git+https://github.com/biolab/orange3-variants.git
+    - git+https://github.com/biolab/orange3-conformal.git
+    - git+https://github.com/biolab/orange3-datafusion.git
+#    - git+https://github.com/biolab/orange3-recommendation.git
+    - git+https://github.com/biolab/orange3-associate.git
+    - git+https://github.com/cgevans/scikits-bootstrap.git
+#    - git+https://github.com/GPflow/GPflow.git
+    - git+https://github.com/ceholden/yatsm.git
+    - git+https://github.com/tariqdaouda/Mariana.git
+    - git+https://github.com/automl/fanova.git
+    - git+https://github.com/pgmpy/pgmpy.git
+    - git+https://github.com/alshedivat/kgp.git
+    - git+https://github.com/scikit-learn-contrib/polylearn.git
+    - msaf
+    - git+https://github.com/mattilyra/LSH.git
+    - git+https://github.com/casperkaae/parmesan.git
+    - gatspy
+#    - git+https://github.com/mwhoffman/pybo.git
+    - git+https://github.com/mpearmain/scikit-wrapRs.git
+    - git+https://github.com/facebookresearch/pysparnn.git
     #  - git+https://github.com/jupyter/jupyter-drive.git
     # scikit-cuda==0.5.1
     # auto-sklearn

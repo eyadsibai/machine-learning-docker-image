@@ -12,7 +12,12 @@ services:
     image: eyadsibai/docker-dsp:latest
     ports:
      - "1994:1994"
+     - "8787:8787"
     links:
       - redis:redis
     # volumes:
     #  - .:/code
+
+
+
+# should add apache spark docker
