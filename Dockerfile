@@ -158,6 +158,12 @@ RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
 RUN git clone https://github.com/srendle/libfm.git && cd libfm && make all && \
     mv bin/* $HOME/bin/ && cd .. && rm -rf libfm
 
+
+RUN git clone https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
+    sed -i '10 s/^##*//' CMakeLists.txt && \
+    cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
+    cd .. && rm -rf fast_rgf
+
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg19 import VGG19; VGG19(weights='imagenet')"
