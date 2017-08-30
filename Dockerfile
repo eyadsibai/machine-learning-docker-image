@@ -76,8 +76,6 @@ RUN conda install --quiet --yes \
 USER root
 
 USER $NB_USER
-
-
 # install packages without their dependencies
 #RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
 #&& rm -rf "$HOME/.cache/pip/*"
@@ -147,11 +145,18 @@ RUN cd /home/$NB_USER/torch && ./install.sh -b \
 
 
 # Vowpal wabbit
-#RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
-#cd vowpal_wabbit && \
-#make && \
-#make install
+RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
+    cd vowpal_wabbit && \
+    make vw && \
+    make spanning_tree && \
+    cp vowpalwabbit/vw $HOME/bin/ && \
+    cp vowpalwabbit/active_interactor $HOME/bin/ && \
+    cp cluster/spanning_tree $HOME/bin/ && \
+    cd .. && rm -rf vowpal_wabbit
 
+# libfm
+RUN git clone https://github.com/srendle/libfm.git && cd libfm && make all && \
+    mv bin/* $HOME/bin/ && cd .. && rm -rf libfm
 
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
