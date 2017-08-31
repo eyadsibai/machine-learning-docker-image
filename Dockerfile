@@ -3,7 +3,7 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
+RUN apt-get -qq update &&apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
 apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
@@ -197,7 +197,7 @@ rm -rf data-science-at-the-command-line
 #     make -j"$(nproc)" all && \
 #     make install
 
-# # Set up Caffe environment variables
+# Set up Caffe environment variables
 # ENV CAFFE_ROOT=~/caffe
 # ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
 # ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH
@@ -218,7 +218,7 @@ rm -rf data-science-at-the-command-line
 #     && cd .. \
 #     && rm -rf build
 
-#ENV PYTHONPATH /usr/local:$PYTHONPATH
+# ENV PYTHONPATH /usr/local:$PYTHONPATH
 RUN ipython -c 'import disp; disp.install()'
 
 COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
