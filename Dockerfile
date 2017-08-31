@@ -46,6 +46,8 @@ USER $NB_USER
 # taking effect properly on the .local folder in the jovyan home dir.
 COPY files/julia_packages.jl julia_packages.jl
 
+# FunctionalDataUtils
+
 RUN julia julia_packages.jl && \
     # move kernelspec out of home \
     mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
@@ -73,7 +75,9 @@ RUN conda install --quiet --yes \
     'r-rcurl' \
     'r-crayon' && conda clean -tipsy
 
-USER root
+# R packages
+# MLmetrics
+
 
 USER $NB_USER
 # install packages without their dependencies
@@ -164,6 +168,10 @@ RUN git clone https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
     cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
     cd .. && rm -rf fast_rgf
 
+
+RUN git clone https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user && cd .. && rm -rf facets
+
+
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg19 import VGG19; VGG19(weights='imagenet')"
@@ -171,35 +179,42 @@ RUN git clone https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
 #RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
 
 
+USER root
+
+RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && apt-get -qq clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER $NB_USER
+
 #Install Caffe
-#RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
-#    cd ~/caffe && \
-#    cat python/requirements.txt | xargs -n1 pip install && \
-#    mkdir build && cd build && \
-#    cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
-#    make -j"$(nproc)" all && \
-#    make install
+# RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
+#     cd ~/caffe && \
+#     cat python/requirements.txt | xargs -n1 pip install && \
+#     mkdir build && cd build && \
+#     cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
+#     make -j"$(nproc)" all && \
+#     make install
 
-# Set up Caffe environment variables
-#ENV CAFFE_ROOT=~/caffe
-#ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
-#ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH
-#ENV PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
+# # Set up Caffe environment variables
+# ENV CAFFE_ROOT=~/caffe
+# ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
+# ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH
+# ENV PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 
-#RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+# RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 
-#RUN git clone --recursive https://github.com/caffe2/caffe2.git
-#RUN cd caffe2 && mkdir build && cd build \
-#    && cmake .. \
-#    -DUSE_CUDA=OFF \
-#    -DUSE_NNPACK=OFF \
-#    -DUSE_ROCKSDB=OFF \
-#    && make -j"$(nproc)" install \
-#    && ldconfig \
-#    && make clean \
-#    && cd .. \
-#    && rm -rf build
+# RUN git clone --recursive https://github.com/caffe2/caffe2.git
+# RUN cd caffe2 && mkdir build && cd build \
+#     && cmake .. \
+#     -DUSE_CUDA=OFF \
+#     -DUSE_NNPACK=OFF \
+#     -DUSE_ROCKSDB=OFF \
+#     && make -j"$(nproc)" install \
+#     && ldconfig \
+#     && make clean \
+#     && cd .. \
+#     && rm -rf build
 
 #ENV PYTHONPATH /usr/local:$PYTHONPATH
 RUN ipython -c 'import disp; disp.install()'

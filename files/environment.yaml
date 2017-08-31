@@ -68,6 +68,7 @@ dependencies:
   - tifffile
   - descartes
   - biopython
+    # - shogun
   - cartopy>=0.14.2
   - shapely>=1.5.*
   - cvxopt
@@ -181,6 +182,16 @@ dependencies:
     - parserator>=0.6.2
     - probableparsing>=0.0.1
     - probablepeople>=0.5.2
+    - git+https://github.com/arogozhnikov/infiniteboost.git
+   # - git+https://github.com/clips/pattern.git@development
+    - git+https://github.com/tadejs/autokit.git
+    - perfume-bench
+    - omesa
+    - cesium
+    - thinc
+    - eli5
+    - sklearn-crfsuite
+    - imgaug
     - pyalgotrade
     - annoy
     - husl
@@ -259,6 +270,8 @@ dependencies:
     - urlextract
   #  - git+https://github.com/joachimwolff/minHashNearestNeighbors.git
     - git+https://github.com/kootenpv/xtoy.git
+    - git+https://github.com/ianlini/feagen.git
+    - git+https://github.com/mewwts/feng.git
     - fastFM
     - foolbox
     - sacred
