@@ -168,9 +168,16 @@ RUN git clone https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
     cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
     cd .. && rm -rf fast_rgf
 
+USER $NB_USER
 
 RUN git clone https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user && cd .. && rm -rf facets
 
+RUN git clone https://github.com/guestwalk/libffm.git && cd libffm && make && cp ffm-predict $HOME/bin/ && cp ffm-train $HOME/bin/ && cd .. && rm -rf libffm
+
+# RUN git clone https://github.com/alno/batch-learn.git && cd batch-learn && mkdir build && cd build && cmake .. && make  && cp batch-learn $HOME/bin/ && cd ../.. && rm -rf batch-learn
+
+RUN git clone https://github.com/jeroenjanssens/data-science-at-the-command-line.git && mv data-science-at-the-command-line/tools/* $HOME/bin/ && \
+rm -rf data-science-at-the-command-line
 
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
 #RUN python -c "from keras.applications.vgg16 import VGG16; VGG16(weights='imagenet')"
@@ -179,12 +186,6 @@ RUN git clone https://github.com/PAIR-code/facets.git && cd facets && jupyter nb
 #RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
 
 
-USER root
-
-RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && apt-get -qq clean \
-    && rm -rf /var/lib/apt/lists/*
-
-USER $NB_USER
 
 #Install Caffe
 # RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
