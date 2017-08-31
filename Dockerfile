@@ -3,7 +3,8 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
+RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
+apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
 fonts-dejavu gfortran gcc \
