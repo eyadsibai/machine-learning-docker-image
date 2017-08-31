@@ -123,6 +123,7 @@ dependencies:
     - category_encoders
     - emcee
     - spectral
+    - artemis-ml
     - lifelines
     - lsanomaly
     - skll
