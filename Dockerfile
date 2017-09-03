@@ -3,7 +3,7 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update &&apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
+RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
 apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
@@ -18,6 +18,8 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
+COPY files/python_packages.txt python_packages.txt
+RUN pip install -r python_packages.txt && rm -rf "$HOME/.cache/pip/*" && rm -rf /tmp/pip-*
 
 USER root
 # Julia dependencies
@@ -39,15 +41,11 @@ RUN . /etc/os-release && \
     chown -R $NB_USER:users $JULIA_PKGDIR
 
 USER $NB_USER
-
-
 # Add Julia packages
 # Install IJulia as jovyan and then move the kernelspec out
 # to the system share location. Avoids problems with runtime UID change not
 # taking effect properly on the .local folder in the jovyan home dir.
 COPY files/julia_packages.jl julia_packages.jl
-
-# FunctionalDataUtils
 
 RUN julia julia_packages.jl && \
     # move kernelspec out of home \
@@ -76,8 +74,10 @@ RUN conda install --quiet --yes \
     'r-rcurl' \
     'r-crayon' && conda clean -tipsy
 
-# R packages
-# MLmetrics
+RUN Rscript -e "install.packages('MLmetrics')"
+RUN Rscript -e "install.packages('randomForestExplainer')"
+
+
 
 
 USER $NB_USER
@@ -150,7 +150,7 @@ RUN cd /home/$NB_USER/torch && ./install.sh -b \
 
 
 # Vowpal wabbit
-RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
+RUN git clone --depth 1 https://github.com/JohnLangford/vowpal_wabbit.git && \
     cd vowpal_wabbit && \
     make vw && \
     make spanning_tree && \
@@ -160,24 +160,24 @@ RUN git clone https://github.com/JohnLangford/vowpal_wabbit.git && \
     cd .. && rm -rf vowpal_wabbit
 
 # libfm
-RUN git clone https://github.com/srendle/libfm.git && cd libfm && make all && \
+RUN git clone --depth 1 https://github.com/srendle/libfm.git && cd libfm && make all && \
     mv bin/* $HOME/bin/ && cd .. && rm -rf libfm
 
 # fast_rgf
-RUN git clone https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
+RUN git clone --depth 1 https://github.com/baidu/fast_rgf.git && cd fast_rgf && \
     sed -i '10 s/^##*//' CMakeLists.txt && \
     cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
     cd .. && rm -rf fast_rgf
 
 USER $NB_USER
 
-RUN git clone https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user && cd .. && rm -rf facets
+RUN git clone --depth 1 https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user && cd .. && rm -rf facets
 
-RUN git clone https://github.com/guestwalk/libffm.git && cd libffm && make && cp ffm-predict $HOME/bin/ && cp ffm-train $HOME/bin/ && cd .. && rm -rf libffm
+RUN git clone --depth 1 https://github.com/guestwalk/libffm.git && cd libffm && make && cp ffm-predict $HOME/bin/ && cp ffm-train $HOME/bin/ && cd .. && rm -rf libffm
 
 # RUN git clone https://github.com/alno/batch-learn.git && cd batch-learn && mkdir build && cd build && cmake .. && make  && cp batch-learn $HOME/bin/ && cd ../.. && rm -rf batch-learn
 
-RUN git clone https://github.com/jeroenjanssens/data-science-at-the-command-line.git && mv data-science-at-the-command-line/tools/* $HOME/bin/ && \
+RUN git clone --depth 1 https://github.com/jeroenjanssens/data-science-at-the-command-line.git && mv data-science-at-the-command-line/tools/* $HOME/bin/ && \
 rm -rf data-science-at-the-command-line
 
 #RUN python -c "from keras.applications.resnet50 import ResNet50; ResNet50(weights='imagenet')"
@@ -189,15 +189,15 @@ rm -rf data-science-at-the-command-line
 
 
 #Install Caffe
-# RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
-#     cd ~/caffe && \
-#     cat python/requirements.txt | xargs -n1 pip install && \
-#     mkdir build && cd build && \
-#     cmake -DCPU_ONLY=1 -DBLAS=Open .. && \
-#     make -j"$(nproc)" all && \
-#     make install
+#  RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
+#      cd ~/caffe && \
+#      cat python/requirements.txt | xargs -n1 pip install && \
+#      mkdir build && cd build && \
+#      cmake -DCPU_ONLY=1 -DOPENCV_VERSION=3 -DUSE_NCCL=1 -Dpython_version=3 .. && \
+#      make -j"$(nproc)" all && \
+#      make install
 
-# Set up Caffe environment variables
+# # Set up Caffe environment variables
 # ENV CAFFE_ROOT=~/caffe
 # ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
 # ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH

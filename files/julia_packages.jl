@@ -15,6 +15,7 @@ metadata_packages = [
     "GLM",
     "HDF5",
     "HypothesisTests",
+    "FunctionalDataUtils",
     "JSON",
     "KernelDensity",
     "Lora",
