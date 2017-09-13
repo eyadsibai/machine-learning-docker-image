@@ -1,9 +1,9 @@
-FROM jupyter/all-spark-notebook:latest
+FROM jupyter/all-spark-notebook:ae885c0a6226
 MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
+RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
 apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
@@ -12,46 +12,38 @@ fonts-dejavu gfortran gcc \
     && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
-RUN conda config --system --add channels conda-forge --add channels glemaitre --add channels distributions --add channels datamicroscopes --add channels ioam --add channels r && conda config --set channel_priority false
+RUN conda config --system --add channels conda-forge --add channels glemaitre --add channels distributions --add channels maciejkula --add channels datamicroscopes --add channels ioam --add channels r && conda config --set channel_priority false
 COPY files/environment.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
-COPY files/python_packages.txt python_packages.txt
-RUN pip install -r python_packages.txt && rm -rf "$HOME/.cache/pip/*" && rm -rf /tmp/pip-*
-
-USER root
+# USER root
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
-ENV JULIA_PKGDIR=/opt/julia
+# ENV JULIA_PKGDIR=/opt/julia
 
-RUN . /etc/os-release && \
-    echo "deb http://ppa.launchpad.net/staticfloat/juliareleases/ubuntu $VERSION_CODENAME main" > /etc/apt/sources.list.d/julia.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3D3D3ACC && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-    julia && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    # Show Julia where conda libraries are \
-    echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> /usr/etc/julia/juliarc.jl && \
-    # Create JULIA_PKGDIR \
-    mkdir $JULIA_PKGDIR && \
-    chown -R $NB_USER:users $JULIA_PKGDIR
 
-USER $NB_USER
-# Add Julia packages
-# Install IJulia as jovyan and then move the kernelspec out
-# to the system share location. Avoids problems with runtime UID change not
-# taking effect properly on the .local folder in the jovyan home dir.
-COPY files/julia_packages.jl julia_packages.jl
+# # Install julia 0.6
+# RUN mkdir -p $JULIA_PKGDIR && \
+#     curl -s -L https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.0-linux-x86_64.tar.gz | tar -C $JULIA_PKGDIR -x -z --strip-components=1 -f -
+# RUN echo '("JULIA_LOAD_CACHE_PATH" in keys(ENV)) && unshift!(Base.LOAD_CACHE_PATH, ENV["JULIA_LOAD_CACHE_PATH"])' >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+# RUN echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+# RUN chown -R $NB_USER:users $JULIA_PKGDIR
 
-RUN julia julia_packages.jl && \
-    # move kernelspec out of home \
-    mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
-    chmod -R go+rx $CONDA_DIR/share/jupyter && \
-    rm -rf $HOME/.local
+# ENV PATH=$PATH:$JULIA_PKGDIR/bin
+# USER $NB_USER
+# # Add Julia packages
+# # Install IJulia as jovyan and then move the kernelspec out
+# # to the system share location. Avoids problems with runtime UID change not
+# # taking effect properly on the .local folder in the jovyan home dir.
+# COPY files/julia_packages.jl julia_packages.jl
+
+# RUN julia julia_packages.jl && \
+#     # move kernelspec out of home \
+#     mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
+#     chmod -R go+rx $CONDA_DIR/share/jupyter && \
+#     rm -rf $HOME/.local && rm julia_packages.jl
 
 # install R packages
 RUN conda install --quiet --yes \
@@ -74,8 +66,17 @@ RUN conda install --quiet --yes \
     'r-rcurl' \
     'r-crayon' && conda clean -tipsy
 
-RUN Rscript -e "install.packages('MLmetrics')"
-RUN Rscript -e "install.packages('randomForestExplainer')"
+#RUN /user/local/bin/fix-permissions $CONDA_DIR
+ENV RLIB=$CONDA_DIR/lib/R/library
+
+
+RUN Rscript -e "install.packages('MLmetrics', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('randomForestExplainer', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('quanteda', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('bnclassify', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('bayesplot', '$RLIB', repos = 'http://cran.us.r-project.org')"
+
+
 
 
 
@@ -88,6 +89,27 @@ USER $NB_USER
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+
+
+RUN jupyter nbextensions_configurator enable
+RUN jupyter contrib nbextension install --user
+RUN jupyter-nbextension enable nbextensions_configurator/config_menu/main
+RUN jupyter-nbextension enable contrib_nbextensions_help_item/main
+RUN jupyter-nbextension enable autosavetime/main
+RUN jupyter-nbextension enable code_prettify/code_prettify
+RUN jupyter-nbextension enable table_beautifier/main
+RUN jupyter-nbextension enable toc2/main
+RUN jupyter-nbextension enable spellchecker/main
+RUN jupyter-nbextension enable toggle_all_line_numbers/main
+RUN jupyter-nbextension enable execute_time/ExecuteTime
+RUN jupyter-nbextension enable notify/notify
+RUN jupyter-nbextension enable codefolding/main
+RUN jupyter-nbextension enable varInspector/main
+RUN jupyter-nbextension enable nbextensions_configurator/tree_tab/main
+RUN jupyter-nbextension enable tree-filter/index
+RUN jupyter-nbextension enable codefolding/edit
+RUN jupyter-nbextension enable jupyter-js-widgets/extension
+
 # && python -m jupyterdrive --mixed --user
 
 # Configure ipython kernel to use matplotlib inline backend by default

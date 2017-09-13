@@ -45,6 +45,10 @@ end
 Pkg.clone("https://github.com/antinucleon/XGBoost.jl.git")
 Pkg.build("XGBoost")
 
+Pkg.clone("https://github.com/mschauer/CausalInference.jl")
+Pkg.pin("CausalInference")
+
+
 Pkg.clone("https://github.com/benhamner/MachineLearning.jl")
 Pkg.pin("MachineLearning")
 

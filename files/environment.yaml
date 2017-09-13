@@ -35,7 +35,6 @@ dependencies:
   - patsy>=0.4.*
   - cython
   - bcolz
-  - psutil # needed for pydatalab
   - pysal
   - datashader
   - conda-forge::pymc3
@@ -68,7 +67,6 @@ dependencies:
   - tifffile
   - descartes
   - biopython
-    # - shogun
   - cartopy>=0.14.2
   - shapely>=1.5.*
   - cvxopt
@@ -79,7 +77,6 @@ dependencies:
   - spacy
   - rpy2
   - sklearn-contrib-lightning
-#  - forestci
   - pyshp
   - geoplot
   - pyproj
@@ -89,7 +86,6 @@ dependencies:
   - google-api-python-client
   - geopy
   - gensim
-#  - jellyfish
   - imagesize>=0.7.1
   - pytools
   - pyparsing
@@ -100,8 +96,276 @@ dependencies:
   - soumith::torchvision
   - fiona
   - poliastro
- # - pymc::hddm
-  # -  microscopes-common
-  # - microscopes-{mixturemodel, irm, lda}
+  - dask-searchcv
+  - damianavila82::rise
   - theano
-  # - Quantopian::zipline
+  - spotlight
+  - pygridgen
+#  - pygridtools
+  # - Quantopian::zipline (pandas 0.18.x)
+  - pip:
+    - git+git://github.com/scikit-learn-contrib/forest-confidence-interval.git #forestci
+    - deap
+    - tpot
+    - joblib
+    - nxviz
+    - scikit-dsp-comm[helpers]
+    - perfplot
+    - tdda
+    - pystruct
+    - airflow
+    - nbdime
+    - geojson
+    - category_encoders
+    - emcee
+    - spectral
+    - artemis-ml
+    - git+https://github.com/jamesturk/jellyfish.git
+    - lifelines
+    - lsanomaly
+    - skll
+    - speedml
+    - mlens
+    - pandas_ml
+    - scikit-neuralnetwork
+    - causalinference
+    - https://github.com/JamesRitchie/scikit-rvm/archive/master.zip
+    - pomegranate
+    - google-cloud
+    - pyhsmm
+    - dm-sonnet
+    - bhtsne
+    - tslearn
+    - tqdm
+    - tensorboard-pytorch
+    - mpl-scatter-density
+    - sympy
+    - git+https://github.com/keunwoochoi/kapre.git
+    - squarify
+    - py_stringsimjoin
+    - lifetimes
+    - fuzzywuzzy
+    - python-louvain
+    - pyexcel-ods
+    - geopandas
+    - tsfresh
+    - xcessiv
+    - hypertools
+    - futures>=3.0.5
+    - seasonal
+    - few
+    - Skater
+    - flurs
+    - scikit-garden
+    - lightgbm
+    - mxnet
+    - tensorflow>=1.0.1
+    - scikit-plot
+    - visualize_ML
+    - workalendar
+    - sigopt_sklearn[ensemble]
+    - tdigest
+    - sklearn-pandas
+    - datacleaner
+    - bambi
+    - datatest
+    - jieba
+    - cvxpy
+    - qgrid
+    - categorical-distance>=1.9
+    - quiver_engine
+    - db.py
+    - dedupe
+    - dedupe-hcluster
+    - parserator>=0.6.2
+    - probableparsing>=0.0.1
+    - probablepeople>=0.5.2
+    - git+https://github.com/arogozhnikov/infiniteboost.git
+    - git+https://github.com/tadejs/autokit.git
+    - perfume-bench
+    - omesa
+    - cesium
+    - thinc
+    - eli5
+    - sklearn-crfsuite
+    - imgaug
+    - pyalgotrade
+    - annoy
+    - husl
+    - ml_metrics
+    - pyflux
+    - mne
+    - pyshp
+    - fbprophet
+    - metric-learn
+    - pytagcloud
+    - textblob
+    - data_hacks
+    - chainer
+    - records
+    - xgboost
+    - usaddress
+    - sexmachine
+    - Geohash
+    - sacred
+    - tflearn
+    - fitter
+    - vowpalwabbit
+    - langid
+    - delorean
+    - csvdedupe
+    - affinegap
+    - trueskill
+    - heamy
+    - vida
+    - missingno
+    - s2sphere
+    - bayesian-optimization
+    - pyldavis
+    - lmfit
+    - orderedmultidict
+    - smhasher
+    - nolearn
+    - pynlpl
+    - keras-vis
+    - pybrain
+    - stop-words
+    - hep_ml
+    - kaggle-cli
+    - tfdebugger
+    - fasttext
+    - hmmlearn
+    - wavio
+    - terminalplot
+    - jupyterthemes
+    - lesscpy
+    - mlxtend
+    - keras-rl
+    - h5py
+    - scikit-optimize
+    - bayespy
+    - gplearn
+    - keras
+    - lime
+    - fancyimpute
+    - lightfm
+    - lightgbm
+    - searchgrid
+    - git+git://github.com/mila-udem/fuel.git
+    - hyperopt
+    - boruta
+    - yellowbrick
+    - nilearn
+    - featureforge
+    - Dora
+    - dflearn
+    - vecstack
+    - MarkovNetwork
+    - bootstrapped
+    - astroML
+    - urlextract
+    - git+https://github.com/kootenpv/xtoy.git
+    - git+https://github.com/ianlini/feagen.git
+    - git+https://github.com/mewwts/feng.git
+    - fastFM
+    - foolbox
+    - sacred
+    - pymongo
+    - chainercv
+    - tensorlayer
+    - pdpipe
+    - nnabla
+    - linearmodels
+    - edward
+    - leven
+    - rgf_python
+    - catboost
+    - mlbox
+    - gmaps
+    - ftfy
+    - paramnb
+    - cma
+    - xgbfir
+    - csvkit
+    - folium
+    - prince
+    - sk-video
+    - sklearn-compiledtrees
+    - auto_ml
+    - hyperas
+    - disp
+    - rtree
+    - git+https://github.com/marinkaz/scikit-fusion.git
+    - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
+    - git+https://github.com/AmazaspShumik/sklearn_bayes.git
+    - git+https://github.com/ferrine/gelato.git
+    - git+https://github.com/Lasagne/Lasagne.git
+    - git+https://github.com/hyperopt/hyperopt-sklearn.git
+    - git+https://github.com/amueller/word_cloud.git
+    - git+https://github.com/nicta/dora.git
+    - git+https://github.com/nicolashennetier/pyeconometrics.git
+    - git+https://github.com/ztane/python-Levenshtein.git
+    - git+https://github.com/NervanaSystems/neon.git@v1.9.0
+    - git+https://github.com/vitruvianscience/opendeep.git
+    - git+https://github.com/scikit-learn-contrib/py-earth.git
+    - git+https://github.com/scikit-learn-contrib/polylearn.git
+    - git+https://github.com/ioam/geoviews.git
+    - git+https://github.com/erp12/pyshgp.git
+    - git+https://github.com/pierreablin/faster-ica.git
+    - git+https://github.com/cgevans/scikits-bootstrap.git
+    - git+https://github.com/ceholden/yatsm.git
+    - git+https://github.com/tariqdaouda/Mariana.git
+    - git+https://github.com/automl/fanova.git
+    - git+https://github.com/pgmpy/pgmpy.git
+    - git+https://github.com/alshedivat/kgp.git
+    - git+https://github.com/scikit-learn-contrib/polylearn.git
+    - msaf
+    - git+https://github.com/mattilyra/LSH.git
+    - git+https://github.com/casperkaae/parmesan.git
+    - gatspy
+    - git+https://github.com/mpearmain/scikit-wrapRs.git
+    - git+https://github.com/facebookresearch/pysparnn.git
+    - git+https://github.com/jupyter/jupyter-drive.git
+    - git+https://github.com/the-moliver/kfs.git
+    - git+https://github.com/mattilyra/LSH.git
+    - git+https://github.com/facebookresearch/DrQA.git
+    - git+https://github.com/dnouri/inferno.git
+    - git+https://github.com/guillemborrell/pyledger.git
+    - git+https://github.com/lmcinnes/umap.git
+    - git+https://github.com/rafguns/linkpred.git
+    - git+https://github.com/deepnn/covfefe.git
+    - visidata
+    - git+https://github.com/austin-taylor/flare.git
+    - persimmon
+    - vania
+    - scikit-surprise
+    - git+https://github.com/dvaida/hallucinate.git
+    - pymongo
+    - keras-tqdm
+    - rice
+    - bayesian_bootstrap
+    - quilt
+    - flashtext
+    - picasso-viz
+    - autograd
+    - py-heat
+    - elfi
+    - git+https://github.com/timvieira/crf.git
+    - implicit
+    - jupyter_contrib_nbextensions
+    - jupyter_nbextensions_configurator
+    - knowledge-repo
+   # - git+https://github.com/GPflow/GPflow.git
+#    - scikit-cuda==0.5.1
+  #  - auto-sklearn (sklearn version 0.18.1)
+  #  - pycuda (GPU only)
+  #  -  lshash
+  #  -  copper
+  #  -  git+https://github.com/joachimwolff/minHashNearestNeighbors.git
+ #   - bilearn
+  #  - git+https://github.com/clips/pattern.git@development
+  # -  git+https://github.com/reinforceio/tensorforce.git
+      # - shogun
+   # - #fast-histogram
+   # - #pyhrf
+   # - #git+https://github.com/mwhoffman/pybo.git
