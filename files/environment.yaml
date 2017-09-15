@@ -90,6 +90,7 @@ dependencies:
   - pytools
   - pyparsing
   - plotnine
+  - ezyang::onnx
   - setuptools>=32.3.1
   - python-dotenv
   - soumith::pytorch
@@ -221,6 +222,7 @@ dependencies:
     - missingno
     - s2sphere
     - bayesian-optimization
+    - face_recognition
     - pyldavis
     - lmfit
     - orderedmultidict
@@ -355,6 +357,10 @@ dependencies:
     - jupyter_contrib_nbextensions
     - jupyter_nbextensions_configurator
     - knowledge-repo
+    - https://cntk.ai/PythonWheel/CPU-Only/cntk-2.1-cp36-cp36m-linux_x86_64.whl
+    - https://h2o-release.s3.amazonaws.com/h2o/rel-weierstrass/2/Python/h2o-3.14.0.2-py2.py3-none-any.whl
+    - git+https://github.com/thtrieu/darkflow.git
+    - chatterbot
    # - git+https://github.com/GPflow/GPflow.git
 #    - scikit-cuda==0.5.1
   #  - auto-sklearn (sklearn version 0.18.1)

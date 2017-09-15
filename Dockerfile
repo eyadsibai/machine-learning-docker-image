@@ -3,8 +3,9 @@ MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler && \
-apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
+RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libarmadillo-dev \
+        binutils-dev libleptonica-dev && \
+apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential automake libtool \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
 fonts-dejavu gfortran gcc \
@@ -64,6 +65,19 @@ RUN conda install --quiet --yes \
     'r-rsqlite' \
     'r-caret' \
     'r-rcurl' \
+    'rstudio' \
+    'r-tseries' \
+    'r-survival' \
+    'r-rstan' \
+    'r-rocr' \
+    'r-lme4' \
+    'r-kernsmooyth' \
+    'r-glmnet' \
+    'r-ggplot2' \
+    'r-modelmetrics' \
+    'r-e1071' \
+    'r-anomalydetection' \
+    'r-xgboost' \
     'r-crayon' && conda clean -tipsy
 
 #RUN /user/local/bin/fix-permissions $CONDA_DIR
@@ -78,9 +92,6 @@ RUN Rscript -e "install.packages('bayesplot', '$RLIB', repos = 'http://cran.us.r
 
 
 
-
-
-
 USER $NB_USER
 # install packages without their dependencies
 #RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
@@ -89,8 +100,6 @@ USER $NB_USER
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
-
-
 RUN jupyter nbextensions_configurator enable
 RUN jupyter contrib nbextension install --user
 RUN jupyter-nbextension enable nbextensions_configurator/config_menu/main
@@ -244,6 +253,31 @@ rm -rf data-science-at-the-command-line
 RUN ipython -c 'import disp; disp.install()'
 
 COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
+
+
+# RUN wget http://www.mlpack.org/files/mlpack-2.2.5.tar.gz && \
+#     tar xzf mlpack-2.2.5.tar.gz && rm mlpack-2.2.5.tar.gz && \
+#     cd mlpack-2.2.5 && mkdir build && cd build && \
+#     cmake -D DEBUG=OFF -D PROFILE=OFF ../ && \
+#     make && make install
+
+# ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
+
+
+RUN git clone https://github.com/tesseract-ocr/tesseract && cd tesseract && ./autogen.sh && \
+    ./configure --prefix=$HOME/local/ && make install
+
+ENV TESSDATA_PREFIX  $HOME/tessdata
+
+RUN mkdir tessdata && \
+    wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata && \
+    wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata && \
+    wget https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
+    wget https://github.com/tesseract-ocr/tessdata/raw/4.00/eng.traineddata
+
+RUN git clone https://github.com/davisking/dlib && cd dlib && mkdir build && cd build && cmake .. && cmake --build . && cd .. && python setup.py install
+
+
 
 EXPOSE 1994
 CMD ["xcessiv"]

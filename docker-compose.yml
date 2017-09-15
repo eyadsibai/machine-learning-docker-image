@@ -17,6 +17,11 @@ services:
       - redis:redis
     # volumes:
     #  - .:/code
+  rasa:
+    image: "rasa/rasa_nlu:latest-full"
+    ports:
+      - "5000:5000"
+
 
 
 
