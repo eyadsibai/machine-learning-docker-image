@@ -5,7 +5,9 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libarmadillo-dev \
         binutils-dev libleptonica-dev && \
-apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential automake libtool \
+apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
+# needed for tessarct
+automake libtool autoconf-archive autoconf automake libtool pkg-config libpng12-dev libjpeg8-dev libtiff5-dev zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
 fonts-dejavu gfortran gcc \
@@ -65,19 +67,18 @@ RUN conda install --quiet --yes \
     'r-rsqlite' \
     'r-caret' \
     'r-rcurl' \
-    'rstudio' \
     'r-tseries' \
     'r-survival' \
     'r-rstan' \
     'r-rocr' \
     'r-lme4' \
-    'r-kernsmooyth' \
+    'r-kernsmooth' \
     'r-glmnet' \
     'r-ggplot2' \
     'r-modelmetrics' \
     'r-e1071' \
     'r-anomalydetection' \
-    'r-xgboost' \
+  #  'r-xgboost' \
     'r-crayon' && conda clean -tipsy
 
 #RUN /user/local/bin/fix-permissions $CONDA_DIR
@@ -200,10 +201,10 @@ RUN git clone --depth 1 https://github.com/baidu/fast_rgf.git && cd fast_rgf && 
     cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
     cd .. && rm -rf fast_rgf
 
-USER $NB_USER
+USER $NB_UzSER
 
-RUN git clone --depth 1 https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user && cd .. && rm -rf facets
-
+RUN git clone --depth 1 https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user
+ENV PYTHONPATH $HOME/facets/facets_overview/python/:$PYTHONPATH
 RUN git clone --depth 1 https://github.com/guestwalk/libffm.git && cd libffm && make && cp ffm-predict $HOME/bin/ && cp ffm-train $HOME/bin/ && cd .. && rm -rf libffm
 
 # RUN git clone https://github.com/alno/batch-learn.git && cd batch-learn && mkdir build && cd build && cmake .. && make  && cp batch-learn $HOME/bin/ && cd ../.. && rm -rf batch-learn
@@ -264,8 +265,8 @@ COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
 # ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 
 
-RUN git clone https://github.com/tesseract-ocr/tesseract && cd tesseract && ./autogen.sh && \
-    ./configure --prefix=$HOME/local/ && make install
+# RUN git clone https://github.com/tesseract-ocr/tesseract && cd tesseract && ./autogen.sh && \
+#     ./configure --prefix=$HOME/local/ && make install
 
 ENV TESSDATA_PREFIX  $HOME/tessdata
 
@@ -275,8 +276,20 @@ RUN mkdir tessdata && \
     wget https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
     wget https://github.com/tesseract-ocr/tessdata/raw/4.00/eng.traineddata
 
-RUN git clone https://github.com/davisking/dlib && cd dlib && mkdir build && cd build && cmake .. && cmake --build . && cd .. && python setup.py install
+#installed by python
+# RUN git clone https://github.com/davisking/dlib && cd dlib && mkdir build && cd build && cmake .. && cmake --build . && cd .. && python setup.py install
 
+
+RUN mkdir kepler_mapper && cd kepler_mapper && wget https://raw.githubusercontent.com/MLWave/kepler-mapper/master/km.py
+RUN mkdir corex && cd corex && \
+    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex.py && \
+    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/vis_corex.py && \
+    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex_topic.py && \
+    wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/vis_topic.py
+
+RUN mkdir empca && cd empca && wget https://raw.githubusercontent.com/sbailey/empca/master/empca.py
+
+ENV PYTHONPATH $HOME/kepler-mapper/:$HOME/corex:$HOME/empca:${PYTHONPATH}
 
 
 EXPOSE 1994

@@ -5,7 +5,7 @@ dependencies:
   - boto
   - boto3
   - lxml>=3.6.0
-  - jupyterlab
+  - fastparquet
   - bokeh>=0.12.*
   - cloudpickle>=0.2.*
   - dask>=0.13.*
@@ -102,6 +102,12 @@ dependencies:
   - theano
   - spotlight
   - pygridgen
+  - swig
+  - odo
+  - glueviz::glueviz
+#  - vida-nyu::vistrails
+  - hyperspy
+  - bioconda::nanoplot
 #  - pygridtools
   # - Quantopian::zipline (pandas 0.18.x)
   - pip:
@@ -351,6 +357,7 @@ dependencies:
     - picasso-viz
     - autograd
     - py-heat
+    - databench
     - elfi
     - git+https://github.com/timvieira/crf.git
     - implicit
@@ -361,17 +368,67 @@ dependencies:
     - https://h2o-release.s3.amazonaws.com/h2o/rel-weierstrass/2/Python/h2o-3.14.0.2-py2.py3-none-any.whl
     - git+https://github.com/thtrieu/darkflow.git
     - chatterbot
-   # - git+https://github.com/GPflow/GPflow.git
-#    - scikit-cuda==0.5.1
-  #  - auto-sklearn (sklearn version 0.18.1)
-  #  - pycuda (GPU only)
-  #  -  lshash
-  #  -  copper
-  #  -  git+https://github.com/joachimwolff/minHashNearestNeighbors.git
- #   - bilearn
-  #  - git+https://github.com/clips/pattern.git@development
-  # -  git+https://github.com/reinforceio/tensorforce.git
-      # - shogun
-   # - #fast-histogram
-   # - #pyhrf
-   # - #git+https://github.com/mwhoffman/pybo.git
+    - salib
+    - ethnicolr
+    - git+git://github.com/ppwwyyxx/tensorpack
+    - git+https://github.com/anttttti/Wordbatch.git
+    - speechpy
+    - nudepy
+    - git+https://github.com/aarongarrett/inspyred
+    - skyfield
+    - minisom
+    - kcbo
+    - git+https://github.com/dmarx/Topological-Anomaly-Detection
+    - sixpack
+    - prophet
+    - smac
+    - hyperopt
+    - pythran
+    - features
+    - street-address
+    - messytables
+    - tableschema
+    - tabulator
+    - git+https://github.com/garydoranjr/misvm.git#egg=misvm
+    - git+https://github.com/tadejs/autokit.git
+    - git+https://github.com/larsmans/seqlearn.git
+    - lda
+    - git+https://github.com/jmetzen/kernel_regression.git
+    - pyprind
+    - trendvis
+    - git+https://github.com/automl/RoBO.git
+    - rpforest
+    - networkl
+    - git+https://github.com/manahl/arctic.git
+    - git+https://github.com/EESI/PyFeast.git
+    - yapf
+    - hypothesis
+    - pytest
+    - dataset
+    - cerberus
+    - pdftabextract
+    - geoplotlib
+    - petl
+    - git+https://github.com/pixelogik/NearPy.git
+    - meza
+    - pymining
+    - engarde
+    - kmodes
+    - rows
+    - validictory
+    - nutsml
+    - nutsflow
+    - gulpio
+    - pandas-finance
+    - git+https://github.com/mpearmain/gestalt
+    - tdda
+    - proof
+    - yahoo-finance
+    - quilt
+    - ppca
+    - barely_json
+    - pypet
+    - observations
+    - git+https://github.com/kalaidin/sketches
+    - git+https://github.com/beltashazzer/jmpy.git
+    - git+https://github.com/pierreablin/picard.git#egg=picard
