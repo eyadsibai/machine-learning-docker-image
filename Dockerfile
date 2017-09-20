@@ -218,8 +218,6 @@ rm -rf data-science-at-the-command-line
 #RUN python -c "from keras.applications.inception_v3 import InceptionV3; InceptionV3(weights='imagenet')"
 #RUN python -c "from keras.applications.xception import Xception; Xception(weights='imagenet')"
 
-
-
 #Install Caffe
 #  RUN git clone --depth 1 https://github.com/BVLC/caffe.git ~/caffe && \
 #      cd ~/caffe && \
@@ -270,7 +268,7 @@ COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
 
 ENV TESSDATA_PREFIX  $HOME/tessdata
 
-RUN mkdir tessdata && \
+RUN mkdir tessdata && cd tessdata && \
     wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata && \
     wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata && \
     wget https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
@@ -284,12 +282,12 @@ RUN mkdir kepler_mapper && cd kepler_mapper && wget https://raw.githubuserconten
 RUN mkdir corex && cd corex && \
     wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex.py && \
     wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/vis_corex.py && \
-    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex_topic.py && \
+    wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/corex_topic.py && \
     wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/vis_topic.py
 
 RUN mkdir empca && cd empca && wget https://raw.githubusercontent.com/sbailey/empca/master/empca.py
 
-ENV PYTHONPATH $HOME/kepler-mapper/:$HOME/corex:$HOME/empca:${PYTHONPATH}
+ENV PYTHONPATH $HOME/kepler_mapper:$HOME/corex:$HOME/empca:${PYTHONPATH}
 
 
 EXPOSE 1994

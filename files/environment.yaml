@@ -104,10 +104,12 @@ dependencies:
   - pygridgen
   - swig
   - odo
+  - fbprophet
   - glueviz::glueviz
 #  - vida-nyu::vistrails
   - hyperspy
   - bioconda::nanoplot
+  - python-annoy
 #  - pygridtools
   # - Quantopian::zipline (pandas 0.18.x)
   - pip:
@@ -197,13 +199,11 @@ dependencies:
     - sklearn-crfsuite
     - imgaug
     - pyalgotrade
-    - annoy
     - husl
     - ml_metrics
     - pyflux
     - mne
     - pyshp
-    - fbprophet
     - metric-learn
     - pytagcloud
     - textblob
