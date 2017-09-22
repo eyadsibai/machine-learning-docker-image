@@ -110,6 +110,8 @@ dependencies:
   - hyperspy
   - bioconda::nanoplot
   - python-annoy
+  - fire
+ # - nusdbsystem::singa
 #  - pygridtools
   # - Quantopian::zipline (pandas 0.18.x)
   - pip:
@@ -429,6 +431,9 @@ dependencies:
     - barely_json
     - pypet
     - observations
+    - gym
     - git+https://github.com/kalaidin/sketches
     - git+https://github.com/beltashazzer/jmpy.git
     - git+https://github.com/pierreablin/picard.git#egg=picard
+    - git+https://github.com/thu-ml/zhusuan
+#    - nupic
