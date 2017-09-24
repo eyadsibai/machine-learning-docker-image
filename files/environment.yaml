@@ -436,4 +436,7 @@ dependencies:
     - git+https://github.com/beltashazzer/jmpy.git
     - git+https://github.com/pierreablin/picard.git#egg=picard
     - git+https://github.com/thu-ml/zhusuan
+    - optimuspyspark
+    - git+https://github.com/jundongl/scikit-feature
+#    - git+https://github.com/zomux/deepy
 #    - nupic

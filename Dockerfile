@@ -21,32 +21,45 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
-# USER root
+USER root
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
-# ENV JULIA_PKGDIR=/opt/julia
+ENV JULIA_PKGDIR=/opt/julia
 
 
 # # Install julia 0.6
-# RUN mkdir -p $JULIA_PKGDIR && \
-#     curl -s -L https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.0-linux-x86_64.tar.gz | tar -C $JULIA_PKGDIR -x -z --strip-components=1 -f -
-# RUN echo '("JULIA_LOAD_CACHE_PATH" in keys(ENV)) && unshift!(Base.LOAD_CACHE_PATH, ENV["JULIA_LOAD_CACHE_PATH"])' >> $JULIA_PKGDIR/etc/julia/juliarc.jl
-# RUN echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> $JULIA_PKGDIR/etc/julia/juliarc.jl
-# RUN chown -R $NB_USER:users $JULIA_PKGDIR
+RUN mkdir -p $JULIA_PKGDIR && \
+    curl -s -L https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.0-linux-x86_64.tar.gz | tar -C $JULIA_PKGDIR -x -z --strip-components=1 -f -
+RUN echo '("JULIA_LOAD_CACHE_PATH" in keys(ENV)) && unshift!(Base.LOAD_CACHE_PATH, ENV["JULIA_LOAD_CACHE_PATH"])' >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+RUN echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+RUN chown -R $NB_USER:users $JULIA_PKGDIR
 
-# ENV PATH=$PATH:$JULIA_PKGDIR/bin
-# USER $NB_USER
+ENV PATH=$PATH:$JULIA_PKGDIR/bin
+USER $NB_USER
 # # Add Julia packages
 # # Install IJulia as jovyan and then move the kernelspec out
 # # to the system share location. Avoids problems with runtime UID change not
 # # taking effect properly on the .local folder in the jovyan home dir.
+RUN julia -e 'Pkg.init()' && \
+    julia -e 'Pkg.update()' && \
+    julia -e 'Pkg.add("HDF5")' && \
+    julia -e 'Pkg.add("Gadfly")' && \
+    julia -e 'Pkg.add("RDatasets")' && \
+    julia -e 'Pkg.add("IJulia")' && \
+    # Precompile Julia packages \
+    julia -e 'using HDF5' && \
+    julia -e 'using Gadfly' && \
+    julia -e 'using RDatasets' && \
+    julia -e 'using IJulia'
 # COPY files/julia_packages.jl julia_packages.jl
 
 # RUN julia julia_packages.jl && \
 #     # move kernelspec out of home \
-#     mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
-#     chmod -R go+rx $CONDA_DIR/share/jupyter && \
-#     rm -rf $HOME/.local && rm julia_packages.jl
+RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
+    chmod -R go+rx $CONDA_DIR/share/jupyter && \
+    rm -rf $HOME/.local && \
+    fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
+## && rm julia_packages.jl
 
 # install R packages
 RUN conda install --quiet --yes \
@@ -78,8 +91,8 @@ RUN conda install --quiet --yes \
     'r-modelmetrics' \
     'r-e1071' \
     'r-anomalydetection' \
-  #  'r-xgboost' \
-    'r-crayon' && conda clean -tipsy
+    'r-rcpp ' \
+    'r-crayon' && conda clean -tipsy && fix-permissions $CONDA_DIR
 
 #RUN /user/local/bin/fix-permissions $CONDA_DIR
 ENV RLIB=$CONDA_DIR/lib/R/library
@@ -90,6 +103,11 @@ RUN Rscript -e "install.packages('randomForestExplainer', '$RLIB', repos = 'http
 RUN Rscript -e "install.packages('quanteda', '$RLIB', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "install.packages('bnclassify', '$RLIB', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "install.packages('bayesplot', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('mice', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('VIM', '$RLIB', repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages('lattice', '$RLIB', repos = 'http://cran.us.r-project.org')"
+
+
 
 
 
@@ -201,7 +219,7 @@ RUN git clone --depth 1 https://github.com/baidu/fast_rgf.git && cd fast_rgf && 
     cd build && cmake .. && make && make install && cd .. && mv bin/* $HOME/bin && \
     cd .. && rm -rf fast_rgf
 
-USER $NB_UzSER
+USER $NB_USER
 
 RUN git clone --depth 1 https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --user
 ENV PYTHONPATH $HOME/facets/facets_overview/python/:$PYTHONPATH
@@ -288,6 +306,17 @@ RUN mkdir corex && cd corex && \
 RUN mkdir empca && cd empca && wget https://raw.githubusercontent.com/sbailey/empca/master/empca.py
 
 ENV PYTHONPATH $HOME/kepler_mapper:$HOME/corex:$HOME/empca:${PYTHONPATH}
+
+ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9
+#com.airbnb.aerosolve:core:0.1.103 add bintray repo
+#com.github.haifengl:smile-scala:1.4.0
+
+#npm install -g ijavascript
+#ijsinstall
+#npm install deeplearn
+#curl -fsS https://dlang.org/install.sh | bash -s ldc
+#source ~/dlang/ldc-{VERSION}/activate
+
 
 
 EXPOSE 1994
