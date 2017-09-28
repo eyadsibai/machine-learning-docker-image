@@ -24,6 +24,8 @@ dependencies:
   - requests>=2.*
   - seaborn
   - orange3
+  - pyomo
+  - pyomo.extras
   - orange3-text
   - holoviews
   - bottleneck
@@ -206,6 +208,7 @@ dependencies:
     - ml_metrics
     - pyflux
     - mne
+    - alphapy
     - pyshp
     - metric-learn
     - pytagcloud
