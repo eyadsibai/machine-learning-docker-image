@@ -317,6 +317,8 @@ ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M -
 #curl -fsS https://dlang.org/install.sh | bash -s ldc
 #source ~/dlang/ldc-{VERSION}/activate
 
+# RUN wget https://github.com/google/or-tools/releases/download/v6.4/or-tools_python_examples_v6.4.4495.zip -O ortools.zip && \
+# unzip ortools.zip && cd ortools_examples && make install && cd .. && rm -rf ortools
 
 
 EXPOSE 1994

@@ -33,7 +33,7 @@ dependencies:
   - nltk
   - statsmodels>=0.6.*
   - patsy>=0.4.*
-  - cython
+  - cython=0.25.2
   - bcolz
   - pysal
   - datashader
@@ -106,6 +106,7 @@ dependencies:
   - odo
   - fbprophet
   - glueviz::glueviz
+  - gstreamer
 #  - vida-nyu::vistrails
   - hyperspy
   - bioconda::nanoplot
@@ -438,5 +439,6 @@ dependencies:
     - git+https://github.com/thu-ml/zhusuan
     - optimuspyspark
     - git+https://github.com/jundongl/scikit-feature
+    - py3_ortools
 #    - git+https://github.com/zomux/deepy
 #    - nupic
