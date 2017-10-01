@@ -97,6 +97,7 @@ dependencies:
   - python-dotenv
   - soumith::pytorch
   - soumith::torchvision
+  - bokeh::colorcet
   - fiona
   - poliastro
   - dask-searchcv
@@ -114,6 +115,11 @@ dependencies:
   - bioconda::nanoplot
   - python-annoy
   - fire
+  - jupyter_nbextensions_configurator
+  - jupyter_contrib_nbextensions
+  - nxviz
+  - geojson
+  - sympy
  # - nusdbsystem::singa
 #  - pygridtools
   # - Quantopian::zipline (pandas 0.18.x)
@@ -122,14 +128,12 @@ dependencies:
     - deap
     - tpot
     - joblib
-    - nxviz
     - scikit-dsp-comm[helpers]
     - perfplot
     - tdda
     - pystruct
-    - airflow
+    - airflow # needs 3.6 conda
     - nbdime
-    - geojson
     - category_encoders
     - emcee
     - spectral
@@ -153,7 +157,6 @@ dependencies:
     - tqdm
     - tensorboard-pytorch
     - mpl-scatter-density
-    - sympy
     - git+https://github.com/keunwoochoi/kapre.git
     - squarify
     - py_stringsimjoin
@@ -367,8 +370,6 @@ dependencies:
     - elfi
     - git+https://github.com/timvieira/crf.git
     - implicit
-    - jupyter_contrib_nbextensions
-    - jupyter_nbextensions_configurator
     - knowledge-repo
     - https://cntk.ai/PythonWheel/CPU-Only/cntk-2.1-cp36-cp36m-linux_x86_64.whl
     - https://h2o-release.s3.amazonaws.com/h2o/rel-weierstrass/2/Python/h2o-3.14.0.2-py2.py3-none-any.whl

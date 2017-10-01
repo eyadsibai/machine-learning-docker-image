@@ -1,5 +1,5 @@
-FROM jupyter/all-spark-notebook:ae885c0a6226
-MAINTAINER Eyad Sibai <eyad.alsibai@gmail.com>
+FROM jupyter/all-spark-notebook:e1677043235c
+LABEL authoer="Eyad Sibai <eyad.alsibai@gmail.com>"
 
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
@@ -106,7 +106,7 @@ RUN Rscript -e "install.packages('bayesplot', '$RLIB', repos = 'http://cran.us.r
 RUN Rscript -e "install.packages('mice', '$RLIB', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "install.packages('VIM', '$RLIB', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "install.packages('lattice', '$RLIB', repos = 'http://cran.us.r-project.org')"
-
+RUN Rscript -e "install.packages('CausalImpact', '$RLIB', repos = 'http://cran.us.r-project.org')"
 
 
 
@@ -118,9 +118,6 @@ USER $NB_USER
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
-RUN jupyter nbextensions_configurator enable
-RUN jupyter contrib nbextension install --user
 RUN jupyter-nbextension enable nbextensions_configurator/config_menu/main
 RUN jupyter-nbextension enable contrib_nbextensions_help_item/main
 RUN jupyter-nbextension enable autosavetime/main
