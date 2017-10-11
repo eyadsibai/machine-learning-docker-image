@@ -8,15 +8,15 @@ dependencies:
   - fastparquet
   - bokeh>=0.12.*
   - cloudpickle>=0.2.*
-  - dask>=0.13.*
+  - dask>=0.15.*
   - distributed
-  - h5py>=2.6.*
+  - h5py>=2.7.*
   - hdf5>=1.8.*
   - ipywidgets>=5.2*
   - luigi>=2.*
   - matplotlib>=2.*
   - mccabe
-  - networkx>=1.11.*
+  - networkx>=2.*
   - nltk=3.2.*
   - numba
   - numexpr>=2.6.*
@@ -44,6 +44,7 @@ dependencies:
   - conda-forge::altair
   - blaze
   - prettytable
+  - amueller::wordcloud
   - gdal
   - SimpleITK::SimpleITK
   - ggplot
@@ -148,8 +149,12 @@ dependencies:
     - scikit-neuralnetwork
     - causalinference
     - https://github.com/JamesRitchie/scikit-rvm/archive/master.zip
+    - guidedlda
     - pomegranate
     - google-cloud
+    - pycountry
+    - iso3166
+    - buqeyemodel
     - pyhsmm
     - dm-sonnet
     - bhtsne
@@ -444,5 +449,8 @@ dependencies:
     - optimuspyspark
     - git+https://github.com/jundongl/scikit-feature
     - py3_ortools
+    - git+https://github.com/mirumee/prices
+    - git+https://github.com/jpmml/sklearn2pmml.git
+  #  - git+https://github.com/alshedivat/keras-gp
 #    - git+https://github.com/zomux/deepy
 #    - nupic

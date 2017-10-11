@@ -21,100 +21,93 @@ RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
 
-USER root
+# USER root
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
-ENV JULIA_PKGDIR=/opt/julia
+# ENV JULIA_PKGDIR=/opt/julia
 
 
 # # Install julia 0.6
-RUN mkdir -p $JULIA_PKGDIR && \
-    curl -s -L https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.0-linux-x86_64.tar.gz | tar -C $JULIA_PKGDIR -x -z --strip-components=1 -f -
-RUN echo '("JULIA_LOAD_CACHE_PATH" in keys(ENV)) && unshift!(Base.LOAD_CACHE_PATH, ENV["JULIA_LOAD_CACHE_PATH"])' >> $JULIA_PKGDIR/etc/julia/juliarc.jl
-RUN echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> $JULIA_PKGDIR/etc/julia/juliarc.jl
-RUN chown -R $NB_USER:users $JULIA_PKGDIR
+# RUN mkdir -p $JULIA_PKGDIR && \
+#     curl -s -L https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.0-linux-x86_64.tar.gz | tar -C $JULIA_PKGDIR -x -z --strip-components=1 -f -
+# RUN echo '("JULIA_LOAD_CACHE_PATH" in keys(ENV)) && unshift!(Base.LOAD_CACHE_PATH, ENV["JULIA_LOAD_CACHE_PATH"])' >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+# RUN echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> $JULIA_PKGDIR/etc/julia/juliarc.jl
+# RUN chown -R $NB_USER:users $JULIA_PKGDIR
 
-ENV PATH=$PATH:$JULIA_PKGDIR/bin
-USER $NB_USER
+# ENV PATH=$PATH:$JULIA_PKGDIR/bin
+# USER $NB_USER
 # # Add Julia packages
 # # Install IJulia as jovyan and then move the kernelspec out
 # # to the system share location. Avoids problems with runtime UID change not
 # # taking effect properly on the .local folder in the jovyan home dir.
-RUN julia -e 'Pkg.init()' && \
-    julia -e 'Pkg.update()' && \
-    julia -e 'Pkg.add("HDF5")' && \
-    julia -e 'Pkg.add("Gadfly")' && \
-    julia -e 'Pkg.add("RDatasets")' && \
-    julia -e 'Pkg.add("IJulia")' && \
-    # Precompile Julia packages \
-    julia -e 'using HDF5' && \
-    julia -e 'using Gadfly' && \
-    julia -e 'using RDatasets' && \
-    julia -e 'using IJulia'
+# RUN julia -e 'Pkg.init()' && \
+#     julia -e 'Pkg.update()' && \
+#     julia -e 'Pkg.add("HDF5")' && \
+#     julia -e 'Pkg.add("Gadfly")' && \
+#     julia -e 'Pkg.add("RDatasets")' && \
+#     julia -e 'Pkg.add("IJulia")' && \
+#     # Precompile Julia packages \
+#     julia -e 'using HDF5' && \
+#     julia -e 'using Gadfly' && \
+#     julia -e 'using RDatasets' && \
+#     julia -e 'using IJulia'
 # COPY files/julia_packages.jl julia_packages.jl
 
 # RUN julia julia_packages.jl && \
 #     # move kernelspec out of home \
-RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
-    chmod -R go+rx $CONDA_DIR/share/jupyter && \
-    rm -rf $HOME/.local && \
-    fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
+# RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
+#     chmod -R go+rx $CONDA_DIR/share/jupyter && \
+#     rm -rf $HOME/.local && \
+#     fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
 ## && rm julia_packages.jl
 
 # install R packages
-RUN conda install --quiet --yes \
-    'r-essentials' \
-    'r-devtools'\
-    'r-base'\
-    'r-irkernel'\
-    'r-plyr'\
-    'r-shiny'\
-    'r-tidyverse'\
-    'r-markdown'\
-    'r-forecast'\
-    'r-reshape2'\
-    'r-randomforest'\
-    'r-caret'\
-    'r-ggplot2'\
-    'rpy2' \
-    'r-rsqlite' \
-    'r-caret' \
-    'r-rcurl' \
-    'r-tseries' \
-    'r-survival' \
-    'r-rstan' \
-    'r-rocr' \
-    'r-lme4' \
-    'r-kernsmooth' \
-    'r-glmnet' \
-    'r-ggplot2' \
-    'r-modelmetrics' \
-    'r-e1071' \
-    'r-anomalydetection' \
-    'r-rcpp ' \
-    'r-crayon' && conda clean -tipsy && fix-permissions $CONDA_DIR
+# RUN conda install --quiet --yes \
+#     'r-essentials' \
+#     'r-devtools'\
+#     'r-base'\
+#     'r-irkernel'\
+#     'r-plyr'\
+#     'r-shiny'\
+#     'r-tidyverse'\
+#     'r-markdown'\
+#     'r-forecast'\
+#     'r-reshape2'\
+#     'r-randomforest'\
+#     'r-caret'\
+#     'r-ggplot2'\
+#     'rpy2' \
+#     'r-rsqlite' \
+#     'r-caret' \
+#     'r-rcurl' \
+#     'r-tseries' \
+#     'r-survival' \
+#     'r-rstan' \
+#     'r-rocr' \
+#     'r-lme4' \
+#     'r-kernsmooth' \
+#     'r-glmnet' \
+#     'r-ggplot2' \
+#     'r-modelmetrics' \
+#     'r-e1071' \
+#     'r-anomalydetection' \
+#     'r-rcpp ' \
+#     'r-crayon' && conda clean -tipsy && fix-permissions $CONDA_DIR
 
-#RUN /user/local/bin/fix-permissions $CONDA_DIR
-ENV RLIB=$CONDA_DIR/lib/R/library
+# ENV RLIB=$CONDA_DIR/lib/R/library
 
+# COPY files/r_packages.R r_packages.R
+# RUN Rscript r_packages.R && rm r_packages.R && rm -rf '/tmp/*'
 
-RUN Rscript -e "install.packages('MLmetrics', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('randomForestExplainer', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('quanteda', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('bnclassify', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('bayesplot', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('mice', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('VIM', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('lattice', '$RLIB', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "install.packages('CausalImpact', '$RLIB', repos = 'http://cran.us.r-project.org')"
+# ## Set Renviron to get libs from base R install
+#RUN echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" >> $CONDA_DIR/lib/R/etc/Renviron
 
+# ## Set default CRAN repo
+# RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /usr/local/lib/R/etc/Rprofile.site
 
 
 
 USER $NB_USER
-# install packages without their dependencies
-#RUN pip install rep git+https://github.com/googledatalab/pydatalab.git --no-deps \
-#&& rm -rf "$HOME/.cache/pip/*"
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
@@ -174,26 +167,26 @@ RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.z
     rm -rf rgf*
 
 # Install Torch7
-RUN git clone --depth 1 --recursive https://github.com/torch/distro.git ~/torch
-USER root
-RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# RUN git clone --depth 1 --recursive https://github.com/torch/distro.git ~/torch
+# USER root
+# RUN cd /home/$NB_USER/torch && bash install-deps && apt-get autoremove -y && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/*
 
-USER $NB_USER
-RUN cd /home/$NB_USER/torch && ./install.sh -b \
-    && export LUA_PATH='$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$HOME/torch/install/share/lua/5.1/?.lua;$HOME/torch/install/share/lua/5.1/?/init.lua;./?.lua;$HOME/torch/install/share/luajit-2.1.0-alpha/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
-    && export LUA_CPATH='$HOME/.luarocks/lib/lua/5.1/?.so;$HOME/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
-    && export PATH=$HOME/torch/install/bin:$PATH \
-    && export LD_LIBRARY_PATH=$HOME/torch/install/lib:$LD_LIBRARY_PATH \
-    && export DYLD_LIBRARY_PATH=$HOME/torch/install/lib:$DYLD_LIBRARY_PATH \
-    # install torch-nn
-    && luarocks install nn \
-    # install iTorch
-    && git clone --depth 1 https://github.com/facebook/iTorch.git && \
-    cd iTorch && \
-    luarocks make \
-    # clean up
-    && cd /home/$NB_USER/torch && ./clean.sh
+# USER $NB_USER
+# RUN cd /home/$NB_USER/torch && ./install.sh -b \
+#     && export LUA_PATH='$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$HOME/torch/install/share/lua/5.1/?.lua;$HOME/torch/install/share/lua/5.1/?/init.lua;./?.lua;$HOME/torch/install/share/luajit-2.1.0-alpha/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
+#     && export LUA_CPATH='$HOME/.luarocks/lib/lua/5.1/?.so;$HOME/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
+#     && export PATH=$HOME/torch/install/bin:$PATH \
+#     && export LD_LIBRARY_PATH=$HOME/torch/install/lib:$LD_LIBRARY_PATH \
+#     && export DYLD_LIBRARY_PATH=$HOME/torch/install/lib:$DYLD_LIBRARY_PATH \
+#     # install torch-nn
+#     && luarocks install nn \
+#     # install iTorch
+#     && git clone --depth 1 https://github.com/facebook/iTorch.git && \
+#     cd iTorch && \
+#     luarocks make \
+#     # clean up
+#     && cd /home/$NB_USER/torch && ./clean.sh
 
 
 # Vowpal wabbit
