@@ -1,4 +1,4 @@
-FROM jupyter/all-spark-notebook:e1677043235c
+FROM jupyter/all-spark-notebook:bbfb8aad625b
 LABEL authoer="Eyad Sibai <eyad.alsibai@gmail.com>"
 
 USER root
@@ -139,7 +139,7 @@ COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
 # RUN python -m nltk.downloader all \
 #     && find $HOME/nltk_data -type f -name "*.zip" -delete
-RUN python -m spacy download en
+#RUN python -m spacy download en
 # RUN python -m textblob.download_corpora
 
 # Import matplotlib the first time to build the font cache.
@@ -274,26 +274,26 @@ COPY files/xcessiv_config.py $HOME/.xcessiv/config.py
 # RUN git clone https://github.com/tesseract-ocr/tesseract && cd tesseract && ./autogen.sh && \
 #     ./configure --prefix=$HOME/local/ && make install
 
-ENV TESSDATA_PREFIX  $HOME/tessdata
+# ENV TESSDATA_PREFIX  $HOME/tessdata
 
-RUN mkdir tessdata && cd tessdata && \
-    wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata && \
-    wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata && \
-    wget https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
-    wget https://github.com/tesseract-ocr/tessdata/raw/4.00/eng.traineddata
+# RUN mkdir tessdata && cd tessdata && \
+#     wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata && \
+#     wget https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata && \
+#     wget https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
+#     wget https://github.com/tesseract-ocr/tessdata/raw/4.00/eng.traineddata
 
 #installed by python
 # RUN git clone https://github.com/davisking/dlib && cd dlib && mkdir build && cd build && cmake .. && cmake --build . && cd .. && python setup.py install
 
 
 RUN mkdir kepler_mapper && cd kepler_mapper && wget https://raw.githubusercontent.com/MLWave/kepler-mapper/master/km.py
-RUN mkdir corex && cd corex && \
-    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex.py && \
-    wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/vis_corex.py && \
-    wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/corex_topic.py && \
-    wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/vis_topic.py
+# RUN mkdir corex && cd corex && \
+#     wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/corex.py && \
+#     wget https://raw.githubusercontent.com/gregversteeg/bio_corex/master/vis_corex.py && \
+#     wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/corex_topic.py && \
+#     wget https://raw.githubusercontent.com/gregversteeg/corex_topic/master/vis_topic.py
 
-RUN mkdir empca && cd empca && wget https://raw.githubusercontent.com/sbailey/empca/master/empca.py
+# RUN mkdir empca && cd empca && wget https://raw.githubusercontent.com/sbailey/empca/master/empca.py
 
 ENV PYTHONPATH $HOME/kepler_mapper:$HOME/corex:$HOME/empca:${PYTHONPATH}
 

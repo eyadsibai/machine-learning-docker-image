@@ -33,6 +33,42 @@ install.packages("openNLPmodels.en",
                  repos = "http://datacube.wu.ac.at/",
                  type = "source",
                  lib = '/opt/conda/lib/R/library')
+
+devtools::install_github("ropensci/monkeylearn")
+install.packages("mindr")
+devtools::install_github("mjskay/tidybayes")
+install.packages("bmlm")
+install.packages("vdiffr")
+install_github('arcdiagram',  username='gastonstat')
+install.packages("circlize")
+devtools::install_github("tidyverse/glue")
+install.packages("brms")
+install.packages('caretEnsemble')
+install.packages("stringr")
+install.packages("tidyverse")
+install.packages('ggfortify')
+install.packages('forecast', dependencies = TRUE)
+install.packages("tidyverse")
+install.packages('caret')
+devtools::install_github("mlr-org/mlr")
+devtools::install_github("twitter/AnomalyDetection")
+install.packages("bayesplot")
+install.packages('daff')
+install.packages("visdat")
+install.packages("timetk")
+install.packages("SuperLearner")
+devtools::install_github("ropensci/iheatmapr")
+    install.packages("ghit")
+install.packages("corrplot")
+install.packages("GGally")
+install.packages("sjPlot")
+devtools::install_github("tdhock/animint", upgrade_dependencies=FALSE)
+install.packages('extrafont')
+install.packages("greta")
+
+devtools::install_github("hohenstein/remef")
+
+clValid
 # install_github("davpinto/fastknn", '/opt/conda/lib/R/library')
 # install_github("mukul13/rword2vec", '/opt/conda/lib/R/library')
 

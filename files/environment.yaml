@@ -4,6 +4,7 @@ dependencies:
   - pandas>=0.2.1
   - boto
   - boto3
+  - swig
   - lxml>=3.6.0
   - fastparquet
   - bokeh>=0.12.*
@@ -15,112 +16,159 @@ dependencies:
   - ipywidgets>=5.2*
   - luigi>=2.*
   - matplotlib>=2.*
+  # McCabe complexity checker (linting)
   - mccabe
   - networkx>=2.*
-  - nltk=3.2.*
+  # Natural Language Toolkit
+  - nltk>=3.2.*
   - numba
   - numexpr>=2.6.*
   - numpy
   - requests>=2.*
+  # statistical data visualization
   - seaborn
   - orange3
+  #  optimization modeling language or
   - pyomo
   - pyomo.extras
   - orange3-text
+  # data visualization
   - holoviews
+  # geo visualization
+  - geoviews
+  - xarray
   - bottleneck
   - scikit-learn>=0.18.1
   - scikit-image>=0.12.*
   - scipy>=0.19.*
-  - nltk
   - statsmodels>=0.6.*
   - patsy>=0.4.*
   - cython=0.25.2
   - bcolz
   - pysal
-  - datashader
+  # visualize big datasets
+  - bokeh::datashader
+  # bayesian modeling
   - conda-forge::pymc3
   - glemaitre::imbalanced-learn
+  # plotting
   - conda-forge::altair
   - blaze
   - prettytable
   - amueller::wordcloud
   - gdal
-  - SimpleITK::SimpleITK
+  # image processing
+ # - SimpleITK::SimpleITK
   - ggplot
-  - Pillow
+#  - Pillow
   - Proj4
   - cytoolz
   - toolz
+  # plotting
   - plotly
-  - haversine
-  - textacy
+  #  distance bewteen 2 points on Earth
+#  - haversine
+  # nlp built on spacy
+#  - textacy
+  # D3 Renderings of Matplotlib Graphics
   - mpld3
   - mplleaflet
   - arrow
   - graphviz
-  - gpxpy
+  # gps format parser
+#  - gpxpy
+# creating and manipulating graphs
   - python-igraph
   - line_profiler
+  # Fast and flexible Gaussian Process regression
   - george
   - pandas-profiling
+  # Area-weighted venn-diagrams for Python/matplotlib
   - matplotlib-venn
   - pystan
-  - ImageHash
+  # image hashing library
+#  - ImageHash
   - tifffile
-  - descartes
+#  geometric objects as matplotlib paths and patches
+#  - descartes
   - biopython
-  - cartopy>=0.14.2
-  - shapely>=1.5.*
+  # cartographic tools
+#  - cartopy>=0.14.2
+#  - shapely>=1.5.*
   - cvxopt
   - opencv
   - snowballstemmer
   - babel
   - hdbscan
-  - spacy
+#  - spacy
   - rpy2
+  # Large-scale linear classification, regression and ranking i
   - sklearn-contrib-lightning
   - pyshp
-  - geoplot
-  - pyproj
+  # geospatial data visualization
+#   - geoplot
+  # cartographic transformations and geodetic computations.
+#  - pyproj
   - bqplot
   - basemap
   - pip>=9.0.1
   - google-api-python-client
-  - geopy
-  - gensim
-  - imagesize>=0.7.1
-  - pytools
-  - pyparsing
+  # Geocoding
+#  - geopy
+#  - gensim
+  # parses image files’ header and return image size.
+#  - imagesize>=0.7.1
+# tools for python
+#  - pytools
+#  construct the grammar directly in Python code.  (nlp)
+#  - pyparsing
+  # grammar of graphics
   - plotnine
   - ezyang::onnx
   - setuptools>=32.3.1
   - python-dotenv
-  - soumith::pytorch
-  - soumith::torchvision
+#  - soumith::pytorch
+#  - soumith::torchvision
+# colormaps
   - bokeh::colorcet
-  - fiona
-  - poliastro
+  # reads and writes spatial data files
+#  - fiona
+# Astrodynamics and Orbital Mechanics,
+#  - poliastro
   - dask-searchcv
   - damianavila82::rise
   - theano
-  - spotlight
-  - pygridgen
-  - swig
-  - odo
+  # Google maps for Jupyter notebooks
+#  - gmaps
+  # Deep recommender models using PyTorch
+#  - spotlight
+#  - pygridgen
+# connect python to c/c++ (needed for cleverhans)
+#  - swig
+# Data Migration for the Blaze
+#  - odo
+  # forecasts for time series
   - fbprophet
-  - glueviz::glueviz
-  - gstreamer
+#  - glueviz::glueviz
 #  - vida-nyu::vistrails
+# multi-dimensional data analysis
   - hyperspy
   - bioconda::nanoplot
+  # Approximate Nearest Neighbors
   - python-annoy
-  - fire
+#  - fire
   - jupyter_nbextensions_configurator
   - jupyter_contrib_nbextensions
+  # NetworkX Visualization Package
   - nxviz
-  - geojson
+  # geojson
+  #- geojson
   - sympy
+  #  probabilistic modelling
+  - pomegranate
+  #  tools for geographic data
+  - geopandas
+  - tim_shawver/label/dev::qgrid==1.0.0b7
  # - nusdbsystem::singa
 #  - pygridtools
   # - Quantopian::zipline (pandas 0.18.x)
@@ -132,69 +180,112 @@ dependencies:
     - scikit-dsp-comm[helpers]
     - perfplot
     - tdda
-    - pystruct
+    # Distributed training framework for TensorFlow.
+#    - horovod
+# structured learning
+#    - pystruct
     - airflow # needs 3.6 conda
     - nbdime
     - category_encoders
+    # ensemble sampling toolkit for affine-invariant MCMC
     - emcee
-    - spectral
+# hyperspectral image data
+#    - spectral
     - artemis-ml
+    #  approximate and phonetic matching of strings
     - git+https://github.com/jamesturk/jellyfish.git
+    # Survival analysis
     - lifelines
+    # probabilistic anomaly detector
     - lsanomaly
-    - skll
+    # easy to run machine learning experiments (scikit-learn)
+#    - skll
+    # speed start machine learning projects
     - speedml
+    #  ensemble learning
     - mlens
+    # pandas, scikit-learn, xgboost and seaborn integration
     - pandas_ml
+    # Deep neural networks without the learning cliff! Classifiers and regressors compatible with scikit-learn.
     - scikit-neuralnetwork
+    # Causal Inference, Program Evaluation, or Treatment Effect Analysis.
     - causalinference
     - https://github.com/JamesRitchie/scikit-rvm/archive/master.zip
     - guidedlda
-    - pomegranate
     - google-cloud
+    # ISO country, subdivision, language, currency and script definitions and their translations
     - pycountry
+    # ISO 3166-1 defines two-letter, three-letter, and three-digit country codes
     - iso3166
     - buqeyemodel
     - pyhsmm
+    # TensorFlow-based neural network library from deepmind
     - dm-sonnet
     - bhtsne
+    # time-series data ml
     - tslearn
     - tqdm
-    - tensorboard-pytorch
+    # tensorboard for pytorch
+#    - tensorboard-pytorch
+    - tensorboardX
+    # Fast scatter density plots for Matplotlib
     - mpl-scatter-density
-    - git+https://github.com/keunwoochoi/kapre.git
+    # Keras Audio Preprocessors
+#    - git+https://github.com/keunwoochoi/kapre.git
     - squarify
     - py_stringsimjoin
+    # Lifetime value
     - lifetimes
+    # Fuzzy String Matching
     - fuzzywuzzy
+    # Louvain Community Detection
     - python-louvain
-    - pyexcel-ods
-    - geopandas
+    # ods formats
+#    - pyexcel-ods
+    # Automatic extraction of relevant features from time series
     - tsfresh
-    - xcessiv
+    # automated hyperparameter tuning and stacked ensembling in Python
+#    - xcessiv
+    # geometric insights into high-dimensional data
     - hypertools
     - futures>=3.0.5
+    # Robustly estimate trend and periodicity in a timeseries.
     - seasonal
+    # feature engineering wrapper
     - few
+    - matplotlib_venn_wordcloud
+    # Model Agnostic Interpretation
     - Skater
+    #  streaming recommendation algorithms
     - flurs
+    # A garden for scikit-learn compatible trees
     - scikit-garden
+    #  gradient boosting from microsoft
     - lightgbm
+    # deep learning framework
     - mxnet
-    - tensorflow>=1.0.1
+    - tensorflow>=1.3.0
+    # add plotting functionality to scikit-learn objects.
     - scikit-plot
+    #  visualize some processes involved in Machine learning.
     - visualize_ML
+    # Worldwide holidays and workdays computational toolkit
     - workalendar
     - sigopt_sklearn[ensemble]
     - tdigest
+    # Pandas integration with sklearn
     - sklearn-pandas
+    #  automatically cleans data sets and readies them for analysis.
     - datacleaner
+    # BAyesian Model-Building Interface
     - bambi
+    # validation tools for test-driven data wrangling
     - datatest
-    - jieba
+    #Chinese word segmentation
+#    - jieba
     - cvxpy
-    - qgrid
     - categorical-distance>=1.9
+    # Interactive convnet features visualization for Keras
     - quiver_engine
     - db.py
     - dedupe
@@ -202,255 +293,392 @@ dependencies:
     - parserator>=0.6.2
     - probableparsing>=0.0.1
     - probablepeople>=0.5.2
+    # building infinite ensembles with gradient descent
     - git+https://github.com/arogozhnikov/infiniteboost.git
     - git+https://github.com/tadejs/autokit.git
+    # Interactive performance benchmarking in Jupyter
     - perfume-bench
+    # Experiment, Storage and Visualization Framework for Machine Learning research.
     - omesa
+    # Machine Learning Time-Series Platform
     - cesium
-    - thinc
+    # nlp
+#    - thinc
+    # inspecting machine learning classifiers and explaining their predictions
     - eli5
     - sklearn-crfsuite
     - imgaug
-    - pyalgotrade
+    # algorithmic trading
+ #   - pyalgotrade
     - husl
     - ml_metrics
+    # time-series
     - pyflux
-    - mne
+#    - mne
+    # automl
     - alphapy
-    - pyshp
+    # reads and writes ESRI Shapefiles
+#    - pyshp
+    # Metric Learning algorithms
     - metric-learn
-    - pytagcloud
-    - textblob
+    # Create beautiful tag clouds as images or HTML
+#    - pytagcloud
+# text processing
+#    - textblob
+    # Command line utilities for data analysis
     - data_hacks
-    - chainer
+    # deep learning
+#    - chainer
     - records
+    #  Gradient Boosting trees
     - xgboost
     - usaddress
+    #  gender from first name in python
     - sexmachine
-    - Geohash
-    - sacred
+    - gender-guesser
+    # decode/encode Geohashes to/from latitude and longitude
+#    - Geohash
+    # Deep learning library featuring a higher-level API for TensorFlow.
     - tflearn
+    # fit data to many distributions
     - fitter
     - vowpalwabbit
     - langid
+    # clearing up the inconvenient truths that arise dealing with datetimes
     - delorean
     - csvdedupe
+    # affine gap string distance
     - affinegap
-    - trueskill
+    # rating system among game players
+#    - trueskill
+    #  tools for competitive data science
     - heamy
-    - vida
+    # Missing data visualization module
     - missingno
-    - s2sphere
+    #  manipulating regions on the sphere (commonly on Earth) and indexing geographic data.
+#    - s2sphere
     - bayesian-optimization
-    - face_recognition
-    - pyldavis
+    # The world's simplest facial recognition api for Python and the command line
+#    - face_recognition
+# interactive topic model visualization
+#    - pyldavis
+    # Non-Linear Least Squares Minimization, with flexible Parameter settings, based on scipy.optimize.leastsq, and with many additional classes and methods for curve fitting
     - lmfit
-    - orderedmultidict
-    - smhasher
-    - nolearn
+    # scikit-learn compatible neural network library (wrapper over Lasagne & Theano)
+#    - nolearn
+    # Natural Language Processing.
     - pynlpl
     - keras-vis
-    - pybrain
-    - stop-words
+    # Python Machine Learning Library
+#    - pybrain
+#    - stop-words
     - hep_ml
     - kaggle-cli
     - tfdebugger
+    #  interface for Facebook fastText
     - fasttext
+    # Hidden Markov Models
     - hmmlearn
-    - wavio
+    # reading and writing WAV files using numpy arrays.
+#    - wavio
     - terminalplot
     - jupyterthemes
-    - lesscpy
+ #   - lesscpy
+ # extension and helper modules for Python's data analysis and machine learning libraries.
     - mlxtend
-    - keras-rl
+    # Deep Reinforcement Learning
+ #   - keras-rl
     - h5py
     - scikit-optimize
     - bayespy
+    # Genetic Programming
     - gplearn
     - keras
     - lime
+    # impute missing data
     - fancyimpute
+    #  hybrid recommendation algorithm.
     - lightfm
-    - lightgbm
     - searchgrid
+    # A data pipeline framework for machine learning
     - git+git://github.com/mila-udem/fuel.git
     - hyperopt
+    #  Boruta all-relevant feature selection method.
     - boruta
+    # Visual analysis and diagnostic tools to facilitate machine learning model selection
     - yellowbrick
     - nilearn
     - featureforge
     - Dora
     - dflearn
+    #  stacking (machine learning technique)
     - vecstack
     - MarkovNetwork
     - bootstrapped
     - astroML
     - urlextract
+    # Automated Machine Learning: go from 'X' to 'y' without effort.
     - git+https://github.com/kootenpv/xtoy.git
     - git+https://github.com/ianlini/feagen.git
     - git+https://github.com/mewwts/feng.git
     - fastFM
-    - foolbox
+    #  adversarial examples that fool neural networks
+#    - foolbox
+#  configure, organize, log and reproduce experiments
     - sacred
-    - pymongo
-    - chainercv
-    - tensorlayer
+    # Computer Vision in Deep Learning
+ #   - chainercv
+    # deep learning library / RL
+#    - tensorlayer
     - pdpipe
-    - nnabla
+    # Neural Network library from sony
+#    - nnabla
     - linearmodels
     - edward
-    - leven
     - rgf_python
+    # gradient boosting on decision trees library with categorical features from yandex
     - catboost
+    # Automated Machine Learning
     - mlbox
-    - gmaps
+    # fixes text for you
     - ftfy
     - paramnb
+    #  Covariance Matrix Adaptation Evolution Strategy optimization
     - cma
+    # XGBoost Feature Interactions
     - xgbfir
     - csvkit
-    - folium
+    # plotting maps
+#    - folium
+# factor analysis library (PCA, CA, MCA, FAMD)
     - prince
-    - sk-video
+    # video processing
+#    - sk-video
     - sklearn-compiledtrees
     - auto_ml
+    # Keras + Hyperopt
     - hyperas
+    # default representations of common objects
     - disp
-    - rtree
+    # Spatial indexing
+#    - rtree
     - git+https://github.com/marinkaz/scikit-fusion.git
-    - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
+    # adversarial example library for constructing attacks, building defenses, and benchmarking both
+#    - git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
     - git+https://github.com/AmazaspShumik/sklearn_bayes.git
-    - git+https://github.com/ferrine/gelato.git
-    - git+https://github.com/Lasagne/Lasagne.git
+#    - git+https://github.com/ferrine/gelato.git
+#    - git+https://github.com/Lasagne/Lasagne.git
+    # hyperparameter optimization with sklearn
     - git+https://github.com/hyperopt/hyperopt-sklearn.git
-    - git+https://github.com/amueller/word_cloud.git
+    # Nonparametric Active Sampling
     - git+https://github.com/nicta/dora.git
+    # econometrics regression models
     - git+https://github.com/nicolashennetier/pyeconometrics.git
     - git+https://github.com/ztane/python-Levenshtein.git
-    - git+https://github.com/NervanaSystems/neon.git@v1.9.0
-    - git+https://github.com/vitruvianscience/opendeep.git
-    - git+https://github.com/scikit-learn-contrib/py-earth.git
+    - git+https://github.com/NervanaSystems/neon.git@v2.2.0
+#    - git+https://github.com/vitruvianscience/opendeep.git
+    # Jerome Friedman's Multivariate Adaptive Regression Splines
+#    - git+https://github.com/scikit-learn-contrib/py-earth.git
+    # factorization machines and polynomial networks for classification and regression in Python
     - git+https://github.com/scikit-learn-contrib/polylearn.git
-    - git+https://github.com/ioam/geoviews.git
+    # push genetic programming
     - git+https://github.com/erp12/pyshgp.git
+    # fast independent component analysis
     - git+https://github.com/pierreablin/faster-ica.git
+    #  bootstrap confidence interval algorithms
     - git+https://github.com/cgevans/scikits-bootstrap.git
+    # collection of timeseries algorithms and methods
     - git+https://github.com/ceholden/yatsm.git
+    # deep learning framework
     - git+https://github.com/tariqdaouda/Mariana.git
+  # Functional ANOVA: an implementation of the ICML 2014 paper "An Efficient Approach for Assessing Hyperparameter Importance"
     - git+https://github.com/automl/fanova.git
+
     - git+https://github.com/pgmpy/pgmpy.git
     - git+https://github.com/alshedivat/kgp.git
-    - git+https://github.com/scikit-learn-contrib/polylearn.git
-    - msaf
+    # Music Structure Analysis Framework
+#    - msaf
     - git+https://github.com/mattilyra/LSH.git
-    - git+https://github.com/casperkaae/parmesan.git
-    - gatspy
+    # semi-supervised nn for lasagne
+#    - git+https://github.com/casperkaae/parmesan.git
+#  Astronomical Time Series
+#    - gatspy
+    # scikit learn inerface for R models
     - git+https://github.com/mpearmain/scikit-wrapRs.git
+  #Approximate Nearest Neighbor Search for Sparse Data
     - git+https://github.com/facebookresearch/pysparnn.git
-    - git+https://github.com/jupyter/jupyter-drive.git
+#    - git+https://github.com/jupyter/jupyter-drive.git
+# keras extensions
     - git+https://github.com/the-moliver/kfs.git
-    - git+https://github.com/mattilyra/LSH.git
+    #  locality sensitive hashing
+  # Reading Wikipedia to Answer Open-Domain Questions
     - git+https://github.com/facebookresearch/DrQA.git
-    - git+https://github.com/dnouri/inferno.git
-    - git+https://github.com/guillemborrell/pyledger.git
+    # scikit-learn interface to pytorch nn
+    - skorch
+    # Uniform Manifold Approximation and Projection
     - git+https://github.com/lmcinnes/umap.git
+    # link prediction tool
     - git+https://github.com/rafguns/linkpred.git
-    - git+https://github.com/deepnn/covfefe.git
-    - visidata
+    #A console spreadsheet tool for discovering and arranging data
+ #   - visidata
+    # network traffic and behavioral analytics
     - git+https://github.com/austin-taylor/flare.git
-    - persimmon
-    - vania
+# A visual dataflow programming language for sklearn (needs kivy)
+ #   - persimmon
+ # distributes a list of arbitrary objects among a set of targets, considering weights.
+#    - vania
     - scikit-surprise
+    # ML experimentation library
     - git+https://github.com/dvaida/hallucinate.git
-    - pymongo
     - keras-tqdm
-    - rice
+    # r console
+#    - rice
+# bayesian bootstrapping
     - bayesian_bootstrap
+    # manage data like code
     - quilt
-    - flashtext
-    - picasso-viz
-    - autograd
-    - py-heat
-    - databench
+    # Extract Keywords from sentence or Replace keywords in sentences.
+#    - flashtext
+    # CNN model visualizer
+#    - picasso-viz (should be in dockerfile by itself)
+#  computes derivatives of numpy code
+#    - autograd
+# python profiling
+#    - py-heat
+    # Likelihood-Free Inference
     - elfi
+    # Conditional Random Fields
     - git+https://github.com/timvieira/crf.git
     - implicit
-    - knowledge-repo
-    - https://cntk.ai/PythonWheel/CPU-Only/cntk-2.1-cp36-cp36m-linux_x86_64.whl
+#    - knowledge-repo (should be in a dockerfile by itself)
+    # deep learning toolkit
+    - https://cntk.ai/PythonWheel/CPU-Only/cntk-2.2-cp36-cp36m-linux_x86_64.whl
     - https://h2o-release.s3.amazonaws.com/h2o/rel-weierstrass/2/Python/h2o-3.14.0.2-py2.py3-none-any.whl
-    - git+https://github.com/thtrieu/darkflow.git
-    - chatterbot
+    # Real-time object detection and classification
+#    - git+https://github.com/thtrieu/darkflow.git
+# conversational dialog engine for creating chat bots
+#    - chatterbot
+# Sensitivity Analysis
     - salib
-    - ethnicolr
+    # Predict Race/Ethnicity Based on Name
+ #   - ethnicolr
+    # tensorflow wrapper
     - git+git://github.com/ppwwyyxx/tensorpack
-    - git+https://github.com/anttttti/Wordbatch.git
-    - speechpy
-    - nudepy
+    # Parallel text feature extraction for machine learning
+    - wordbatch
+    # speech processing
+#    - speechpy
+#    - nudepy
+    # bio-inspired computational intelligence algorithms
     - git+https://github.com/aarongarrett/inspyred
-    - skyfield
+    # astronomy
+ #   - skyfield
     - minisom
+    # bayesian testing framework
     - kcbo
     - git+https://github.com/dmarx/Topological-Anomaly-Detection
     - sixpack
-    - prophet
+    # microframework for financial markets
+ #   - prophet
     - smac
-    - hyperopt
-    - pythran
     - features
     - street-address
     - messytables
     - tableschema
+    # stream reading and writing tabular data
     - tabulator
+    # Multiple-Instance Support Vector Machines
     - git+https://github.com/garydoranjr/misvm.git#egg=misvm
-    - git+https://github.com/tadejs/autokit.git
+    # Sequence learning toolkit
     - git+https://github.com/larsmans/seqlearn.git
     - lda
+    # Implementation of Nadaraya-Watson kernel regression with automatic bandwidth selection compatible with sklearn.
     - git+https://github.com/jmetzen/kernel_regression.git
+    # Progress Indicator Utility
     - pyprind
+    #  information-dense plots with matplotlib
     - trendvis
+    # Bayesian Optimization framework
     - git+https://github.com/automl/RoBO.git
+    # random projections forest
     - rpforest
+    # networkx extension
     - networkl
-    - git+https://github.com/manahl/arctic.git
+    # Feature Selection Toolkit, contains JMI, BetaGamma, CMIM, CondMI, DISR, ICAP, and mRMR
     - git+https://github.com/EESI/PyFeast.git
     - yapf
     - hypothesis
+    # testing
     - pytest
+    # Easy-to-use data handling for SQL data stores with support for implicit table creation, bulk loading, and transactions.
     - dataset
+    # data validation functionalit
     - cerberus
-    - pdftabextract
-    - geoplotlib
+    # extracting tables from PDF files
+#    - pdftabextract
+#    - geoplotlib
+    # petl - Extract, Transform and Load (Tables of Data)
     - petl
+    # approximated nearest neighbour
     - git+https://github.com/pixelogik/NearPy.git
+    # processing tabular data
     - meza
+    #  data mining algorithms
     - pymining
     - engarde
+    # k-modes and k-prototypes clustering algorithms
     - kmodes
     - rows
     - validictory
+    # Flow-based data pre-processing for deep learning
     - nutsml
-    - nutsflow
+    # Binary storage format for large volume deep learning data.
     - gulpio
-    - pandas-finance
+    # High level API for access to and analysis of financial data.
+#    - pandas-finance
+    # A helper library for data science pipeline
     - git+https://github.com/mpearmain/gestalt
-    - tdda
     - proof
-    - yahoo-finance
-    - quilt
+#    - yahoo-finance
+    #  package manager for data
+    # PCA that iteratively replaces missing data
     - ppca
+    #  parsing data that only looks like JSON
     - barely_json
+    # python parameter exploration toolkit
     - pypet
+    # Tools for loading standard data sets in machine learning
     - observations
-    - gym
+#    - gym
+    # HyperLogLog and other probabilistic data structures
     - git+https://github.com/kalaidin/sketches
+    # Quick plotting and data visualization of pandas and numpy data.
     - git+https://github.com/beltashazzer/jmpy.git
     - git+https://github.com/pierreablin/picard.git#egg=picard
+    # Bayesian Deep Learning, Generative Models, Based on Tensorflow
     - git+https://github.com/thu-ml/zhusuan
+    # cleaning and much more), pre-processing and exploratory data analysis in a distributed fashion with Apache Spark
     - optimuspyspark
+    #  feature selection repository
     - git+https://github.com/jundongl/scikit-feature
+    # Google OR-Tools python libraries and modules
     - py3_ortools
+    # Python price handling for humans
     - git+https://github.com/mirumee/prices
+    # Scikit-Learn pipelines to PMML
     - git+https://github.com/jpmml/sklearn2pmml.git
+    # Deep Learning toolkit for Computer Vision
+#    - luminoth
+    # machine learning toolbox
+    - git+https://github.com/MaxHalford/xam
+    # Semi-supervised learning frameworks
+    - git+https://github.com/tmadl/semisup-learn
+    #  system to manage machine learning models
+    - modeldb
+    - tensorflow-lattice
+    # semantic similarity framework for knowledge graph
+    - sematch
+#    -  git+https://github.com/featuretools/featuretools.git
   #  - git+https://github.com/alshedivat/keras-gp
 #    - git+https://github.com/zomux/deepy
 #    - nupic

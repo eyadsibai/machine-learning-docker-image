@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   redis:
     restart: always
@@ -21,8 +21,29 @@ services:
     image: "rasa/rasa_nlu:latest-full"
     ports:
       - "5000:5000"
-
-
-
-
-# should add apache spark docker
+  mongo:
+    image: mongo:3.4
+    networks:
+      default:
+        aliases:
+          - mongo
+    ports:
+      - "27017:27017"
+  modeldb_backend:
+    image: mitdbg/modeldb-backend:latest
+    networks:
+      default:
+        aliases:
+          - modeldb_backend
+    ports:
+      - "6543:6543"
+    command: ["mongo"]
+  modeldb_frontend:
+    image: mitdbg/modeldb-frontend:latest
+    networks:
+      default:
+        aliases:
+          - modeldb_frontend
+    ports:
+      - "3000:3000"
+    command: ["modeldb_backend"]

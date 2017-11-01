@@ -31,7 +31,8 @@ metadata_packages = [
     "TextAnalysis",
     "TimeSeries",
     "ZipFile",
-    "IJulia"]
+    "IJulia",
+    "JLD"]
 
 
 Pkg.init()
@@ -40,6 +41,9 @@ Pkg.update()
 for package=metadata_packages
     Pkg.add(package)
 end
+
+Pkg.resolve()
+
 
 # need to build XGBoost version for it to work
 Pkg.clone("https://github.com/antinucleon/XGBoost.jl.git")
@@ -53,3 +57,7 @@ Pkg.clone("https://github.com/benhamner/MachineLearning.jl")
 Pkg.pin("MachineLearning")
 
 Pkg.resolve()
+
+Pkg.add("ProgressMeter")
+
+https://github.com/dysonance/Strategems.jl
