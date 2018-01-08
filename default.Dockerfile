@@ -3,25 +3,31 @@ FROM jupyter/all-spark-notebook:latest
 USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential liblapacke-dev \
+# needed by vowpal wabbit
+libboost-program-options-dev zlib1g-dev libboost-all-dev \
+# needed by libhunspell
+# libhunspell-dev \
 && apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
 RUN conda config --set channel_priority false
 COPY files/environment.default.yaml environment.yaml
-RUN conda env update --file=environment.yaml --quiet \
+RUN conda env update --file=environment.yaml \
     && conda remove qt pyqt --quiet --yes --force \
-    && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml && npm cache clean --force && \
+    && conda clean -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml && npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
+    jupyter nbextension enable --py --sys-prefix qgrid && \
+    jupyter labextension install qgrid@1.0.0
+
 
 #RUN jupyter labextension install @jupyterlab/google-drive
 # RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 # RUN jupyter labextension enable @jupyter-widgets/jupyterlab-manager
-# RUN jupyter labextension install qgrid@1.0.0-beta.10
 # RUN jupyter labextension install @jupyterlab/github
 # RUN jupyter labextension install jupyterlab_bokeh
 
@@ -33,13 +39,18 @@ COPY files/mplimportnotebook.py $HOME/.ipython/profile_default/startup/
 RUN mkdir -p $HOME/.config/matplotlib && echo 'backend: agg' > $HOME/.config/matplotlib/matplotlibrc
 COPY files/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
-
-
 ENV PATH $HOME/bin:$PATH
 
-
-
 RUN mkdir $HOME/bin
+
+
+# install fasttext -- now available thru conda
+#  RUN git clone --depth 1 https://github.com/facebookresearch/fastText.git && \
+#      cd fastText \
+#      # && make && mv fasttext $HOME/bin  \
+#      && pip install . && cd .. \
+#      && rm -rf fastText
+
 
 # Regularized Greedy Forests
 RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.zip && \
@@ -54,15 +65,15 @@ RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.z
 RUN git clone https://github.com/alexeygrigorev/libftrl-python && cd libftrl-python && cmake . && make && \
     mv libftrl.so ftrl/ && pip install . && cd .. && rm -rf libftrl-python
 
-# # Vowpal wabbit
-# RUN git clone --depth 1 https://github.com/JohnLangford/vowpal_wabbit.git && \
-#     cd vowpal_wabbit && \
-#     make vw && \
-#     make spanning_tree && \
-#     cp vowpalwabbit/vw $HOME/bin/ && \
-#     cp vowpalwabbit/active_interactor $HOME/bin/ && \
-#     cp cluster/spanning_tree $HOME/bin/ && \
-#     cd .. && rm -rf vowpal_wabbit
+# Vowpal wabbit
+RUN git clone --depth 1 https://github.com/JohnLangford/vowpal_wabbit.git && \
+    cd vowpal_wabbit && \
+    make vw && \
+    make spanning_tree && \
+    cp vowpalwabbit/vw $HOME/bin/ && \
+    cp vowpalwabbit/active_interactor $HOME/bin/ && \
+    cp cluster/spanning_tree $HOME/bin/ && \
+    cd .. && rm -rf vowpal_wabbit
 
 # # libfm
 RUN git clone --depth 1 https://github.com/srendle/libfm.git && cd libfm && make all && \
@@ -161,6 +172,8 @@ RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernel
     rm -rf $HOME/.local && \
     fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
 
+RUN npm i -g catboost-viewer && npm cache clean --force
+
 
 
 # tensorflow board
@@ -168,4 +181,10 @@ EXPOSE 6006
 # rstudio-server
 EXPOSE 8787
 
-CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
+RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \
+    tar xzf dataiku-dss-4.1.3.tar.gz && \
+    dataiku-dss-4.1.3/installer.sh -d $HOME -p 11000 -C
+
+
+
+#CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]

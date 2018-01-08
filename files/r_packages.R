@@ -92,3 +92,4 @@ clValid
 # handled in this image's Dockerfile.
 # install.packages("fftw", '/opt/conda/lib/R/library')
 # install.packages("seewave", '/opt/conda/lib/R/library')
+install.packages("infer")
