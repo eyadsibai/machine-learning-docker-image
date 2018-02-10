@@ -449,6 +449,7 @@ dependencies:
     - glmnet_py
     - sf-diamond
     - git+https://github.com/eriklindernoren/NapkinML
+    - http://s3.amazonaws.com/h2o-deepwater/public/nightly/latest/h2o-3.13.0-py2.py3-none-any.whl
     # - sklearn-extensions old version supporting only old libs
 
 # Specific ML
@@ -465,7 +466,7 @@ dependencies:
     - gplearn
     - metric-learn
     - git+https://github.com/garydoranjr/misvm.git#egg=misvm
-    - implicit
+    - implicit # Collaborative Filtering for Implicit Datasets.
     - hep_ml
     - pygam # Generalized Additive Models in Python
     - git+https://github.com/albertcthomas/anomaly_tuning
@@ -723,6 +724,7 @@ dependencies:
     - git+https://github.com/ztane/python-Levenshtein.git
     - allennlp
     - preprocessing
+    - chakin
     - git+https://github.com/faneshion/MatchZoo.git # text matching
 
 

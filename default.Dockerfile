@@ -175,15 +175,24 @@ RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernel
 RUN npm i -g catboost-viewer && npm cache clean --force
 
 
-
 # tensorflow board
 EXPOSE 6006
 # rstudio-server
 EXPOSE 8787
 
+USER root
+
+# for dataiku
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends acl curl nginx-full zip \
+&& apt-get -qq autoremove -y && apt-get -qq clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER $NB_USER
+
+
 RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \
     tar xzf dataiku-dss-4.1.3.tar.gz && \
-    dataiku-dss-4.1.3/installer.sh -d $HOME -p 11000 -C
+    dataiku-dss-4.1.3/installer.sh -d $HOME/dataiku -p 11000 -C
 
 
 
