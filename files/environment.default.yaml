@@ -131,7 +131,7 @@ dependencies:
 
   # specific problem ml libs
   - lifelines # Survival analysis
-  - spotlight
+#  - spotlight
   - george
 #  - y_ohr_n::kenchi
 # - face_recognition
@@ -299,7 +299,7 @@ dependencies:
 
 # deep learning
   - tensorflow>=1.4.0
-  - pytorch::pytorch
+  - pytorch::pytorch >= 0.3.1
   - pytorch::torchvision
   - keras
   - chainer
@@ -416,6 +416,7 @@ dependencies:
     - cufflinks
     - pyhsmm
     - bhtsne # is it better than scikit-learn ... should be tested
+    - git+https://github.com/DmitryUlyanov/Multicore-TSNE.git
     - pdvega
     - pyupset
     - bowtie # dashboard

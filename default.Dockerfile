@@ -190,9 +190,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y 
 USER $NB_USER
 
 
-RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \
-    tar xzf dataiku-dss-4.1.3.tar.gz && \
-    dataiku-dss-4.1.3/installer.sh -d $HOME/dataiku -p 11000 -C
+# RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \
+#     tar xzf dataiku-dss-4.1.3.tar.gz && \
+#     dataiku-dss-4.1.3/installer.sh -d $HOME/dataiku -p 11000 -C
 
 
 
