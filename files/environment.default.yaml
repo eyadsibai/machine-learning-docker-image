@@ -1,4 +1,4 @@
-name: root
+name: base
 channels:
   - conda-forge
   - glemaitre
@@ -12,11 +12,9 @@ channels:
 dependencies:
   - python=3.6
   - pip>=9.0
-#  - jupyterlab
   - tim_shawver::qgrid
   - ipywidgets
   - paramnb
-#  - bleach>=2.1.2 #latest version needed by beakerx
 #  - beakerx
   - nodejs
   - openjdk
@@ -38,6 +36,7 @@ dependencies:
   - python-dotenv
   - fire
   - tqdm
+  - xmltodict
 
   # formatting
   - mccabe
@@ -66,7 +65,7 @@ dependencies:
 
 
 
-  # Data Analysis Tools
+  # Data Analysis Tools and manupulation
   - pandas>=0.22.0
   - vaex
   - fastparquet
@@ -85,14 +84,19 @@ dependencies:
   - arrow
   - xarray
   - scikit-sparse # sparse data lib
+  - tablib
+  - psutil
+  - python-marisa-trie
+  - more-itertools
 
+  # Social Networks data
+  - tweepy
 
 
   # Visualization
   - bokeh>=0.12.*
   - matplotlib>=2.*
   - mpl-probscale
-  - ggplot
   - plotly
   - matplotlib-venn     # Area-weighted venn-diagrams for Python/matplotlib
   - plotnine # grammar of graphics
@@ -145,6 +149,7 @@ dependencies:
   - conda-forge::pymc3
   - pomegranate #probabilistic modelling
   - pystan
+#  - ankurankan::pgmpy
 
 
   # preprocessing & feature engineering
@@ -160,14 +165,14 @@ dependencies:
   #- rpforest # random projections forest
     # - geopandas
  # - geoplotlib
-  # - geoplot   # geospatial data visualization
-#   - shapely>=1.5.*
-#   - cartopy>=0.14.2
+  - geoplot   # geospatial data visualization
+  - shapely>=1.5.*
+  - cartopy>=0.14.2
 #   - basemap
 #  - geoviews
 #   - gmaps
   # - gpxpy   # gps format parser
-  # - geojson
+  - geojson
   # - pysal # spatial data analysis
 
   # Testing
@@ -255,7 +260,7 @@ dependencies:
 #  - nickledave::hybrid-vocal-classifier # vocalization
 
 # Natural Language Processing
-#   - orange3-text
+# - orange3-text
 # - chatterbot
 # - affinegap
 
@@ -285,13 +290,6 @@ dependencies:
 #   - PyAstronomy
 #   - astroML
 #   - sunpy solar physics
-
-# Audio & music
-#   - librosa
-# - python_speech_features
-# - git+https://github.com/keunwoochoi/kapre.git # Keras Audio Preprocessors
-# - magenta
-# pydub
 
 
 # Geometry
@@ -348,21 +346,14 @@ dependencies:
     - mmh3
     - recipy
     - better_exceptions # better exceptions
-    # data manipulation
-    - xmltodict
-    - tablib[pandas]
-    - psutil
-    - marisa-trie
-    - more-itertools
-
-# social networks data
-    - tweepy
+    - pyformance
 
 # command_lines
     - s3cmd
 
 # data processing
     - git+https://github.com/SohierDane/BigQuery_Helper#egg=bq_helper
+    - ray
 
 # stats and math
     - bootstrapped
@@ -373,7 +364,6 @@ dependencies:
     - causalinference
 #    - causality needs pymc ... should be switched to pymc3
     - cma
-    - pgmpy
     - elfi
     - expan
     - pymc3_models
@@ -415,7 +405,7 @@ dependencies:
     - jmpy
     - cufflinks
     - pyhsmm
-    - bhtsne # is it better than scikit-learn ... should be tested
+    - bhtsne # is it better than scikit-learn3 ... should be tested
     - git+https://github.com/DmitryUlyanov/Multicore-TSNE.git
     - pdvega
     - pyupset
@@ -566,7 +556,7 @@ dependencies:
     - python-louvain     # Louvain Community Detection (network analysis)
 
 # Time Series
-    - git+https://github.com/ceholden/yatsm.git #gdal library required
+#    - git+https://github.com/ceholden/yatsm.git #gdal library required
     - seasonal     # Robustly estimate trend and periodicity in a timeseries.
     - pyflux
     - tslearn     # time-series data ml
@@ -676,6 +666,7 @@ dependencies:
     - boostaroota
     - kmeans-smote
     - treeinterpreter
+    - waterfallcharts
     - skrebate
     - lore
     - git+https://github.com/yandexdataschool/modelgym
@@ -749,7 +740,26 @@ dependencies:
     - neupy
     - tensorly
     - git+git://github.com/probtorch/probtorch
-    - fastai
+    - git+https://github.com/the-moliver/kfs.git # keras extensions
+    - keras-tqdm
+
     - quiver_engine     # Interactive convnet features visualization for Keras
     - foolbox
     - t3f
+
+# Audio & music
+    - librosa
+    - python_speech_features
+    - git+https://github.com/keunwoochoi/kapre.git # Keras Audio Preprocessors
+    - magenta
+    - pydub
+    - msaf # Music Structure Analysis Framework
+    - speechpy
+    - wavio     # reading and writing WAV files using numpy arrays.
+    - git+https://github.com/pytorch/audio.git
+
+
+# for self-learning purposes! / demos/ tutorials/ etc
+    - mglearn
+    - fastai
+# interesting idea to install in subdirectory files pip install git+https://github.com/ray-project/ray.git#subdirectory=python

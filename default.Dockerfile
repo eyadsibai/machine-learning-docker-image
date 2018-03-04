@@ -7,22 +7,32 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y 
 libboost-program-options-dev zlib1g-dev libboost-all-dev \
 # needed by libhunspell
 # libhunspell-dev \
+# needed by magenta
+libasound2-dev \
 && apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 
-USER $NB_USER
+USER $NB_UID
 RUN conda config --set channel_priority false
+# root should be changed to base in the new versions
+RUN conda update -n root -y conda
 COPY files/environment.default.yaml environment.yaml
-RUN conda env update --file=environment.yaml \
+RUN conda env update -n root --file=environment.yaml -q \
     && conda remove qt pyqt --quiet --yes --force \
-    && conda clean -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml && npm cache clean --force && \
+    && conda clean -tipsy && \
+    npm cache clean && \
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
+    rm -rf /home/$NB_USER/.cache/yarn && \ && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging
 
 # Activate ipywidgets extension in the environment that runs the notebook server
 # Required to display Altair charts in Jupyter notebook
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
     jupyter nbextension enable --py --sys-prefix qgrid && \
-    jupyter labextension install qgrid@1.0.0
+    jupyter labextension install qgrid@1.0.0 && \
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
+    rm -rf /home/$NB_USER/.cache/yarn && \ && \
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging
 
 
 #RUN jupyter labextension install @jupyterlab/google-drive
@@ -87,7 +97,7 @@ RUN git clone --depth 1 https://github.com/baidu/fast_rgf.git && cd fast_rgf && 
 
 
 
-USER $NB_USER
+USER $NB_UID
 
 # RUN git clone --depth 1 https://github.com/PAIR-code/facets.git && cd facets && jupyter nbextension install facets-dist/ --sys-prefix
 # ENV PYTHONPATH $HOME/facets/facets_overview/python/:$PYTHONPATH
@@ -114,14 +124,14 @@ RUN R -e "install.packages('CausalImpact', '$CONDA_DIR/lib/R/library', repos = '
 ENV RSTUDIO_WHICH_R='$CONDA_DIR/bin/R'
 USER root
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
-    && rstudio_version=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
-    && wget https://download2.rstudio.org/rstudio-server-${rstudio_version}-amd64.deb -O /rstudio-server.deb \
-    && apt-get install -y --no-install-recommends /rstudio-server.deb \
-    && rm /rstudio-server.deb
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends wget \
+#     && rstudio_version=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
+#     && wget https://download2.rstudio.org/rstudio-server-${rstudio_version}-amd64.deb -O /rstudio-server.deb \
+#     && apt-get install -y --no-install-recommends /rstudio-server.deb \
+#     && rm /rstudio-server.deb
 
-RUN echo "rsession-which-r=$CONDA_DIR/bin/R" >> /etc/rstudio/rserver.conf
+# RUN echo "rsession-which-r=$CONDA_DIR/bin/R" >> /etc/rstudio/rserver.conf
 
 
 # Julia dependencies
@@ -147,7 +157,7 @@ RUN mkdir /etc/julia && \
     fix-permissions $JULIA_PKGDIR
 
 
-USER $NB_USER
+USER $NB_UID
 # Add Julia packages
 # Install IJulia as jovyan and then move the kernelspec out
 # to the system share location. Avoids problems with runtime UID change not
@@ -187,7 +197,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y 
 && apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 
-USER $NB_USER
+USER $NB_UID
 
 
 # RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \
