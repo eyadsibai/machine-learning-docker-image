@@ -9,6 +9,8 @@ libboost-program-options-dev zlib1g-dev libboost-all-dev \
 # libhunspell-dev \
 # needed by magenta
 libasound2-dev \
+# needed by torchaudio I believe
+libjack-dev libsox-fmt-all libsox-dev sox \
 && apt-get -qq autoremove -y && apt-get -qq clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,24 +22,15 @@ COPY files/environment.default.yaml environment.yaml
 RUN conda env update -n root --file=environment.yaml -q \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -tipsy && \
-    npm cache clean && \
-    rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
-    rm -rf /home/$NB_USER/.cache/yarn && \ && \
-    rm -rf $CONDA_DIR/share/jupyter/lab/staging
-
-# Activate ipywidgets extension in the environment that runs the notebook server
-# Required to display Altair charts in Jupyter notebook
-RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
+    jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
     jupyter nbextension enable --py --sys-prefix qgrid && \
-    jupyter labextension install qgrid@1.0.0 && \
+    jupyter labextension install qgrid && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
-    rm -rf /home/$NB_USER/.cache/yarn && \ && \
+    rm -rf /home/$NB_USER/.cache/yarn && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging
 
 
 #RUN jupyter labextension install @jupyterlab/google-drive
-# RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
-# RUN jupyter labextension enable @jupyter-widgets/jupyterlab-manager
 # RUN jupyter labextension install @jupyterlab/github
 # RUN jupyter labextension install jupyterlab_bokeh
 

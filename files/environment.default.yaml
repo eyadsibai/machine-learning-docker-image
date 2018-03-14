@@ -106,6 +106,8 @@ dependencies:
   - mpld3   # D3 Renderings of Matplotlib Graphics
   - ioam::holoviews
   - districtdatalabs::yellowbrick     # Visual analysis and diagnostic tools to facilitate machine learning model selection
+  - iris
+  - pyviz::pyviz
 
   - bokeh::colorcet # colormaps
   - mplleaflet
@@ -347,6 +349,10 @@ dependencies:
     - recipy
     - better_exceptions # better exceptions
     - pyformance
+    - ujson
+    - simplejson
+    - carpo
+    - uhashring
 
 # command_lines
     - s3cmd
@@ -411,6 +417,7 @@ dependencies:
     - pyupset
     - bowtie # dashboard
     - pyecharts
+    - scattertext
 #     - visdom python server for pytorch visualization should be in a different docker image
 #    - vapeplot # matplotlib extension for vaporwave aesthetics
 
@@ -440,7 +447,6 @@ dependencies:
     - glmnet_py
     - sf-diamond
     - git+https://github.com/eriklindernoren/NapkinML
-    - http://s3.amazonaws.com/h2o-deepwater/public/nightly/latest/h2o-3.13.0-py2.py3-none-any.whl
     # - sklearn-extensions old version supporting only old libs
 
 # Specific ML
@@ -473,6 +479,7 @@ dependencies:
     - Dora
     - edapy
     - gpy # gaussian processes
+    - pyltr # learning to rank
 
 
 
@@ -495,6 +502,9 @@ dependencies:
     - scikit-surprise
     - lsanomaly # probabilistic anomaly detector
     - bayespy
+    - pescador # sampling
+    - conjugate_prior
+
 
 # Preprocessing and feature engineering
     - path.py # processing paths and files
@@ -548,7 +558,7 @@ dependencies:
 
 # Network Analysis
     - git+https://github.com/austin-taylor/flare.git         # network traffic and behavioral analytics
-#    - git+https://github.com/rafguns/linkpred.git       # link prediction tool should update the networkx version
+    - git+https://github.com/rafguns/linkpred.git       # link prediction tool should update the networkx version
     - git+https://github.com/dmarx/Topological-Anomaly-Detection
     - networkl # networkx extension
     - graphistry
@@ -566,6 +576,7 @@ dependencies:
     - pastas
     - pyts
     - dtaidistance
+    - seglearn
     - git+git://github.com/kyleclo/structural.git#egg=structural
 
 # External Data
@@ -742,7 +753,7 @@ dependencies:
     - git+git://github.com/probtorch/probtorch
     - git+https://github.com/the-moliver/kfs.git # keras extensions
     - keras-tqdm
-
+    - tfp-nightly
     - quiver_engine     # Interactive convnet features visualization for Keras
     - foolbox
     - t3f
@@ -757,6 +768,8 @@ dependencies:
     - speechpy
     - wavio     # reading and writing WAV files using numpy arrays.
     - git+https://github.com/pytorch/audio.git
+    - aubio
+    - soundfile
 
 
 # for self-learning purposes! / demos/ tutorials/ etc
