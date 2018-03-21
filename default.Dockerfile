@@ -183,14 +183,21 @@ EXPOSE 6006
 # rstudio-server
 EXPOSE 8787
 
-USER root
+# USER root
+# TODO install the python interface and may be the java one too
+RUN git clone https://github.com/cjlin1/libsvm && cd libsvm && make && mv svm-predict $HOME/bin/ && mv svm-train $HOME/bin/ && mv svm-scale $HOME/bin/ && cd .. \
+&& rm -rf libsvm
+
+# TODO install the python interface
+RUN git clone https://github.com/cjlin1/liblinear && cd liblinear && make && mv predict $HOME/bin/liblinear-predict && mv train $HOME/bin/liblinear-train && cd .. \
+&& rm -rf liblinear
 
 # for dataiku
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends acl curl nginx-full zip \
-&& apt-get -qq autoremove -y && apt-get -qq clean \
-    && rm -rf /var/lib/apt/lists/*
+# RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends acl curl nginx-full zip \
+# && apt-get -qq autoremove -y && apt-get -qq clean \
+#     && rm -rf /var/lib/apt/lists/*
 
-USER $NB_UID
+# USER $NB_UID
 
 
 # RUN wget https://downloads.dataiku.com/public/studio/4.1.3/dataiku-dss-4.1.3.tar.gz && \

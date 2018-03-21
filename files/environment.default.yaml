@@ -285,7 +285,7 @@ dependencies:
 #   - pydicom # read/ write dicom files
 #  - nilearn
 # - biopython
-  # - mne # human neurophysiological data
+  #- mne # human neurophysiological data
 #  - git+https://github.com/analysiscenter/cardio.git ml for cardio data
 
 # Astronomy
@@ -375,6 +375,10 @@ dependencies:
     - pymc3_models
     - git+https://github.com/manuel-calzolari/sklearn-genetic.git # genetic algorithms
     - pyemd #  Earth Mover's Distance
+    - celer # fast lasso solver
+
+# supply chain
+    - supplychainpy
 
 # data exploration
     - optimuspyspark     # cleaning and much more, pre-processing and exploratory data analysis in a distributed fashion with Apache Spark
@@ -418,6 +422,7 @@ dependencies:
     - bowtie # dashboard
     - pyecharts
     - scattertext
+    - netron # may be on a server
 #     - visdom python server for pytorch visualization should be in a different docker image
 #    - vapeplot # matplotlib extension for vaporwave aesthetics
 
@@ -490,6 +495,7 @@ dependencies:
     - git+https://github.com/Evfro/polara
     - flurs
     - cmfrec
+    - git+https://github.com/jmhessel/fmpytorch
 
 # Bayesian
     - bambi     # BAyesian Model-Building Interface
@@ -534,6 +540,7 @@ dependencies:
     - mercantile
     - git+https://github.com/caseyclements/pennies #finance modeling abt pricing
     - empyrical
+    - git+https://github.com/mne-tools/mne-features.git#egg=mne_features
 
 # a/b testing / exploration thru bandits and similar ideas
     - git+https://github.com/mpkato/interleaving.git
@@ -542,6 +549,7 @@ dependencies:
     - striatum
     - git+https://github.com/Nth-iteration-labs/streamingbandit
     - git+https://github.com/cbellei/abyes.git
+    - planout
 #    - babtest uses pymc + python2
 
 
@@ -646,6 +654,7 @@ dependencies:
     - visualize_ML     #  visualize some processes involved in Machine learning.
     - tensorboardX
     - mlens     #  ensemble learning
+    - OpenEnsembles
     - xgbfir     # XGBoost Feature Interactions
     - tensorboard_logger
     - lens
@@ -686,6 +695,7 @@ dependencies:
     - anchor_exp
     - git+https://github.com/szagoruyko/pytorchviz #  visualizations of PyTorch execution graphs and traces.
     - git+https://github.com/paris-saclay-cds/ramp-workflow.git
+    - lti
 
 
 # model deployment
@@ -729,11 +739,13 @@ dependencies:
     - preprocessing
     - chakin
     - git+https://github.com/faneshion/MatchZoo.git # text matching
+    - nlpnet
+
 
 
 # deep learning
     - mxnet     # dl framework
-    - https://cntk.ai/PythonWheel/CPU-Only/cntk-2.4-cp36-cp36m-linux_x86_64.whl     # dl toolkit
+    - cntk     # dl toolkit
     - nnabla
     - dm-sonnet     # TensorFlow-based neural network library from deepmind
     - nervananeon
@@ -757,11 +769,14 @@ dependencies:
     - quiver_engine     # Interactive convnet features visualization for Keras
     - foolbox
     - t3f
+    - kur
+    - git+https://github.com/clab/dynet#egg=dynet
+    - pyvarinf
 
 # Audio & music
     - librosa
     - python_speech_features
-    - git+https://github.com/keunwoochoi/kapre.git # Keras Audio Preprocessors
+    - kapre # Keras Audio Preprocessors
     - magenta
     - pydub
     - msaf # Music Structure Analysis Framework
