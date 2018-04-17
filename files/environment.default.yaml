@@ -785,6 +785,12 @@ dependencies:
     - git+https://github.com/pytorch/audio.git
     - aubio
     - soundfile
+    - scikit-dsp-comm[helpers]
+
+
+# Video Processing
+    - scikit-video
+    - chainercv # computer vision
 
 
 # for self-learning purposes! / demos/ tutorials/ etc

@@ -8,7 +8,7 @@ libboost-program-options-dev zlib1g-dev libboost-all-dev \
 # needed by libhunspell
 # libhunspell-dev \
 # needed by magenta
-libasound2-dev \
+libasound2-dev portaudio19-dev \
 # needed by torchaudio I believe
 libjack-dev libsox-fmt-all libsox-dev sox \
 && apt-get -qq autoremove -y && apt-get -qq clean \
