@@ -12,16 +12,16 @@ channels:
 dependencies:
   - python=3.6
   - pip>=9.0
+  - nomkl
   - tim_shawver::qgrid
   - ipywidgets
   - paramnb
 #  - beakerx
   - nodejs
-  - openjdk
-  - maven
+#   - openjdk
+#   - maven
   - libgcc
   - gdal>=2.1 # required by yatsm
-  - hunspell
 
   # Cloud Services
   - boto
@@ -62,8 +62,6 @@ dependencies:
   - jos_pol::pandas-profiling
   - missingno     # Missing data visualization module
   - scikit-data
-
-
 
   # Data Analysis Tools and manupulation
   - pandas>=0.22.0
@@ -308,36 +306,36 @@ dependencies:
 
 
 
-  - r::r-essentials
-  - r::r-devtools
-  - r::r-base
-  - r::r-irkernel
-  - r::r-plyr
-  - r::r-shiny
-  - r::r-tidyverse
-  - r::r-markdown
-  - r::r-forecast
-  - r::r-reshape2
-  - r::r-randomforest
-  - r::r::r-caret
-  - r::r-ggplot2
-  - rpy2
-  - r::r-rsqlite
-  - r::r-caret
-  - r::r-rcurl
-  - r::r-tseries
-  - r::r-survival
-  - r::r-rstan
-  - r::r-rocr
-  - r::r-lme4
-  - r::r-kernsmooth
-  - r::r-glmnet
-  - r::r-ggplot2
-  - r::r-modelmetrics
-  - r::r-e1071
-  - r::r-anomalydetection
-  - r::r-rcpp
-  - r::r-crayon
+#   - r::r-essentials
+#   - r::r-devtools
+#   - r::r-base
+#   - r::r-irkernel
+#   - r::r-plyr
+#   - r::r-shiny
+#   - r::r-tidyverse
+#   - r::r-markdown
+#   - r::r-forecast
+#   - r::r-reshape2
+#   - r::r-randomforest
+#   - r::r::r-caret
+#   - r::r-ggplot2
+#   - rpy2
+#   - r::r-rsqlite
+#   - r::r-caret
+#   - r::r-rcurl
+#   - r::r-tseries
+#   - r::r-survival
+#   - r::r-rstan
+#   - r::r-rocr
+#   - r::r-lme4
+#   - r::r-kernsmooth
+#   - r::r-glmnet
+#   - r::r-ggplot2
+#   - r::r-modelmetrics
+#   - r::r-e1071
+#   - r::r-anomalydetection
+#   - r::r-rcpp
+#   - r::r-crayon
 
   - pip:
 # python-toolings

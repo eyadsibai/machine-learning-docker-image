@@ -65,7 +65,7 @@ RUN wget https://github.com/fukatani/rgf_python/releases/download/0.2.0/rgf1.2.z
     rm -rf rgf*
 
 # FTRL
-RUN git clone https://github.com/alexeygrigorev/libftrl-python && cd libftrl-python && cmake . && make && \
+RUN git clone --depth 1 https://github.com/alexeygrigorev/libftrl-python && cd libftrl-python && cmake . && make && \
     mv libftrl.so ftrl/ && pip install . && cd .. && rm -rf libftrl-python
 
 # Vowpal wabbit
@@ -111,11 +111,11 @@ RUN ipython -c 'import disp; disp.install()'
 
 
 # R
-RUN R -e "install.packages('CausalImpact', '$CONDA_DIR/lib/R/library', repos = 'http://cran.us.r-project.org')"
+# RUN R -e "install.packages('CausalImpact', '$CONDA_DIR/lib/R/library', repos = 'http://cran.us.r-project.org')"
 
 # Rstudio Server
-ENV RSTUDIO_WHICH_R='$CONDA_DIR/bin/R'
-USER root
+# ENV RSTUDIO_WHICH_R='$CONDA_DIR/bin/R'
+# USER root
 
 # RUN apt-get update \
 #     && apt-get install -y --no-install-recommends wget \
@@ -128,52 +128,52 @@ USER root
 
 
 # Julia dependencies
-# install Julia packages in /opt/julia instead of $HOME
-ENV JULIA_PKGDIR=/opt/julia
-ENV JULIA_VERSION=0.6.2
+# # install Julia packages in /opt/julia instead of $HOME
+# ENV JULIA_PKGDIR=/opt/julia
+# ENV JULIA_VERSION=0.6.2
 
-RUN mkdir /opt/julia-${JULIA_VERSION} && \
-    cd /tmp && \
-    wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
-    echo "dc6ec0b13551ce78083a5849268b20684421d46a7ec46b17ec1fab88a5078580 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
-    tar xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /opt/julia-${JULIA_VERSION} --strip-components=1 && \
-    rm /tmp/julia-${JULIA_VERSION}-linux-x86_64.tar.gz
-RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
-
-
-# Show Julia where conda libraries are \
-RUN mkdir /etc/julia && \
-    echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> /etc/julia/juliarc.jl && \
-    # Create JULIA_PKGDIR \
-    mkdir $JULIA_PKGDIR && \
-    chown $NB_USER $JULIA_PKGDIR && \
-    fix-permissions $JULIA_PKGDIR
+# RUN mkdir /opt/julia-${JULIA_VERSION} && \
+#     cd /tmp && \
+#     wget -q https://julialang-s3.julialang.org/bin/linux/x64/`echo ${JULIA_VERSION} | cut -d. -f 1,2`/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
+#     echo "dc6ec0b13551ce78083a5849268b20684421d46a7ec46b17ec1fab88a5078580 *julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | sha256sum -c - && \
+#     tar xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /opt/julia-${JULIA_VERSION} --strip-components=1 && \
+#     rm /tmp/julia-${JULIA_VERSION}-linux-x86_64.tar.gz
+# RUN ln -fs /opt/julia-*/bin/julia /usr/local/bin/julia
 
 
-USER $NB_UID
-# Add Julia packages
-# Install IJulia as jovyan and then move the kernelspec out
-# to the system share location. Avoids problems with runtime UID change not
-# taking effect properly on the .local folder in the jovyan home dir.
-RUN julia -e 'Pkg.init()' && \
-    julia -e 'Pkg.update()' && \
-#    julia -e 'Pkg.add("HDF5")' && \
-    julia -e 'Pkg.add("Gadfly")' && \
-    julia -e 'Pkg.add("RDatasets")' && \
-    julia -e 'Pkg.add("IJulia")' && \
-    # Precompile Julia packages \
-#    julia -e 'using HDF5' && \
-    julia -e 'using Gadfly' && \
-    julia -e 'using RDatasets' && \
-    julia -e 'using IJulia'
-#COPY files/julia_packages.jl julia_packages.jl
+# # Show Julia where conda libraries are \
+# RUN mkdir /etc/julia && \
+#     echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> /etc/julia/juliarc.jl && \
+#     # Create JULIA_PKGDIR \
+#     mkdir $JULIA_PKGDIR && \
+#     chown $NB_USER $JULIA_PKGDIR && \
+#     fix-permissions $JULIA_PKGDIR
 
-#RUN julia julia_packages.jl && \
-    # move kernelspec out of home \
-RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
-    chmod -R go+rx $CONDA_DIR/share/jupyter && \
-    rm -rf $HOME/.local && \
-    fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
+
+# USER $NB_UID
+# # Add Julia packages
+# # Install IJulia as jovyan and then move the kernelspec out
+# # to the system share location. Avoids problems with runtime UID change not
+# # taking effect properly on the .local folder in the jovyan home dir.
+# RUN julia -e 'Pkg.init()' && \
+#     julia -e 'Pkg.update()' && \
+# #    julia -e 'Pkg.add("HDF5")' && \
+#     julia -e 'Pkg.add("Gadfly")' && \
+#     julia -e 'Pkg.add("RDatasets")' && \
+#     julia -e 'Pkg.add("IJulia")' && \
+#     # Precompile Julia packages \
+# #    julia -e 'using HDF5' && \
+#     julia -e 'using Gadfly' && \
+#     julia -e 'using RDatasets' && \
+#     julia -e 'using IJulia'
+# #COPY files/julia_packages.jl julia_packages.jl
+
+# #RUN julia julia_packages.jl && \
+#     # move kernelspec out of home \
+# RUN mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
+#     chmod -R go+rx $CONDA_DIR/share/jupyter && \
+#     rm -rf $HOME/.local && \
+#     fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
 
 RUN npm i -g catboost-viewer && npm cache clean --force
 
@@ -185,11 +185,11 @@ EXPOSE 8787
 
 # USER root
 # TODO install the python interface and may be the java one too
-RUN git clone https://github.com/cjlin1/libsvm && cd libsvm && make && mv svm-predict $HOME/bin/ && mv svm-train $HOME/bin/ && mv svm-scale $HOME/bin/ && cd .. \
+RUN git clone --depth 1 https://github.com/cjlin1/libsvm && cd libsvm && make && mv svm-predict $HOME/bin/ && mv svm-train $HOME/bin/ && mv svm-scale $HOME/bin/ && cd .. \
 && rm -rf libsvm
 
 # TODO install the python interface
-RUN git clone https://github.com/cjlin1/liblinear && cd liblinear && make && mv predict $HOME/bin/liblinear-predict && mv train $HOME/bin/liblinear-train && cd .. \
+RUN git clone --depth 1 https://github.com/cjlin1/liblinear && cd liblinear && make && mv predict $HOME/bin/liblinear-predict && mv train $HOME/bin/liblinear-train && cd .. \
 && rm -rf liblinear
 
 # for dataiku
