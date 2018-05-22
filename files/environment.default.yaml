@@ -16,7 +16,6 @@ dependencies:
   - tim_shawver::qgrid
   - ipywidgets
   - paramnb
-#  - beakerx
   - nodejs
 #   - openjdk
 #   - maven
@@ -106,10 +105,9 @@ dependencies:
   - districtdatalabs::yellowbrick     # Visual analysis and diagnostic tools to facilitate machine learning model selection
   - iris
   - pyviz::pyviz
-
   - bokeh::colorcet # colormaps
   - mplleaflet
-  #- glueviz::glueviz
+  - glueviz::glueviz
   - folium
   - mpl-scatter-density
   - bqplot
@@ -122,7 +120,7 @@ dependencies:
   # General Purpose ML
   - orange3
   - python-annoy   # Approximate Nearest Neighbors
-  - scikit-learn>=0.18.1
+  - scikit-learn>=0.19.1
   - glemaitre::imbalanced-learn
   - hdbscan
   - h2oai::h2o
@@ -135,11 +133,10 @@ dependencies:
 
   # specific problem ml libs
   - lifelines # Survival analysis
-#  - spotlight
+  - spotlight=0.1.4
   - george
-#  - y_ohr_n::kenchi
-# - face_recognition
-  #- nupic
+# - y_ohr_n::kenchi
+# - nupic
 
 
   # databases read
@@ -194,6 +191,8 @@ dependencies:
 # Time Series
   - tsfresh   # Automatic extraction of relevant features from time series
   - fbprophet
+
+
 # automl
   - tpot
 
@@ -207,10 +206,10 @@ dependencies:
   - pandas_ml     # pandas, scikit-learn, xgboost and seaborn integration
   - scikit-optimize
   # rep --no-dependencies
-    # - modeldb
+  # - modeldb
   # - sacred
   # - skll # easy to run machine learning experiments (scikit-learn)
-    # - xcessiv
+  # - xcessiv
 
   # External Data
   - geopy
@@ -454,6 +453,7 @@ dependencies:
 
 # Specific ML
     - lifetimes # Lifetime value
+#    - face_recognition
     - git+https://github.com/nicolashennetier/pyeconometrics.git # econometrics regression models
     - quantecon # quantitative economics
 #    - git+https://github.com/tmadl/semisup-learn --no-deps # it installs wrong sklearn
@@ -518,7 +518,7 @@ dependencies:
     - pymrmr
     - featuretools
     - featureforge
-    - few # feature engineering wrapper
+#    - few # feature engineering wrapper
     - feagen==1.0.0a9
     - git+https://github.com/mewwts/feng.git
     - features
@@ -568,7 +568,7 @@ dependencies:
     - git+https://github.com/dmarx/Topological-Anomaly-Detection
     - networkl # networkx extension
     - graphistry
-    - networkit
+#    - networkit
     - python-louvain     # Louvain Community Detection (network analysis)
 
 # Time Series
@@ -702,7 +702,7 @@ dependencies:
 # NLP
     - keras-text
     - ktext
-    - skift
+#    - skift
     - pykoko
     - wordsegment
     - pyahocorasick
