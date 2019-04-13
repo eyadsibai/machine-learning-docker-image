@@ -8,17 +8,16 @@ channels:
   - pkgw-forge
   - datamicroscopes
   - distributions
-
+#https://skymind.ai/wiki/python-ai
 dependencies:
   - python=3.6
   - pip>=9.0
-  - nomkl
   - tim_shawver::qgrid
   - ipywidgets
   - paramnb
   - nodejs
-#   - openjdk
-#   - maven
+  #   - openjdk
+  #   - maven
   - libgcc
   - gdal>=2.1 # required by yatsm
 
@@ -56,14 +55,13 @@ dependencies:
   - line_profiler
   - memory_profiler
 
-
   # Data Exploration
   - jos_pol::pandas-profiling
-  - missingno     # Missing data visualization module
+  - missingno # Missing data visualization module
   - scikit-data
 
   # Data Analysis Tools and manupulation
-  - pandas>=0.22.0
+  - pandas>=0.24.0
   - vaex
   - fastparquet
   - cloudpickle>=0.2.*
@@ -77,7 +75,7 @@ dependencies:
   - numexpr>=2.6.*
   - numpy
   - bcolz
-  - hyperspy  # multi-dimensional data analysis
+  - hyperspy # multi-dimensional data analysis
   - arrow
   - xarray
   - scikit-sparse # sparse data lib
@@ -89,20 +87,19 @@ dependencies:
   # Social Networks data
   - tweepy
 
-
   # Visualization
   - bokeh>=0.12.*
   - matplotlib>=2.*
   - mpl-probscale
   - plotly
-  - matplotlib-venn     # Area-weighted venn-diagrams for Python/matplotlib
+  - matplotlib-venn # Area-weighted venn-diagrams for Python/matplotlib
   - plotnine # grammar of graphics
   - seaborn # statistical data visualization
-  - bokeh::datashader   # visualize big datasets
+  - bokeh::datashader # visualize big datasets
   - conda-forge::altair
-  - mpld3   # D3 Renderings of Matplotlib Graphics
+  - mpld3 # D3 Renderings of Matplotlib Graphics
   - ioam::holoviews
-  - districtdatalabs::yellowbrick     # Visual analysis and diagnostic tools to facilitate machine learning model selection
+  - districtdatalabs::yellowbrick # Visual analysis and diagnostic tools to facilitate machine learning model selection
   - iris
   - pyviz::pyviz
   - bokeh::colorcet # colormaps
@@ -116,28 +113,25 @@ dependencies:
   - ipyleaflet
   - windrose
 
-
   # General Purpose ML
   - orange3
-  - python-annoy   # Approximate Nearest Neighbors
+  - python-annoy # Approximate Nearest Neighbors
   - scikit-learn>=0.19.1
   - glemaitre::imbalanced-learn
   - hdbscan
   - h2oai::h2o
   - xgboost
-  - sklearn-contrib-lightning   # Large-scale linear classification, regression and ranking i
-  - nearpy     # approximated nearest neighbour
+  - sklearn-contrib-lightning # Large-scale linear classification, regression and ranking i
+  - nearpy # approximated nearest neighbour
   - lightgbm
   - lmfit
-
 
   # specific problem ml libs
   - lifelines # Survival analysis
   - spotlight=0.1.4
   - george
-# - y_ohr_n::kenchi
-# - nupic
-
+  # - y_ohr_n::kenchi
+  # - nupic
 
   # databases read
   - records
@@ -146,39 +140,37 @@ dependencies:
   - conda-forge::pymc3
   - pomegranate #probabilistic modelling
   - pystan
-#  - ankurankan::pgmpy
-
+  #  - ankurankan::pgmpy
 
   # preprocessing & feature engineering
   - category_encoders
   - csvkit
   - ftfy
-# - sklearn-deap2
-# - sklearn-deap
+  # - sklearn-deap2
+  # - sklearn-deap
 
-# geo spatial data
+  # geo spatial data
   #- fiona
   #- pyshp
   #- rpforest # random projections forest
-    # - geopandas
- # - geoplotlib
-  - geoplot   # geospatial data visualization
+  # - geopandas
+  # - geoplotlib
+  - geoplot # geospatial data visualization
   - shapely>=1.5.*
   - cartopy>=0.14.2
-#   - basemap
-#  - geoviews
-#   - gmaps
+  #   - basemap
+  #  - geoviews
+  #   - gmaps
   # - gpxpy   # gps format parser
   - geojson
   # - pysal # spatial data analysis
 
   # Testing
   - pytest
-  - cerberus     # data validation functionality
+  - cerberus # data validation functionality
   - validictory
   - engarde
   - hypothesis
-
 
   # Network Analysis
   - networkx>=2.*
@@ -187,23 +179,20 @@ dependencies:
   - nxviz
   - ostrokach-forge::graph-tool
 
-
-# Time Series
-  - tsfresh   # Automatic extraction of relevant features from time series
+  # Time Series
+  - tsfresh # Automatic extraction of relevant features from time series
   - fbprophet
 
-
-# automl
+  # automl
   - tpot
 
-
-# Models Interpretation and management and meta learning
+  # Models Interpretation and management and meta learning
   - Skater # Model Agnostic Interpretation
   - eli5 # inspecting machine learning classifiers and explaining their predictions
-  - scikit-plot     # add plotting functionality to scikit-learn objects.
-  - mlxtend  # extension and helper modules for Python's data analysis and machine learning libraries.
+  - scikit-plot # add plotting functionality to scikit-learn objects.
+  - mlxtend # extension and helper modules for Python's data analysis and machine learning libraries.
   - lime
-  - pandas_ml     # pandas, scikit-learn, xgboost and seaborn integration
+  - pandas_ml # pandas, scikit-learn, xgboost and seaborn integration
   - scikit-optimize
   # rep --no-dependencies
   # - modeldb
@@ -214,17 +203,15 @@ dependencies:
   # External Data
   - geopy
 
-
   # workflow managements & parallelization
-#  - airflow
+  #  - airflow
   - luigi
-#  - horovod
+  #  - horovod
   - joblib
   - dask-searchcv
 
-# algorithms
+  # algorithms
   - uwmagellan::py_stringsimjoin
-
 
   # OR packages
   - pyomo
@@ -232,7 +219,6 @@ dependencies:
   - salib
   - cvxopt
   - pulp
-
 
   # suport others
   #- lesscpy # may be needed by some tool
@@ -250,548 +236,498 @@ dependencies:
   - rpy2 # interface to R from python
   # - knowledge-repo #(should be in a dockerfile by itself)
 
-# NLP
+  # NLP
   - nltk
   - gensim
   - spacy
   - fasttext
 
-#  - nickledave::hybrid-vocal-classifier # vocalization
+  #  - nickledave::hybrid-vocal-classifier # vocalization
 
-# Natural Language Processing
-# - orange3-text
-# - chatterbot
-# - affinegap
+  # Natural Language Processing
+  # - orange3-text
+  # - chatterbot
+  # - affinegap
 
-
-# Image Processing
+  # Image Processing
   - SimpleITK::SimpleITK
   - imagemagick
   - imagesize>=0.7.1 # parses image files’ header and return image size.
-  - ImageHash   # image hashing library
+  - ImageHash # image hashing library
   - scikit-image>=0.12.*
   - opencv
   - Pillow
-#  - pdftabextract
+  #  - pdftabextract
   - tifffile
-# - vtk
+  # - vtk
 
-# Neuroscience & Medical & molecular Biology
-#   - dipy
-#   - nibabel #neuroimaging file format
-#   - pydicom # read/ write dicom files
-#  - nilearn
-# - biopython
+  # Neuroscience & Medical & molecular Biology
+  #   - dipy
+  #   - nibabel #neuroimaging file format
+  #   - pydicom # read/ write dicom files
+  #  - nilearn
+  # - biopython
   #- mne # human neurophysiological data
-#  - git+https://github.com/analysiscenter/cardio.git ml for cardio data
+  #  - git+https://github.com/analysiscenter/cardio.git ml for cardio data
 
-# Astronomy
-#   - PyAstronomy
-#   - astroML
-#   - sunpy solar physics
+  # Astronomy
+  #   - PyAstronomy
+  #   - astroML
+  #   - sunpy solar physics
 
+  # Geometry
+  #   - s2sphere
 
-# Geometry
-#   - s2sphere
-
-# deep learning
+  # deep learning
   - tensorflow>=1.4.0
   - pytorch::pytorch >= 0.3.1
   - pytorch::torchvision
   - keras
   - chainer
   - demetris::pydlt
-#  - nusdbsystem::singa
-
-
-
-#   - r::r-essentials
-#   - r::r-devtools
-#   - r::r-base
-#   - r::r-irkernel
-#   - r::r-plyr
-#   - r::r-shiny
-#   - r::r-tidyverse
-#   - r::r-markdown
-#   - r::r-forecast
-#   - r::r-reshape2
-#   - r::r-randomforest
-#   - r::r::r-caret
-#   - r::r-ggplot2
-#   - rpy2
-#   - r::r-rsqlite
-#   - r::r-caret
-#   - r::r-rcurl
-#   - r::r-tseries
-#   - r::r-survival
-#   - r::r-rstan
-#   - r::r-rocr
-#   - r::r-lme4
-#   - r::r-kernsmooth
-#   - r::r-glmnet
-#   - r::r-ggplot2
-#   - r::r-modelmetrics
-#   - r::r-e1071
-#   - r::r-anomalydetection
-#   - r::r-rcpp
-#   - r::r-crayon
+  #  - nusdbsystem::singa
 
   - pip:
-# python-toolings
-    - disp
-    - kaggle-cli
-    - kaggle
-    - kaggler
-    - mmh3
-    - recipy
-    - better_exceptions # better exceptions
-    - pyformance
-    - ujson
-    - simplejson
-    - carpo
-    - uhashring
+      # python-toolings
+      - disp
+      - kaggle-cli
+      - kaggle
+      - kaggler
+      - mmh3
+      - recipy
+      - better_exceptions # better exceptions
+      - pyformance
+      - ujson
+      - simplejson
+      - carpo
+      - uhashring
 
-# command_lines
-    - s3cmd
+      # command_lines
+      - s3cmd
 
-# data processing
-    - git+https://github.com/SohierDane/BigQuery_Helper#egg=bq_helper
-    - ray
+      # data processing
+      - ray
 
-# stats and math
-    - bootstrapped
-    - fitter
-    - ml_metrics
-    - bayesian_bootstrap
-    - bayesian-optimization
-    - causalinference
-#    - causality needs pymc ... should be switched to pymc3
-    - cma
-    - elfi
-    - expan
-    - pymc3_models
-    - git+https://github.com/manuel-calzolari/sklearn-genetic.git # genetic algorithms
-    - pyemd #  Earth Mover's Distance
-    - celer # fast lasso solver
+      # stats and math
+      - bootstrapped
+      - fitter
+      - ml_metrics
+      - bayesian_bootstrap
+      - bayesian-optimization
+      - causalinference
+      #    - causality needs pymc ... should be switched to pymc3
+      - cma
+      - elfi
+      - expan
+      - pymc3_models
+      - git+https://github.com/manuel-calzolari/sklearn-genetic.git # genetic algorithms for feature selection
+      - pyemd #  Earth Mover's Distance
+      - celer # fast lasso solver
 
-# supply chain
-    - supplychainpy
+      # supply chain
+      - supplychainpy
 
-# data exploration
-    - optimuspyspark     # cleaning and much more, pre-processing and exploratory data analysis in a distributed fashion with Apache Spark
-    - spark-df-profiling
-    - pandas-summary
-    - edaplotting
-    - edatools
+      # data exploration
+      - optimuspyspark # cleaning and much more, pre-processing and exploratory data analysis in a distributed fashion with Apache Spark
+      - spark-df-profiling
+      - pandas-summary
+      - edaplotting
+      - edatools
 
-# data analysis tools
-#    - meza     # processing tabular data (I think this is useless)
-    - datacleaner     #  automatically cleans data sets and readies them for analysis.
-    - Geohash
-    - prices
-    - tdigest # data structure for large data analysis
-    - urlextract
-    - messytables
-    - barely_json
-    - rows #tabular data with wierd formats
-    - pyexcel-ods    # ods formats
-    - pythonflow
-    - moviepy
+      # data analysis tools
+      #    - meza     # processing tabular data (I think this is useless)
+      - datacleaner #  automatically cleans data sets and readies them for analysis.
+      - Geohash
+      - prices
+      - tdigest # data structure for large data analysis
+      - urlextract
+      - messytables
+      - barely_json
+      - rows #tabular data with wierd formats
+      - pyexcel-ods # ods formats
+      - pythonflow
+      - moviepy
 
+      # profiling & debugging code
+      - py-heat
+      - pudb
 
-# profiling & debugging code
-    - py-heat
-    - pudb
+      # visualizations & plots
+      - kmapper
+      - umap-learn
+      - hypertools
+      - matplotlib_venn_wordcloud
+      - pyldavis
+      - jmpy
+      - cufflinks
+      - pyhsmm
+      - bhtsne # is it better than scikit-learn3 ... should be tested
+      - MulticoreTSNE
+      - pdvega
+      - pyupset
+      - bowtie # dashboard
+      - pyecharts
+      - scattertext
+      - netron # may be on a server
+      #     - visdom python server for pytorch visualization should be in a different docker image
+      #    - vapeplot # matplotlib extension for vaporwave aesthetics
 
-# visualizations & plots
-    - kmapper
-    - umap-learn
-    - hypertools
-    - matplotlib_venn_wordcloud
-    - pyldavis
-    - jmpy
-    - cufflinks
-    - pyhsmm
-    - bhtsne # is it better than scikit-learn3 ... should be tested
-    - git+https://github.com/DmitryUlyanov/Multicore-TSNE.git
-    - pdvega
-    - pyupset
-    - bowtie # dashboard
-    - pyecharts
-    - scattertext
-    - netron # may be on a server
-#     - visdom python server for pytorch visualization should be in a different docker image
-#    - vapeplot # matplotlib extension for vaporwave aesthetics
+      # general ML
+      - scikit-garden # A garden for scikit-learn compatible trees
+      - scikit-multilearn
+      - git+https://github.com/larsmans/seqlearn.git # Sequence learning toolkit
+      - forestci
+      - git+https://github.com/arogozhnikov/infiniteboost.git # building infinite ensembles with gradient descent
+      - skope-rules
+      - sklearn_contrib_py_earth
+      - pystruct # structured learning
+      - kmodes # k-modes and k-prototypes clustering algorithms
+      - vowpalwabbit # could not find boost library
+      - catboost
+      - sklearn-compiledtrees
+      - lightfm
+      - guidedlda
+      - minisom
+      - hdidx
+      - linearmodels
+      - rgf_python # just an interface ... should install the tool too
+      - fastFM
+      - sklearn-glvq
+      - markovify
+      - xlearn
+      - glmnet_py
+      - sf-diamond
+      # - sklearn-extensions old version supporting only old libs
 
-# general ML
-    - scikit-garden  # A garden for scikit-learn compatible trees
-    - scikit-multilearn
-    - git+https://github.com/larsmans/seqlearn.git     # Sequence learning toolkit
-    - forestci
-    - git+https://github.com/arogozhnikov/infiniteboost.git     # building infinite ensembles with gradient descent
-    - skope-rules
-    - sklearn_contrib_py_earth
-    - pystruct # structured learning
-    - kmodes     # k-modes and k-prototypes clustering algorithms
-    - vowpalwabbit # could not find boost library
-    - catboost
-    - sklearn-compiledtrees
-    - lightfm
-    - guidedlda
-    - minisom
-    - hdidx
-    - linearmodels
-    - rgf_python # just an interface ... should install the tool too
-    - fastFM
-    - sklearn-glvq
-    - markovify
-    - xlearn
-    - glmnet_py
-    - sf-diamond
-    - git+https://github.com/eriklindernoren/NapkinML
-    # - sklearn-extensions old version supporting only old libs
+      # Specific ML
+      - lifetimes # Lifetime value
+      #    - face_recognition
+      # - git+https://github.com/nicolashennetier/pyeconometrics.git # econometrics regression models
+      - quantecon # quantitative economics
+      #    - git+https://github.com/tmadl/semisup-learn --no-deps # it installs wrong sklearn
+      # - git+https://github.com/timvieira/crf.git conditional random fields
+      # - pystruct
+      # - sklearn-crfsuite
+      - parserator>=0.6.8
+      - dedupe>1.9.4
+      - dedupe-hcluster
+      - gplearn
+      - metric-learn
+      - git+https://github.com/garydoranjr/misvm.git#egg=misvm
+      - implicit # Collaborative Filtering for Implicit Datasets.
+      - hep_ml
+      - pygam # Generalized Additive Models in Python
+      - git+https://github.com/albertcthomas/anomaly_tuning
+      - libact # active learning needs liblapacke-dev
+      - modAL # active learning
+      - scikit-survival
+      - causalimpact
+      - costcla
+      - causal-impact
+      - luminol
+      - zoopt
+      - kenchi
+      - Dora
+      - edapy
+      - gpy # gaussian processes
+      - pyltr # learning to rank
 
-# Specific ML
-    - lifetimes # Lifetime value
-#    - face_recognition
-    - git+https://github.com/nicolashennetier/pyeconometrics.git # econometrics regression models
-    - quantecon # quantitative economics
-#    - git+https://github.com/tmadl/semisup-learn --no-deps # it installs wrong sklearn
-    - git+https://github.com/timvieira/crf.git
-    - pystruct
-    - sklearn-crfsuite
-    - parserator>=0.6.2
-    - dedupe
-    - dedupe-hcluster
-    - gplearn
-    - metric-learn
-    - git+https://github.com/garydoranjr/misvm.git#egg=misvm
-    - implicit # Collaborative Filtering for Implicit Datasets.
-    - hep_ml
-    - pygam # Generalized Additive Models in Python
-    - git+https://github.com/albertcthomas/anomaly_tuning
-    - libact # active learning needs liblapacke-dev
-    - modAL # active learning
-    - scikit-survival
-    - causalimpact
-    - costcla
-    - causal-impact
-    - luminol
-    - zoopt
-    - kenchi
-    - Dora
-    - edapy
-    - gpy # gaussian processes
-    - pyltr # learning to rank
+      # recommendation systems
+      - git+https://github.com/marinkaz/nimfa
+      - git+https://github.com/chyikwei/recommend
+      - recsys
+      - git+https://github.com/Evfro/polara
+      - flurs
+      - cmfrec
+      - git+https://github.com/jmhessel/fmpytorch
 
+      # Bayesian
+      - bambi # BAyesian Model-Building Interface
+      - git+https://github.com/AmazaspShumik/sklearn_bayes.git
+      - git+https://github.com/scikit-learn-contrib/polylearn.git
+      #    - git+https://github.com/nicta/dora.git # Nonparametric Active Sampling
+      - edward
+      - hmmlearn # Hidden Markov Models
+      - MarkovNetwork
+      - scikit-surprise
+      - lsanomaly # probabilistic anomaly detector
+      - bayespy
+      - pescador # sampling
+      - conjugate_prior
 
+      # Preprocessing and feature engineering
+      - path.py # processing paths and files
+      - fancyimpute # impute missing data
+      - git+https://github.com/jundongl/scikit-feature
+      - git+https://github.com/danielhomola/mifs
+      - pymrmr
+      - featuretools
+      - featureforge
+      - few # feature engineering wrapper
+      - feagen==1.0.0a9
+      - git+https://github.com/mewwts/feng.git
+      - features
+      - sklearn_features
+      - sklearn_relief
+      - sklearn-pandas
+      - ibex # pandas + sklearn interface
+      - csvdedupe
+      - delorean
+      - prince
+      - ppca
+      - sklearn_dummies
+      - sklearn-deltatfidf
+      - fbpca
+      - tzlocal
+      - lcfeatures
+      - mercantile
+      - pennies #finance modeling abt pricing
+      - empyrical
+      - mne-features
 
-# recommendation systems
-    - git+https://github.com/marinkaz/nimfa
-    - git+https://github.com/chyikwei/recommend
-    - recsys
-    - git+https://github.com/Evfro/polara
-    - flurs
-    - cmfrec
-    - git+https://github.com/jmhessel/fmpytorch
+      # a/b testing / exploration thru bandits and similar ideas
+      - git+https://github.com/mpkato/interleaving.git
+      - hastur
+      - parfit
+      - striatum
+      # - git+https://github.com/Nth-iteration-labs/streamingbandit
+      - git+https://github.com/cbellei/abyes.git
+      - planout
+      #    - babtest uses pymc + python2
 
-# Bayesian
-    - bambi     # BAyesian Model-Building Interface
-    - git+https://github.com/AmazaspShumik/sklearn_bayes.git
-    - git+https://github.com/scikit-learn-contrib/polylearn.git
-#    - git+https://github.com/nicta/dora.git # Nonparametric Active Sampling
-    - edward
-    - hmmlearn # Hidden Markov Models
-    - MarkovNetwork
-    - scikit-surprise
-    - lsanomaly # probabilistic anomaly detector
-    - bayespy
-    - pescador # sampling
-    - conjugate_prior
+      # databases
+      - db.py
+      - dataset # Easy-to-use data handling for SQL data stores with support for implicit table creation, bulk loading, and transactions.
 
+      # Testing
+      - datatest # validation tools for test-driven data wrangling
+      - tdda
+      - mltest
+      - pytest-mpl
 
-# Preprocessing and feature engineering
-    - path.py # processing paths and files
-    - fancyimpute     # impute missing data
-    - git+https://github.com/jundongl/scikit-feature
-    - git+https://github.com/danielhomola/mifs
-    - pymrmr
-    - featuretools
-    - featureforge
-#    - few # feature engineering wrapper
-    - feagen==1.0.0a9
-    - git+https://github.com/mewwts/feng.git
-    - features
-    - sklearn_features
-    - sklearn_relief
-    - sklearn-pandas
-    - ibex # pandas + sklearn interface
-    - csvdedupe
-    - delorean
-    - prince
-    - ppca
-    - sklearn_dummies
-    - sklearn-deltatfidf
-    - fbpca
-    - tzlocal
-    - lcfeatures
-    - mercantile
-    - git+https://github.com/caseyclements/pennies #finance modeling abt pricing
-    - empyrical
-    - git+https://github.com/mne-tools/mne-features.git#egg=mne_features
+      # Network Analysis
+      - git+https://github.com/austin-taylor/flare.git # network traffic and behavioral analytics
+      - linkpred # link prediction tool
+      - git+https://github.com/dmarx/Topological-Anomaly-Detection
+      - networkl # networkx extension
+      - graphistry
+      #    - networkit
+      - python-louvain # Louvain Community Detection (network analysis)
 
-# a/b testing / exploration thru bandits and similar ideas
-    - git+https://github.com/mpkato/interleaving.git
-    - hastur
-    - parfit
-    - striatum
-    - git+https://github.com/Nth-iteration-labs/streamingbandit
-    - git+https://github.com/cbellei/abyes.git
-    - planout
-#    - babtest uses pymc + python2
+      # Time Series
+      #    - git+https://github.com/ceholden/yatsm.git #gdal library required
+      - seasonal # Robustly estimate trend and periodicity in a timeseries.
+      - pyflux
+      - tslearn # time-series data ml
+      - cesium # Machine Learning Time-Series Platform
+      - pydlm
+      - changepy
+      - pastas
+      - pyts
+      - dtaidistance
+      - seglearn
+      - git+git://github.com/kyleclo/structural.git#egg=structural
 
+      # External Data
+      - workalendar # Worldwide holidays and workdays computational toolkit
+      # - pandas-finance
+      - iso3166
+      # - yahoo-finance
+      - pycountry
 
-# databases
-    - db.py
-    - dataset # Easy-to-use data handling for SQL data stores with support for implicit table creation, bulk loading, and transactions.
+      # pretrained models
+      - gender-guesser
+      - langid
+      - probablepeople>=0.5.2
+      - nudepy
+      - sexmachine
+      - ethnicolr
+      - usaddress
+      - street-address
 
+      # OR Packages
+      - ortools
+      - vania
+      - cvxpy
+      - simanneal
 
-# Testing
-    - datatest   # validation tools for test-driven data wrangling
-    - tdda
-    - mltest
-    - pytest-mpl
+      # image processing
+      - imgaug
 
-# Network Analysis
-    - git+https://github.com/austin-taylor/flare.git         # network traffic and behavioral analytics
-    - git+https://github.com/rafguns/linkpred.git       # link prediction tool should update the networkx version
-    - git+https://github.com/dmarx/Topological-Anomaly-Detection
-    - networkl # networkx extension
-    - graphistry
-#    - networkit
-    - python-louvain     # Louvain Community Detection (network analysis)
+      # algorithms
+      - git+https://github.com/kalaidin/sketches
+      - git+https://github.com/mattilyra/LSH.git
+      - git+https://github.com/erp12/pyshgp.git # soon from pip
+      - git+https://github.com/aarongarrett/inspyred
+      - squarify
+      - trueskill
+      - git+https://github.com/wdm0006/elote
+      - pymining
+      - pygorithm
+      # - git+https://github.com/clips/pattern@development # this has a server for some reason
 
-# Time Series
-#    - git+https://github.com/ceholden/yatsm.git #gdal library required
-    - seasonal     # Robustly estimate trend and periodicity in a timeseries.
-    - pyflux
-    - tslearn     # time-series data ml
-    - cesium     # Machine Learning Time-Series Platform
-    - pydlm
-    - changepy
-    - pastas
-    - pyts
-    - dtaidistance
-    - seglearn
-    - git+git://github.com/kyleclo/structural.git#egg=structural
+      # Support Packages
+      - futures>=3.0.5
+      - progress
+      - humanize
+      - prettytable
+      - pyperclip
 
-# External Data
-    - workalendar    # Worldwide holidays and workdays computational toolkit
-    # - pandas-finance
-    - iso3166
-    # - yahoo-finance
-    - pycountry
+      #automl
+      #    - git+https://github.com/tadejs/autokit.git
+      #    - auto_ml
+      #    - alphapy
+      #    - mlbox
+      #    - auto-sklearn
 
-# pretrained models
-    - gender-guesser
-    - langid
-    - probablepeople>=0.5.2
-    - nudepy
-    - sexmachine
-    - ethnicolr
-    - usaddress
-    - street-address
+      # model interpretation and management and meta-learning
+      - git+https://github.com/MaxHalford/xam
+      - hpsklearn
+      - git+https://github.com/mpearmain/scikit-wrapRs.git
+      - git+https://github.com/automl/RoBO.git #needs swig george and emcee
+      - git+https://github.com/mpearmain/gestalt
+      - xtoy
+      - git+https://github.com/dvaida/hallucinate.git
+      - git+https://github.com/automl/fanova.git
+      - pdpbox # python partial dependence plot toolbox
+      - civisml-extensions
+      - visualize_ML #  visualize some processes involved in Machine learning.
+      - tensorboardX
+      - mlens #  ensemble learning
+      - OpenEnsembles
+      - xgbfir # XGBoost Feature Interactions
+      - tensorboard_logger
+      - lens
+      - speedml # speed start machine learning projects
+      - git+https://github.com/lmc2179/savvy
+      - scikits.bootstrap
+      - hyperopt
+      - searchgrid
+      # - smac # needs pyrfr
+      - omesa
+      - boruta
+      - dflearn
+      - ml_insights
+      - shap
+      - pdpipe
+      # - quilt
+      # - persimmon needs client graphics
+      - heamy
+      - vecstack # models stacking
+      - stacking
+      - pypet # exploration of the parameter space
+      - sklearn-gbmi
+      - sigopt_sklearn[ensemble]
+      - artemis-ml
+      - sklearn_pipeline_utils
+      - sklearn-evaluation
+      - optml
+      - pycebox
+      - boostaroota
+      - kmeans-smote
+      - treeinterpreter
+      - waterfallcharts
+      - skrebate
+      - lore
+      - git+https://github.com/yandexdataschool/modelgym
+      - mlcrate
+      - rf_perm_feat_import
+      - anchor_exp
+      - torchviz #  visualizations of PyTorch execution graphs and traces.
+      - git+https://github.com/paris-saclay-cds/ramp-workflow.git
+      - lti
 
-# OR Packages
-    - ortools
-    - vania
-    - cvxpy
-    - simanneal
+      # model deployment
+      - sklearn2pmml
 
-# image processing
-    - imgaug
+      # NLP
+      - keras-text
+      - ktext
+      - skift
+      - pykoko
+      - wordsegment
+      - pyahocorasick
+      - emoji
+      - spacy-lookup
+      - flashtext
+      - wordbatch # Parallel text feature extraction for machine learning
+      - babel
+      - pyparsing #  construct the grammar directly in Python code
+      - textacy # built on spacy
+      - textblob
+      - git+git://github.com/facebookresearch/fastText.git@0a5759475265705b485fa9fae4d1186d248049aa
+      - thinc
+      - sematch # semantic similarity framework for knowledge graph
+      - snowballstemmer
+      - fuzzywuzzy # Fuzzy String Matching
+      - pynlpl
+      - stop-words
+      - sentencepiece
+      - bounter
+      - pronouncing
+      - python-louvain
+      - stemming
+      - leven
+      - janome # Add Japanese morphological analysis engine
+      - jellyfish
+      - jieba
+      - lda
+      - git+https://github.com/ztane/python-Levenshtein.git
+      - allennlp
+      - preprocessing
+      - chakin
+      - matchzoo # text matching
+      - nlpnet
 
-# algorithms
-    - git+https://github.com/kalaidin/sketches
-    - git+https://github.com/mattilyra/LSH.git
-    - git+https://github.com/erp12/pyshgp.git # soon from pip
-    - git+https://github.com/aarongarrett/inspyred
-    - squarify
-    - trueskill
-    - git+https://github.com/wdm0006/elote
-    - pymining
-    - pygorithm
-  # - git+https://github.com/clips/pattern@development # this has a server for some reason
+      # deep learning
+      - mxnet # dl framework
+      - cntk # dl toolkit
+      - nnabla
+      - dm-sonnet # TensorFlow-based neural network library from deepmind
+      - nervananeon
+      - skorch
+      - tflearn
+      - tensorlayer
+      - tensorflow-lattice
+      - keras-vis
+      - gulpio # Binary storage format for large volume dl data.
+      - pyro-ppl # deep probabilistic programming
+      - luminoth # DL toolkit for Computer Vision
+      - keras-rl # Deep Reinforcement Learning
+      - hyperas
+      - git+https://github.com/broadinstitute/keras-rcnn
+      - neupy
+      - tensorly
+      - git+git://github.com/probtorch/probtorch
+      - git+https://github.com/the-moliver/kfs.git # keras extensions
+      - keras-tqdm
+      - tfp-nightly
+      - quiver_engine # Interactive convnet features visualization for Keras
+      - foolbox
+      - t3f
+      - kur
+      # - git+https://github.com/clab/dynet#egg=dynet
+      - pyvarinf
 
-# Support Packages
-    - futures>=3.0.5
-    - progress
-    - humanize
-    - prettytable
-    - pyperclip
+      # Audio & music
+      - librosa
+      - python_speech_features
+      - kapre # Keras Audio Preprocessors
+      - magenta
+      - pydub
+      - msaf # Music Structure Analysis Framework
+      - speechpy
+      - wavio # reading and writing WAV files using numpy arrays.
+      - git+https://github.com/pytorch/audio.git
+      - aubio
+      - soundfile
+      - scikit-dsp-comm[helpers]
 
-#automl
-#    - git+https://github.com/tadejs/autokit.git
-#    - auto_ml
-#    - alphapy
-#    - mlbox
-#    - auto-sklearn
+      # Video Processing
+      - scikit-video
+      - chainercv # computer vision
 
-
-# model interpretation and management and meta-learning
-    - git+https://github.com/MaxHalford/xam
-    - hpsklearn
-    - git+https://github.com/mpearmain/scikit-wrapRs.git
-    - git+https://github.com/automl/RoBO.git #needs swig george and emcee
-    - git+https://github.com/mpearmain/gestalt
-    - git+https://github.com/kootenpv/xtoy.git
-    - git+https://github.com/dvaida/hallucinate.git
-    - git+https://github.com/automl/fanova.git
-    - pdpbox # python partial dependence plot toolbox
-    - civisml-extensions
-    - visualize_ML     #  visualize some processes involved in Machine learning.
-    - tensorboardX
-    - mlens     #  ensemble learning
-    - OpenEnsembles
-    - xgbfir     # XGBoost Feature Interactions
-    - tensorboard_logger
-    - lens
-    - speedml # speed start machine learning projects
-    - git+https://github.com/lmc2179/savvy
-    - scikits.bootstrap
-    - hyperopt
-    - searchgrid
-    # - smac # needs pyrfr
-    - omesa
-    - boruta
-    - dflearn
-    - ml_insights
-    - shap
-    - pdpipe
-  # - quilt
-  # - persimmon needs client graphics
-    - heamy
-    - vecstack # models stacking
-    - stacking
-    - pypet # exploration of the parameter space
-    - sklearn-gbmi
-    - sigopt_sklearn[ensemble]
-    - artemis-ml
-    - sklearn_pipeline_utils
-    - sklearn-evaluation
-    - optml
-    - pycebox
-    - boostaroota
-    - kmeans-smote
-    - treeinterpreter
-    - waterfallcharts
-    - skrebate
-    - lore
-    - git+https://github.com/yandexdataschool/modelgym
-    - mlcrate
-    - rf_perm_feat_import
-    - anchor_exp
-    - git+https://github.com/szagoruyko/pytorchviz #  visualizations of PyTorch execution graphs and traces.
-    - git+https://github.com/paris-saclay-cds/ramp-workflow.git
-    - lti
-
-
-# model deployment
-    - sklearn2pmml
-
-# NLP
-    - keras-text
-    - ktext
-#    - skift
-    - pykoko
-    - wordsegment
-    - pyahocorasick
-    - emoji
-    - spacy-lookup
-    - flashtext
-    - wordbatch     # Parallel text feature extraction for machine learning
-    - babel
-    - pyparsing #  construct the grammar directly in Python code
-    - textacy   # built on spacy
-    - textblob
-#    - fasttext     #  interface for Facebook fastText
-#    - pyfasttext
-    - thinc
-    - sematch     # semantic similarity framework for knowledge graph
-    - snowballstemmer
-    - fuzzywuzzy     # Fuzzy String Matching
-    - pynlpl
-    - stop-words
-    - sentencepiece
-    - bounter
-    - pronouncing
-    - python-louvain
-    - stemming
-    - leven
-    - janome # Add Japanese morphological analysis engine
-    - jellyfish
-    - jieba
-    - lda
-    - git+https://github.com/ztane/python-Levenshtein.git
-    - allennlp
-    - preprocessing
-    - chakin
-    - git+https://github.com/faneshion/MatchZoo.git # text matching
-    - nlpnet
-
-
-
-# deep learning
-    - mxnet     # dl framework
-    - cntk     # dl toolkit
-    - nnabla
-    - dm-sonnet     # TensorFlow-based neural network library from deepmind
-    - nervananeon
-    - skorch
-    - tflearn
-    - tensorlayer
-    - tensorflow-lattice
-    - keras-vis
-    - gulpio     # Binary storage format for large volume dl data.
-    - pyro-ppl # deep probabilistic programming
-    - luminoth # DL toolkit for Computer Vision
-    - keras-rl     # Deep Reinforcement Learning
-    - hyperas
-    - git+https://github.com/broadinstitute/keras-rcnn
-    - neupy
-    - tensorly
-    - git+git://github.com/probtorch/probtorch
-    - git+https://github.com/the-moliver/kfs.git # keras extensions
-    - keras-tqdm
-    - tfp-nightly
-    - quiver_engine     # Interactive convnet features visualization for Keras
-    - foolbox
-    - t3f
-    - kur
-    - git+https://github.com/clab/dynet#egg=dynet
-    - pyvarinf
-
-# Audio & music
-    - librosa
-    - python_speech_features
-    - kapre # Keras Audio Preprocessors
-    - magenta
-    - pydub
-    - msaf # Music Structure Analysis Framework
-    - speechpy
-    - wavio     # reading and writing WAV files using numpy arrays.
-    - git+https://github.com/pytorch/audio.git
-    - aubio
-    - soundfile
-    - scikit-dsp-comm[helpers]
-
-
-# Video Processing
-    - scikit-video
-    - chainercv # computer vision
-
-
-# for self-learning purposes! / demos/ tutorials/ etc
-    - mglearn
-    - fastai
+      # for self-learning purposes! / demos/ tutorials/ etc
+      - mglearn
+      - fastai
 # interesting idea to install in subdirectory files pip install git+https://github.com/ray-project/ray.git#subdirectory=python
