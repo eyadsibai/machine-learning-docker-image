@@ -11,8 +11,8 @@ services:
     volumes:
       - /home/eyad/workspace:/home/jovyan/work
     environment:
-      - AWS_ACCESS_KEY_ID=AKIAI6QZVJBOOXQTV4OQ
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
       - AWS_DEFAULT_REGION=eu-west-1
       - SPARK_OPTS='--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages org.apache.hadoop:hadoop-aws:2.9.0,com.amazonaws:aws-java-sdk:1.11.235,com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9'
       - PYSPARK_SUBMIT_ARGS="--packages org.apache.hadoop:hadoop-aws:2.9.0"
