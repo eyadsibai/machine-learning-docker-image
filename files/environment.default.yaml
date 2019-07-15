@@ -320,7 +320,7 @@ dependencies:
       - elfi
       - expan
       - pymc3_models
-      - git+https://github.com/manuel-calzolari/sklearn-genetic.git # genetic algorithms for feature selection
+      - sklearn-genetic # genetic algorithms for feature selection
       - pyemd #  Earth Mover's Distance
       - celer # fast lasso solver
 
@@ -557,7 +557,7 @@ dependencies:
       # algorithms
       - git+https://github.com/kalaidin/sketches
       - git+https://github.com/mattilyra/LSH.git
-      - git+https://github.com/erp12/pyshgp.git # soon from pip
+      - pyshgp
       - git+https://github.com/aarongarrett/inspyred
       - squarify
       - trueskill
