@@ -1,4 +1,4 @@
-FROM jupyter/all-spark-notebook:latest
+FROM jupyter/scipy-notebook:latest
 
 USER root
 
@@ -47,12 +47,12 @@ ENV PATH $HOME/bin:$PATH
 RUN mkdir $HOME/bin
 
 
-# install fasttext -- now available thru conda
-#  RUN git clone --depth 1 https://github.com/facebookresearch/fastText.git && \
-#      cd fastText \
-#      # && make && mv fasttext $HOME/bin  \
-#      && pip install . && cd .. \
-#      && rm -rf fastText
+# install fasttext -- not available thru conda
+ RUN git clone --depth 1 https://github.com/facebookresearch/fastText.git && \
+     cd fastText \
+     && make && mv fasttext $HOME/bin  \
+     && pip install . && cd .. \
+     && rm -rf fastText
 
 
 # Regularized Greedy Forests

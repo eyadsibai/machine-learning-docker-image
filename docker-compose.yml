@@ -1,0 +1,23 @@
+version: '3'
+services:
+  docker-dsp:
+    image: eyadsibai/docker-dsp:default
+    ports:
+     - "8891:8888"
+     - "6006:6006"
+     - "8787:8787"
+     - "11000:11000"
+     # TODO add ports for monitoring spark locally
+    volumes:
+      - /home/eyad/workspace:/home/jovyan/work
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAI6QZVJBOOXQTV4OQ
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=eu-west-1
+      - SPARK_OPTS='--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages org.apache.hadoop:hadoop-aws:2.9.0,com.amazonaws:aws-java-sdk:1.11.235,com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9'
+      - PYSPARK_SUBMIT_ARGS="--packages org.apache.hadoop:hadoop-aws:2.9.0"
+      - PYSPARK_PYTHON=/opt/conda/bin/python
+#com.airbnb.aerosolve:core:0.1.103 add bintray repo
+#com.github.haifengl:smile-scala:1.4.0
+
+#docker-compose run docker-dsp start.sh jupyter lab --NotebookApp.token=''
