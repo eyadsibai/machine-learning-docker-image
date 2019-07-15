@@ -1,0 +1,25 @@
+questions to bcg
+- leadership (if the ppl below you are doing great work u might not let them get promoted)
+- what type of projects do you work on?
+- do u do one time analysis or do full system?
+churn prediction
+https://github.com/turi-code/sample-churn-predictor
+https://github.com/MarvinBertin/ChurnModel-BayesBoost/blob/master/Churn_test.ipynb
+https://github.com/joshuacortez/survival-analysis-blog/blob/master/customer%20churn%20survival%20analysis.ipynb
+https://www.quora.com/What-is-Churn-Prediction
+https://turi.com/learn/userguide/churn_prediction/how-it-works.html
+https://www.dataiku.com/solutions/use-cases/churn-analytics/
+https://github.com/ragulpr/wtte-rnn
+https://moz.com/devblog/deep-learning-for-customَer-churn-prediction/
+https://www.dataiku.com/learn/guide/tutorials/churn-prediction.html
+https://ragulpr.github.io/2016/12/22/WTTE-RNN-Hackless-churn-modeling/#use-as-a-churn-model
+https://github.com/blendo-app/RNN_churn/blob/master/RNN_churn.py
+https://github.com/daynebatten/keras-wtte-rnn
+ََ
+
+Notes
+- I would like to breakdown revenue to its component parts, do we have more/additional data on that?
+
+
+
+You should be able to access the data in the following bucket `s3://izettle-analytics-peltarion-prod/2017-12-20` with these credentials:

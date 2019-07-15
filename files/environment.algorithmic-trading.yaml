@@ -1,0 +1,5 @@
+- Quantopian::zipline # (pandas 0.18.x)
+- prophet     # microframework for financial markets
+- pyalgotrade
+- python-binance
+- alphalens
