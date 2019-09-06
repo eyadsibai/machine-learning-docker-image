@@ -1,0 +1,26 @@
+
+  # Visualization
+  - bokeh>=0.12.*
+  - matplotlib>=2.*
+  - mpl-probscale
+  - plotly
+  - matplotlib-venn # Area-weighted venn-diagrams for Python/matplotlib
+  - plotnine # grammar of graphics
+  - seaborn # statistical data visualization
+  - bokeh::datashader # visualize big datasets
+  - conda-forge::altair
+  - mpld3 # D3 Renderings of Matplotlib Graphics
+  - ioam::holoviews
+  - districtdatalabs::yellowbrick # Visual analysis and diagnostic tools to facilitate machine learning model selection
+  - iris
+  - pyviz::pyviz
+  - bokeh::colorcet # colormaps
+  - mplleaflet
+  - glueviz::glueviz
+  - folium
+  - mpl-scatter-density
+  - bqplot
+  - descartes # visualize geopositions
+  - amueller::wordcloud
+  - ipyleaflet
+  - windrose

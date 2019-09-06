@@ -1,7 +1,6 @@
 - cffi
 - chainer_sklearn
 - deap
-
 - ezyang::onnx
 - git+git://github.com/ppwwyyxx/tensorpack
 # - git+https://github.com/Lasagne/Lasagne.git
@@ -13,11 +12,20 @@
 
 - git+https://github.com/facebookresearch/DrQA.git
 - git+https://github.com/facebookresearch/pysparnn.git
-- git+https://github.com/tensorflow/cleverhans.git#egg=cleverhans
+- cleverhans
 - git+https://github.com/thtrieu/darkflow.git
 - git+https://github.com/thu-ml/zhusuan     # Bayesian Deep Learning, Generative Models, Based on Tensorflow
 - gym
-
+  # deep learning
+  - tensorflow>=1.4.0
+  - pytorch::pytorch >= 0.3.1
+  - pytorch::torchvision
+  - keras
+  - chainer
+  - demetris::pydlt
+  #  - nusdbsystem::singa
 - nutsml     # Flow-based data pre-processing for deep learning
 - picasso-viz # (should be in dockerfile by itself)
 - theano
+- pip:
+  - einopslet's fi

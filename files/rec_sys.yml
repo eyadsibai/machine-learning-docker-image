@@ -1,0 +1,7 @@
+    - git+https://github.com/marinkaz/nimfa
+    - git+https://github.com/chyikwei/recommend
+    - recsys
+    - git+https://github.com/Evfro/polara
+    - flurs
+    - cmfrec
+    - git+https://github.com/jmhessel/fmpytorch

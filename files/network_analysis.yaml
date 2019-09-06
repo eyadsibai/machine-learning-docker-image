@@ -1,0 +1,5 @@
+  - networkx>=2.*
+  - graphviz
+  - python-igraph
+  - nxviz
+  - ostrokach-forge::graph-tool
