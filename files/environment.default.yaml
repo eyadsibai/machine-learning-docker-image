@@ -1109,3 +1109,4 @@ dependencies:
     - fastai
 # interesting idea to install in subdirectory files pip install git+https://github.com/ray-project/ray.git#subdirectory=python
     - ray
+    - recordlinkage
