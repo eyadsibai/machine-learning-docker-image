@@ -337,6 +337,7 @@ dependencies:
 
       # Specific ML
       - lifetimes # Lifetime value
+      - adtk
       #    - face_recognition
       # - git+https://github.com/nicolashennetier/pyeconometrics.git # econometrics regression models
       - quantecon # quantitative economics
@@ -831,8 +832,8 @@ dependencies:
     - pymrmr
     - featuretools
     - featureforge
-#    - few # feature engineering wrapper
-    - feagen==1.0.0a9
+#    - few # feature engineering wrapper #https://github.com/lacava/few
+    # - feagen==1.0.0a9 should be replaced with https://github.com/ianlini/dagian
     - git+https://github.com/mewwts/feng.git
     - features
     - sklearn_features
@@ -851,7 +852,7 @@ dependencies:
     - mercantile
     - git+https://github.com/caseyclements/pennies #finance modeling abt pricing
     - empyrical
-    - git+https://github.com/mne-tools/mne-features.git#egg=mne_features
+    - mne-features
 
 # a/b testing / exploration thru bandits and similar ideas
     - git+https://github.com/mpkato/interleaving.git
@@ -877,7 +878,7 @@ dependencies:
 
 # Network Analysis
     - git+https://github.com/austin-taylor/flare.git         # network traffic and behavioral analytics
-    - git+https://github.com/rafguns/linkpred.git       # link prediction tool should update the networkx version
+    - linkpred       # link prediction tool should update the networkx version
     - git+https://github.com/dmarx/Topological-Anomaly-Detection
     - networkl # networkx extension
     - graphistry
@@ -927,7 +928,7 @@ dependencies:
 # algorithms
     - git+https://github.com/kalaidin/sketches
     - git+https://github.com/mattilyra/LSH.git
-    - git+https://github.com/erp12/pyshgp.git # soon from pip
+    - pyshgp
     - git+https://github.com/aarongarrett/inspyred
     - squarify
     - trueskill
@@ -957,7 +958,7 @@ dependencies:
     - git+https://github.com/mpearmain/scikit-wrapRs.git
     - git+https://github.com/automl/RoBO.git #needs swig george and emcee
     - git+https://github.com/mpearmain/gestalt
-    - git+https://github.com/kootenpv/xtoy.git
+    - xtoy
     - git+https://github.com/dvaida/hallucinate.git
     - git+https://github.com/automl/fanova.git
     - pdpbox # python partial dependence plot toolbox
@@ -1006,7 +1007,7 @@ dependencies:
     - anchor_exp
     - torchviz #  visualizations of PyTorch execution graphs and traces.
     - git+https://github.com/paris-saclay-cds/ramp-workflow.git
-    - lti
+    - lti # https://github.com/pylti/lti
 
 
 # model deployment
