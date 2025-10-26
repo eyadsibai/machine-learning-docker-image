@@ -3,21 +3,25 @@ services:
   docker-dsp:
     image: eyadsibai/docker-dsp:default
     ports:
-     - "8891:8888"
-     - "6006:6006"
-     - "8787:8787"
-     - "11000:11000"
-     # TODO add ports for monitoring spark locally
+     - "8891:8888"  # Jupyter
+     - "6006:6006"  # TensorBoard
+     - "8787:8787"  # RStudio (if using R image)
+     - "11000:11000" # Additional services
     volumes:
-      - /home/eyad/workspace:/home/jovyan/work
+      # Replace this path with your local workspace directory
+      - ./work:/home/jovyan/work
     environment:
-      - AWS_ACCESS_KEY_ID=
-      - AWS_SECRET_ACCESS_KEY=
+      # AWS credentials (optional)
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_DEFAULT_REGION=eu-west-1
-      - SPARK_OPTS='--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages org.apache.hadoop:hadoop-aws:2.9.0,com.amazonaws:aws-java-sdk:1.11.235,com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9'
-      - PYSPARK_SUBMIT_ARGS="--packages org.apache.hadoop:hadoop-aws:2.9.0"
+      # Spark configuration (for dl image)
+      - SPARK_OPTS=--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages org.apache.hadoop:hadoop-aws:2.9.0,com.amazonaws:aws-java-sdk:1.11.235,com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9
+      - PYSPARK_SUBMIT_ARGS=--packages org.apache.hadoop:hadoop-aws:2.9.0
       - PYSPARK_PYTHON=/opt/conda/bin/python
-#com.airbnb.aerosolve:core:0.1.103 add bintray repo
-#com.github.haifengl:smile-scala:1.4.0
+    command: start.sh jupyter lab --NotebookApp.token=''
 
-#docker-compose run docker-dsp start.sh jupyter lab --NotebookApp.token=''
+# Usage:
+# 1. Create a 'work' directory in the same location as this file
+# 2. Run: docker-compose up -d
+# 3. Access Jupyter at http://localhost:8891
