@@ -1,0 +1,31 @@
+name: Docker Build Test
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile: [default.Dockerfile, dl.Dockerfile, r.Dockerfile]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      run: |
+        docker build -f ${{ matrix.dockerfile }} -t test-image:${{ matrix.dockerfile }} .
+      timeout-minutes: 60
+      
+    - name: Test image
+      run: |
+        docker run --rm test-image:${{ matrix.dockerfile }} python -c "import sys; print(f'Python {sys.version}')"

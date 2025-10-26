@@ -1,0 +1,55 @@
+version: '3'
+
+# Example Docker Compose configurations for different use cases
+
+# To use any of these configurations:
+# 1. Copy the desired service configuration to docker-compose.yml
+# 2. Adjust the volumes and environment variables
+# 3. Run: docker-compose up -d
+
+services:
+  # Basic local development setup
+  ml-dev:
+    image: eyadsibai/docker-dsp:default
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./work:/home/jovyan/work
+    command: start.sh jupyter lab --NotebookApp.token=''
+    
+  # Deep learning setup with GPU support
+  ml-gpu:
+    image: eyadsibai/docker-dsp:dl
+    runtime: nvidia
+    ports:
+      - "8888:8888"
+      - "6006:6006"  # TensorBoard
+    volumes:
+      - ./work:/home/jovyan/work
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    command: start.sh jupyter lab --NotebookApp.token=''
+    
+  # R integration setup
+  ml-r:
+    image: eyadsibai/docker-dsp:r
+    ports:
+      - "8888:8888"
+      - "8787:8787"  # RStudio
+    volumes:
+      - ./work:/home/jovyan/work
+    command: start.sh jupyter lab --NotebookApp.token=''
+    
+  # AWS integration setup
+  ml-aws:
+    image: eyadsibai/docker-dsp:default
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./work:/home/jovyan/work
+      - ~/.aws:/home/jovyan/.aws:ro
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    command: start.sh jupyter lab --NotebookApp.token=''
