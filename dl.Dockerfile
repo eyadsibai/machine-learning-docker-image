@@ -4,9 +4,9 @@ USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libarmadillo-dev \
         binutils-dev libleptonica-dev && \
-apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
+apt-get -qq install -y --no-install-recommends git ffmpeg cmake build-essential \
 # needed for tessarct
-automake libtool autoconf-archive autoconf automake libtool pkg-config libpng12-dev libjpeg8-dev libtiff5-dev zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev \
+automake libtool autoconf-archive autoconf automake libtool pkg-config libpng-dev libjpeg-dev libtiff5-dev zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
 fonts-dejavu gfortran gcc \

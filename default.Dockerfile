@@ -2,7 +2,7 @@ FROM jupyter/scipy-notebook:latest
 
 USER root
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential liblapacke-dev \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y --no-install-recommends git ffmpeg cmake build-essential liblapacke-dev \
 # needed by vowpal wabbit
 libboost-program-options-dev zlib1g-dev libboost-all-dev \
 # needed by libhunspell
@@ -16,10 +16,10 @@ libjack-dev libsox-fmt-all libsox-dev sox \
 
 USER $NB_UID
 RUN conda config --set channel_priority false
-# root should be changed to base in the new versions
-RUN conda update -n root -y conda
+# Update conda in base environment
+RUN conda update -n base -y conda
 COPY files/environment.default.yaml environment.yaml
-RUN conda env update -n root --file=environment.yaml -q \
+RUN conda env update -n base --file=environment.yaml -q \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -tipsy && \
     jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
