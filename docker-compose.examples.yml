@@ -20,7 +20,6 @@ services:
   # Deep learning setup with GPU support
   ml-gpu:
     image: eyadsibai/docker-dsp:dl
-    runtime: nvidia
     ports:
       - "8888:8888"
       - "6006:6006"  # TensorBoard
@@ -28,6 +27,13 @@ services:
       - ./work:/home/jovyan/work
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     command: start.sh jupyter lab --NotebookApp.token=''
     
   # R integration setup
