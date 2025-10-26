@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
     strategy:
       matrix:
         dockerfile: [default.Dockerfile, dl.Dockerfile, r.Dockerfile]
