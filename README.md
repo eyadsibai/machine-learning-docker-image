@@ -120,7 +120,6 @@ Access Jupyter at http://localhost:8888
 - `eyadsibai/docker-dsp:r` - R integration on top of default image
 
 ## Included Tools & Libraries
-## Included Tools & Libraries
 
 ### Core
 - Python 3.6+
