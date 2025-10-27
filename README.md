@@ -64,7 +64,6 @@ Open http://{docker-machine-ip}:8888 in your browser.
 
 Stop the machine:
 
-### Manage the instance
 
 Stop the machine:
 
