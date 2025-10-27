@@ -44,7 +44,6 @@ eval $(docker-machine env docker-dsp)
 
 ### Start Jupyter Lab
 
-### Start Jupyter Lab
 
 ```bash
 docker run -d -p 8888:8888 \
