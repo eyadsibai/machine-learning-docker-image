@@ -79,7 +79,6 @@ docker-machine start docker-dsp
 
 Delete the instance:
 
-Delete the instance:
 
 ```bash
 docker-machine rm docker-dsp
