@@ -1,12 +1,14 @@
 version: '3'
 services:
-  docker-dsp:
-    image: eyadsibai/docker-dsp:default
+  ml-docker:
+    image: eyadsibai/ml-unified:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-     - "8891:8888"  # Jupyter
-     - "6006:6006"  # TensorBoard
-     - "8787:8787"  # RStudio (if using R image)
-     - "11000:11000" # Additional services
+      - "8888:8888"  # Jupyter Lab
+      - "6006:6006"  # TensorBoard
+      - "8787:8787"  # RStudio (if using R)
     volumes:
       # Replace this path with your local workspace directory
       - ./work:/home/jovyan/work
@@ -14,14 +16,26 @@ services:
       # AWS credentials (optional)
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_DEFAULT_REGION=eu-west-1
-      # Spark configuration (for dl image)
-      - SPARK_OPTS=--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info --packages org.apache.hadoop:hadoop-aws:2.9.0,com.amazonaws:aws-java-sdk:1.11.235,com.spotify:featran-core_2.11:0.1.9,com.spotify:featran-numpy_2.11:0.1.9
-      - PYSPARK_SUBMIT_ARGS=--packages org.apache.hadoop:hadoop-aws:2.9.0
-      - PYSPARK_PYTHON=/opt/conda/bin/python
-    command: start.sh jupyter lab --NotebookApp.token=''
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+      # Default to base environment, users can switch in Jupyter
+      - CONDA_DEFAULT_ENV=base
+    # For GPU support, uncomment the following:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token=''
 
 # Usage:
 # 1. Create a 'work' directory in the same location as this file
 # 2. Run: docker-compose up -d
-# 3. Access Jupyter at http://localhost:8891
+# 3. Access Jupyter at http://localhost:8888
+# 4. Select kernel: Python 3.8 (ML-CPU), Python 3.8 (ML-GPU), or R (Stats)
+# 
+# To activate an environment from command line:
+# docker-compose exec ml-docker conda activate ml-cpu
+# docker-compose exec ml-docker conda activate ml-gpu
+# docker-compose exec ml-docker conda activate r-stats
