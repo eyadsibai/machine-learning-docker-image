@@ -15,7 +15,7 @@ fonts-dejavu gfortran gcc \
 
 USER $NB_USER
 RUN conda config --system --add channels conda-forge --add channels glemaitre --add channels distributions --add channels maciejkula --add channels datamicroscopes --add channels ioam --add channels r && conda config --set channel_priority false
-COPY files/environment.yaml environment.yaml
+COPY files/environment.dl.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
