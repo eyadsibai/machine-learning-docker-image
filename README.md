@@ -36,7 +36,6 @@ docker-machine create docker-dsp -d google \
 
 ### Configure Docker client
 
-### Configure Docker client
 
 ```bash
 eval $(docker-machine env docker-dsp)
