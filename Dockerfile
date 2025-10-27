@@ -64,7 +64,7 @@ WORKDIR $HOME
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -u -p $CONDA_DIR && \
     rm ~/miniconda.sh && \
-    $CONDA_DIR/bin/conda clean -tipsy && \
+    $CONDA_DIR/bin/conda clean --all --yes && \
     echo ". $CONDA_DIR/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
@@ -78,7 +78,7 @@ RUN conda config --system --set auto_update_conda false && \
 # Update base conda
 RUN conda install -y -n base conda && \
     conda update -y -n base conda && \
-    conda clean -tipsy
+    conda clean --all --yes
 
 # Install Jupyter and common tools in base environment
 RUN conda install -y -n base \
@@ -89,18 +89,18 @@ RUN conda install -y -n base \
     ipython \
     ipywidgets \
     ipykernel \
-    && conda clean -tipsy
+    && conda clean --all --yes
 
 # Create ml-cpu environment (CPU-only machine learning)
 COPY files/environment.default.yaml /tmp/environment-ml-cpu.yaml
 RUN conda env create -n ml-cpu -f /tmp/environment-ml-cpu.yaml && \
-    conda clean -tipsy && \
+    conda clean --all --yes && \
     rm /tmp/environment-ml-cpu.yaml
 
 # Create ml-gpu environment (GPU-accelerated deep learning)
 COPY files/environment.dl.yaml /tmp/environment-ml-gpu.yaml
 RUN conda env create -n ml-gpu -f /tmp/environment-ml-gpu.yaml && \
-    conda clean -tipsy && \
+    conda clean --all --yes && \
     rm /tmp/environment-ml-gpu.yaml
 
 # Create r-stats environment (R and statistics)
@@ -110,7 +110,7 @@ RUN conda create -y -n r-stats python=3.8 && \
     r-essentials \
     r-irkernel \
     rpy2 \
-    && conda clean -tipsy
+    && conda clean --all --yes
 
 # Register all environments as Jupyter kernels
 RUN $CONDA_DIR/envs/ml-cpu/bin/python -m ipykernel install --user --name ml-cpu --display-name "Python 3.8 (ML-CPU)" && \
