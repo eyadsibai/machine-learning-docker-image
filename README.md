@@ -53,7 +53,6 @@ docker run -d -p 8888:8888 \
 
 ### Get IP address
 
-### Get IP address
 
 ```bash
 docker-machine ip docker-dsp
