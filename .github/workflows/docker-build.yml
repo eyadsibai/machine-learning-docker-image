@@ -1,0 +1,82 @@
+name: Docker Build Test
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-unified-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    
+    steps:
+    - name: Free Disk Space
+      run: |
+        # Remove unnecessary packages and files to free up disk space
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo docker system prune -a -f
+        sudo apt-get clean
+        df -h
+    
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        driver-opts: |
+          image=moby/buildkit:latest
+          network=host
+    
+    - name: Cache Docker layers
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+    
+    - name: Build unified Docker image
+      run: |
+        docker buildx build \
+          --file Dockerfile \
+          --tag eyadsibai/ml-unified:test \
+          --cache-from=type=local,src=/tmp/.buildx-cache \
+          --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
+          --load \
+          .
+      timeout-minutes: 90
+    
+    # Move cache to prevent it from growing indefinitely
+    - name: Update cache
+      run: |
+        rm -rf /tmp/.buildx-cache
+        mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      if: always()
+    
+    - name: Test base environment
+      run: |
+        docker run --rm eyadsibai/ml-unified:test \
+          python -c "import sys, jupyter; print(f'Python {sys.version}'); print(f'Jupyter {jupyter.__version__}')"
+    
+    - name: Test ml-cpu environment
+      run: |
+        docker run --rm eyadsibai/ml-unified:test \
+          bash -c "source /opt/conda/etc/profile.d/conda.sh && conda activate ml-cpu && python -c 'import pandas, numpy, sklearn; print(f\"pandas {pandas.__version__}, numpy {numpy.__version__}, sklearn {sklearn.__version__}\")'"
+    
+    - name: Verify all kernels installed
+      run: |
+        docker run --rm eyadsibai/ml-unified:test \
+          jupyter kernelspec list
+    
+    - name: Check final disk usage
+      run: df -h
+      if: always()

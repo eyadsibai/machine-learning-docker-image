@@ -1,3 +1,47 @@
+# Documentation
 README.md
+*.md
+
+# CI/CD
 .travis.yml
+.github/
+
+# Git
+.git
 .gitignore
+.gitattributes
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Docker
+docker-compose.yml
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.bak
+*_bak
+Untitled*
+todo*.txt

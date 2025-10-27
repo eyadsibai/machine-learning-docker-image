@@ -1,31 +1,55 @@
-- cffi
-- chainer_sklearn
-- deap
-- ezyang::onnx
-- git+git://github.com/ppwwyyxx/tensorpack
-# - git+https://github.com/Lasagne/Lasagne.git
-# - git+https://github.com/alshedivat/keras-gp
-# - git+https://github.com/casperkaae/parmesan.git
-# - git+https://github.com/ferrine/gelato.git
-# - git+https://github.com/tariqdaouda/Mariana.git
+name: dl
+channels:
+  - conda-forge
+  - ezyang
+  - pytorch
+  - demetris
+  - defaults
 
-
-- git+https://github.com/facebookresearch/DrQA.git
-- git+https://github.com/facebookresearch/pysparnn.git
-- cleverhans
-- git+https://github.com/thtrieu/darkflow.git
-- git+https://github.com/thu-ml/zhusuan     # Bayesian Deep Learning, Generative Models, Based on Tensorflow
-- gym
-  # deep learning
-  - tensorflow>=1.4.0
-  - pytorch::pytorch >= 0.3.1
-  - pytorch::torchvision
-  - keras
+dependencies:
+  - cffi
+  - chainer_sklearn
+  - deap
+  - ezyang::onnx
+  - git+git://github.com/ppwwyyxx/tensorpack
+  # - git+https://github.com/Lasagne/Lasagne.git
+  # - git+https://github.com/alshedivat/keras-gp
+  # - git+https://github.com/casperkaae/parmesan.git
+  # - git+https://github.com/ferrine/gelato.git
+  # - git+https://github.com/tariqdaouda/Mariana.git
+  
+  - git+https://github.com/facebookresearch/DrQA.git
+  - git+https://github.com/facebookresearch/pysparnn.git
+  - cleverhans
+  - git+https://github.com/thtrieu/darkflow.git
+  - git+https://github.com/thu-ml/zhusuan     # Bayesian Deep Learning, Generative Models, Based on Tensorflow
+  - gym
+  
+  # deep learning frameworks
+  - tensorflow>=2.4.0  # Updated to TF 2.x
+  - pytorch::pytorch>=1.7.0  # Updated PyTorch version
+  - pytorch::torchvision>=0.8.0  # Updated torchvision
+  - keras>=2.4.0  # Updated Keras
   - chainer
   - demetris::pydlt
   #  - nusdbsystem::singa
-- nutsml     # Flow-based data pre-processing for deep learning
-- picasso-viz # (should be in dockerfile by itself)
-- theano
-- pip:
-  - einopslet's fi
+  
+  - nutsml     # Flow-based data pre-processing for deep learning
+  - picasso-viz # (should be in dockerfile by itself)
+  - theano
+  
+  - pip:
+    - einops  # Tensor operations for neural networks
+    # Additional deep learning packages
+    - git+https://github.com/pytorch/ignite  # High-level library for PyTorch
+    - git+https://github.com/rusty1s/pytorch_cluster  # PyTorch clustering extensions
+    - git+https://github.com/nerox8664/pytorch2keras  # Model conversion PyTorch to Keras
+    - git+https://github.com/RobRomijnders/bayes_nn  # Bayesian neural networks
+    - git+https://github.com/koz4k/dni-pytorch  # Decoupled neural interfaces
+    - git+https://github.com/openai/supervised-reptile  # Meta-learning
+    - git+https://github.com/facebookresearch/adversarial_image_defenses  # Adversarial training
+    - git+https://github.com/lium-lst/nmtpytorch  # Neural machine translation
+    - git+https://github.com/NVIDIA/sentiment-discovery  # Large-scale sentiment analysis
+    - git+https://github.com/jaredleekatzman/DeepSurv  # Deep survival analysis
+    - git+https://github.com/deepmind/dm_control  # DeepMind control suite for RL
+    - git+https://github.com/deepmind/pycolab  # Grid-world game engine for RL

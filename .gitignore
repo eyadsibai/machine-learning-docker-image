@@ -1,5 +1,38 @@
 # IntelliJ project files
 .idea
-todo.txt
-.history
 .vscode
+.history
+
+# Temporary and backup files
+*.bak
+*_bak
+todo*.txt
+Untitled*
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Docker
+.env
+*.log
+
+# Nix
+result
+result-*
+.direnv/

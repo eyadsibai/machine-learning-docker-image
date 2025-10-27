@@ -4,9 +4,9 @@ USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y libprotobuf-dev libleveldb-dev libgl1-mesa-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libarmadillo-dev \
         binutils-dev libleptonica-dev && \
-apt-get -qq install -y --no-install-recommends git libav-tools cmake build-essential \
+apt-get -qq install -y --no-install-recommends git ffmpeg cmake build-essential \
 # needed for tessarct
-automake libtool autoconf-archive autoconf automake libtool pkg-config libpng12-dev libjpeg8-dev libtiff5-dev zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev \
+automake libtool autoconf-archive autoconf automake libtool pkg-config libpng-dev libjpeg-dev libtiff5-dev zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev \
 libopenblas-dev libopencv-dev zlib1g-dev libboost-all-dev unzip libssl-dev libzmq3-dev portaudio19-dev \
 libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \
 fonts-dejavu gfortran gcc \
@@ -15,7 +15,7 @@ fonts-dejavu gfortran gcc \
 
 USER $NB_USER
 RUN conda config --system --add channels conda-forge --add channels glemaitre --add channels distributions --add channels maciejkula --add channels datamicroscopes --add channels ioam --add channels r && conda config --set channel_priority false
-COPY files/environment.yaml environment.yaml
+COPY files/environment.dl.yaml environment.yaml
 RUN conda env update --file=environment.yaml --quiet \
     && conda remove qt pyqt --quiet --yes --force \
     && conda clean -l -tipsy && rm -rf "$HOME/.cache/pip/*" && rm environment.yaml
