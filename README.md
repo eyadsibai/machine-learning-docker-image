@@ -1,6 +1,23 @@
-# Machine Learning/Data Science Platform (Docker Image)
+# Machine Learning/Data Science Platform
 
-A comprehensive, unified Docker-based machine learning and data science platform with multiple conda environments for different use cases. Built on `python:3.8-slim` for minimal image size.
+A comprehensive, unified machine learning and data science platform with multiple environments for different use cases.
+
+## 🚀 Two Options Available
+
+### **Option 1: Nix (Recommended)** ✨
+- **Reproducible** - Bit-for-bit identical environments
+- **Fast** - Binary cache, no compilation
+- **Lightweight** - ~2-3GB vs ~6.5GB Docker
+- **No containers** - Native performance
+
+👉 **[See NIX_SETUP.md](./NIX_SETUP.md) for Nix installation and usage**
+
+### **Option 2: Docker** 🐳
+- **Traditional** - Docker-based setup
+- **Multiple conda environments** in a single image
+- Built on `python:3.8-slim` for minimal size
+
+Continue reading below for Docker setup.
 
 ## Architecture
 

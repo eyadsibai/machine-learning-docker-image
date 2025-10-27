@@ -31,3 +31,8 @@ build/
 # Docker
 .env
 *.log
+
+# Nix
+result
+result-*
+.direnv/
